@@ -84,20 +84,14 @@ def page(items):
 
 
 def course_navigation(root=ROOT):
-    path=Path(root)/'courses.json'
-    items=json.loads(path.read_text())['courses'] if path.exists() else [{'id':'system-design-fluency','title':'System Design Fluency','site':'index.html'}]
-    links=[]
-    for item in items:
-        href='index.html' if item['id']=='system-design-fluency' else item['site']
-        links.append('<a href="'+html.escape(href,quote=True)+'">'+html.escape(item['title'])+'</a>')
-    links.append('<a href="listen.html">Listen</a>')
-    return '<nav aria-label="Courses">'+' · '.join(links)+'</nav>'
+    from course_switcher import course_navigation as render_courses
+    return render_courses(root)
 
 
 def write_page(root=ROOT,check=False):
     root = Path(root).resolve()
     body = page(tracks(root))
-    document = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Listen · System Design Fluency</title><link rel="stylesheet" href="style.css"></head><body><a class="skip" href="#main">Skip to listening controls</a><header><a class="brand" href="index.html">System Design Fluency</a>{course_navigation(root)}</header><main id="main">{body}</main></body></html>'''
+    document = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Listen · System Design Fluency</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="courses.css"></head><body><a class="skip" href="#main">Skip to listening controls</a><header><a class="brand" href="index.html">System Design Fluency</a>{course_navigation(root)}</header><main id="main">{body}</main></body></html>'''
     destination = root / 'listen.html'
     if check:
         assert destination.exists() and destination.read_text()==document, "Stale listen.html; rebuild after source/audio changes"

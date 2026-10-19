@@ -63,4 +63,4 @@ for course in courses:
  href='index.html' if course['id']=='system-design-fluency' else course['site']
  for page in pages+[R/'listen.html']:
   assert f'href="{href}"' in page.read_text(),(page,course['id'],'missing Courses link')
-print('PASS: shared Courses navigation and README link all three verified apps')
+print('PASS: shared Courses navigation and README link all six verified apps')

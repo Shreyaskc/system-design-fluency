@@ -58,7 +58,7 @@ No new license is asserted. Do not infer a third-party license grant from public
 | AI Fluency | https://shreyaskc.github.io/AI-Learning/ | https://github.com/Shreyaskc/AI-Learning |
 | DSA Fluency | https://shreyaskc.github.io/dsa-fluency/ | https://github.com/Shreyaskc/dsa-fluency |
 
-The shared Courses navigation is generated from `courses.json`; add a verified live course there to update reading and listening pages together. All three listed courses have verified live sites.
+The shared Courses navigation is generated from `courses.json`; add a verified live course there to update reading and listening pages together. All six listed courses have verified live sites.
 
 ## Audio contributor workflow
 
@@ -97,3 +97,16 @@ The gate rejects incomplete/stale narration, missing files, changed hashes, tran
 Commit source, spoken explanations, transcripts, current media/provenance, catalog and rebuilt HTML together, then run the gate before pushing. GitHub Pages publishes built files from the `main` branch root. A versioned local pre-push guard is provided. Enable it per checkout with `git config --local core.hooksPath .githooks`; it verifies audio and exact generated files without generating or rewriting them. This checkout enables the guard. New clones must opt in, and local hooks can be bypassed, so this is not a GitHub-side enforcement claim. No custom GitHub workflow is installed: the available OAuth authorization lacks workflow scope, and no scope expansion or alternate credential path is used. A future CI gate would require separately authorized workflow access; the documented local gate works now. See [audio attribution](audio/ATTRIBUTION.md) for model and license sources.
 
 After GitHub reports the exact new `main` commit as built, run `python3 tools/verify_deployed.py`. It downloads the published pages, player assets, catalog, transcripts, recordings and provenance, compares every byte with the local build, and checks an HTTP 206 audio byte range. It is read-only and needs no token. A mismatch can indicate an incomplete/older deployment; inspect the Pages build before retrying.
+
+## Six-course directory
+
+The Courses switcher lists verified public sites. The current course is marked, and the native disclosure supports keyboard and mobile use. Progress remains local to each app. Registry: `courses.json`; markup helper: `tools/course_switcher.py`; shared styles: `courses.css`.
+
+- [AI Learning](https://shreyaskc.github.io/AI-Learning/) · [repository](https://github.com/Shreyaskc/AI-Learning)
+- [System Design Fluency](https://shreyaskc.github.io/system-design-fluency/) · [repository](https://github.com/Shreyaskc/system-design-fluency)
+- [DSA Fluency](https://shreyaskc.github.io/dsa-fluency/) · [repository](https://github.com/Shreyaskc/dsa-fluency)
+- [Principal Leadership Fluency](https://shreyaskc.github.io/principal-leadership-fluency/) · [repository](https://github.com/Shreyaskc/principal-leadership-fluency)
+- [Production Platforms Fluency](https://shreyaskc.github.io/production-platforms-fluency/) · [repository](https://github.com/Shreyaskc/production-platforms-fluency)
+- [Practical Engineering Fluency](https://shreyaskc.github.io/practical-engineering-fluency/) · [repository](https://github.com/Shreyaskc/practical-engineering-fluency)
+
+After changing the verified registry, run `python3 tools/course_switcher.py` to refresh navigation; validate with `python3 tools/course_switcher.py --check`. System Design also regenerates navigation through its normal build.

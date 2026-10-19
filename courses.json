@@ -1,5 +1,12 @@
 {
+  "current": "system-design-fluency",
   "courses": [
+    {
+      "id": "AI-Learning",
+      "title": "AI Learning",
+      "site": "https://shreyaskc.github.io/AI-Learning/",
+      "repository": "https://github.com/Shreyaskc/AI-Learning"
+    },
     {
       "id": "system-design-fluency",
       "title": "System Design Fluency",
@@ -7,16 +14,28 @@
       "repository": "https://github.com/Shreyaskc/system-design-fluency"
     },
     {
-      "id": "ai-fluency",
-      "title": "AI Fluency",
-      "site": "https://shreyaskc.github.io/AI-Learning/",
-      "repository": "https://github.com/Shreyaskc/AI-Learning"
-    },
-    {
       "id": "dsa-fluency",
       "title": "DSA Fluency",
       "site": "https://shreyaskc.github.io/dsa-fluency/",
       "repository": "https://github.com/Shreyaskc/dsa-fluency"
+    },
+    {
+      "id": "principal-leadership-fluency",
+      "title": "Principal Leadership Fluency",
+      "site": "https://shreyaskc.github.io/principal-leadership-fluency/",
+      "repository": "https://github.com/Shreyaskc/principal-leadership-fluency"
+    },
+    {
+      "id": "production-platforms-fluency",
+      "title": "Production Platforms Fluency",
+      "site": "https://shreyaskc.github.io/production-platforms-fluency/",
+      "repository": "https://github.com/Shreyaskc/production-platforms-fluency"
+    },
+    {
+      "id": "practical-engineering-fluency",
+      "title": "Practical Engineering Fluency",
+      "site": "https://shreyaskc.github.io/practical-engineering-fluency/",
+      "repository": "https://github.com/Shreyaskc/practical-engineering-fluency"
     }
   ]
 }
