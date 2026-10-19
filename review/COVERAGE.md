@@ -23,7 +23,7 @@ The course has 27 generated reading pages: orientation, 12 foundations, 12 compl
 | Code/design exercises | `labs/design.py`, foundation disclosures | Executable reservation retry, token bucket and fenced-worker models; broader design exercises are prose tasks |
 | Principal reasoning | `principal-decisions.html`, regional capstone | Ownership, risk prioritization, reversal cost, migration, evidence that changes a decision |
 | Navigable practice and assessment | `practice.html`, all cases | Closed sample answers, failure probes, rubrics, independent study completion |
-| Glossary definitions | `glossary.html`, inline definitions | No-JS glossary plus mouse/touch/keyboard definition controls |
+| Glossary definitions | `glossary.html`, inline definitions | Original technical definitions, plain-English meanings, analogies with stated limits and concrete examples; no-JS glossary plus mouse/touch/keyboard controls |
 | Interview-platform interpretation | `practice.html` | Exact public LeetCode Discuss/Hello Interview/employer references; anecdotes and platform advice labeled; no frequency claims |
 
 ## Complete interview cases

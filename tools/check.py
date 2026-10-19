@@ -47,3 +47,10 @@ for i,c in enumerate(expected):
   assert '<pre' in c['body'] and '<details' in c['body']
   assert len(re.sub('<[^>]*>',' ',c['body']).split())>=650
 print('PASS: exact source coverage, generated body/index consistency, next/previous sequence, extra cases')
+glossary=json.loads((R/'content/glossary.json').read_text())[0]['body']
+for label in ['Precise definition:','Plain English:','Analogy and its limit:','Concrete example:']:
+ assert glossary.count(label)==25,(label,'missing definition layer')
+foundation_text=(R/'content/foundations.json').read_text()
+for label in ['Technical:','Plain English:','Analogy and limit:','Example:']:
+ assert foundation_text.count(label)==10,(label,'missing inline layer')
+print('PASS: 25 layered glossary entries and 10 layered inline definitions')

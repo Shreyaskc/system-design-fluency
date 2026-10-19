@@ -20,4 +20,6 @@ Source claims distinguish synthetic assumptions, vendor-specific behavior, platf
 
 The browser tool reported “No browser is available.” No empirical desktop/mobile, screen-reader or real-browser behavior checks were possible. App tests use a small controlled DOM model, not a browser. Responsive layout, semantic markup and no-JavaScript reading fallbacks are implemented; visual quality is not asserted as tested. No load tests, real distributed failure tests, third-party integrations or cloud services were exercised. Labs model boundaries and cannot prove production safety. External references are dated author checks, not continuous link monitoring.
 
+Initial deployment verified: GitHub Pages reported built for db83fd2a4daee2624b44b34572c74c83ca92a17b; all 27 public pages and three required assets returned HTTP 200.
+
 No GitHub workflow file is present; publication uses built static files and branch-based Pages. Deployment verification is recorded in the task outcome after GitHub reports a build and the live HTTP response is checked.
