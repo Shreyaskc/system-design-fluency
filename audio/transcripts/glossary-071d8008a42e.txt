@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Training-serving skew.
+
+Training-serving skew.
+
+Precise definition: A mismatch between the features, transformations, distributions, or data availability used during model training and those encountered when serving predictions.
+
+Plain English: The model is taught with a view of the world different from the one it gets in use.
+
+Analogy and its limit: A grocer trains assistants using tomorrow’s complete demand report, then asks them to predict today with partial information; real models can also differ through code and pipelines.
+
+Concrete example: Training computes a seven-day purchase count using future-complete data, while online inference uses delayed events. Use point-in-time joins, shared definitions, freshness checks, and comparison monitoring.
+
+Google: Rules of Machine Learning, training-serving skew checked 2026-10-19.

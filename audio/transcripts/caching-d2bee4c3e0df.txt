@@ -1,0 +1,13 @@
+5. Cache with a freshness and failure contract . Choose what to cache.
+
+Choose what to cache.
+
+Cache immutable image variants at a content delivery network, which serves bytes near clients. Use a filename derived from content or version so updated images have a new address. Cache catalog fragments with explicit freshness. Avoid shared caching of payment status unless the key and response policy preserve authorization and the product accepts delay. Negative caching stores a not-found result briefly; it reduces repeated misses but can hide a newly created object until expiry. Limit its duration and distinguish a genuine absence from a temporary database failure.
+
+A cache eviction policy chooses entries to discard under pressure. Least recently used approximates the belief that recently accessed objects are likely to be accessed again. A scan through millions of cold items can still evict valuable entries. Observe hit ratio by endpoint, object size, refill latency, eviction rate, and source load. A ninety-nine-percent global hit ratio can conceal a business-critical endpoint with no useful hits.
+
+Practice: should checkout trust a cached price that is forty seconds old?.
+
+Only if the business contract explicitly promises that price or accepts that age. A safer baseline submits the observed price version; the server checks its authoritative value and either honors a documented quote or asks for confirmation of the change. Cache freshness and customer consent are separate decisions.
+
+Exit artifact: describe one stale-fill race on a timeline, then demonstrate how your selected mitigation preserves the stated freshness bound. Do not claim instantaneous invalidation unless every relevant race and failure path supports it.

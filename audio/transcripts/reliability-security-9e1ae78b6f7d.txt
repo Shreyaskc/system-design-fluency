@@ -1,0 +1,7 @@
+9. Define reliability from the shopper outward . Measure a useful outcome.
+
+Measure a useful outcome.
+
+Reliability is delivering the promised behavior despite ordinary faults and change. A S L I measures an outcome; a S L O sets its target. For Corner Market, define a good catalog request as an eligible request returning a correct, authorized result within 300 milliseconds. Separately measure successful eligible reservations and duplicate payment captures. A health check returning 200 is not proof that a shopper can complete checkout.
+
+Define the denominator, observation point, exclusions, and measurement window before writing a percentage. A client-side measure includes failures before the server sees a request; server logs alone cannot count them. The Google SRE chapter on service level objectives, checked 2026-10-19, distinguishes indicators, objectives, and agreements. The objectives here are illustrative teaching choices, not recommended universal targets.

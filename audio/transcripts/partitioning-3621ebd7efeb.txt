@@ -1,0 +1,13 @@
+7. Partition by ownership, queries, and skew . Cross-shard behavior and privacy.
+
+Cross-shard behavior and privacy.
+
+A cross-shard join combines records stored under different owners. It can require fan-out and merging, which increases network work and exposes the request to more failures. Maintain a derived shopper-order index when that view is important, accepting and measuring its lag. A distributed transaction can preserve atomicity across participants but adds coordination and failure handling. A saga instead records a sequence of local steps with compensating actions; compensation is a business action and may not perfectly undo an external effect.
+
+Deleting a shopper's data now requires discovering authoritative rows, replicas, caches, derived indexes, exports, and backup retention policies. A shard directory is operational infrastructure whose loss can make otherwise healthy data unreachable. Back up mappings, test rebuilding them, and constrain tenant access so an incorrect key cannot route a shopper into another tenant's dataset.
+
+Practice: choose a shard key for inventory and explain one rejected alternative.
+
+Start with store identifier if most reservations and replenishment are store-local. Reject shopper identifier for authoritative inventory because independent shoppers contend on the same store-item stock. Keep a separate shopper-order projection for history. Revisit the choice when a single store exceeds a shard's capacity, using item groups or explicit allocations rather than assuming more shards fix one hot item.
+
+Exit artifact: draw ownership before, during, and after moving one bucket. Identify the only accepted writer in each phase and show how a stale client recovers without duplicating an effect.

@@ -1,0 +1,5 @@
+6. Replicate data without losing the meaning of success . Request trace: One accepted writer.
+
+Request trace: One accepted writer.
+
+A reserve request reaches the elected leader; its update is replicated according to the selected durability contract; only then is success returned. If the leader disappears before acknowledgment, the outcome may remain uncertain. Reuse request identity after failover and fence stale leaders so retries cannot create a second hold.

@@ -1,0 +1,7 @@
+5. Cache with a freshness and failure contract . Calculate benefit and failure load.
+
+Calculate benefit and failure load.
+
+At the foundation baseline peak of 231.5 catalog requests per second, a ninety-percent hit ratio leaves approximately 23.15 database reads per second, assuming one database read per miss. If hits take 2 milliseconds and misses 20 milliseconds, the weighted mean lookup time is 0.9 times 2 plus 0.1 times 20 equals 3.8 milliseconds. That arithmetic does not predict 99th percentile latency, because ten percent of requests still follow the slow path. Network time and application work are excluded from this illustrative calculation.
+
+On complete cache failure, database load returns to 231.5 reads per second, ten times the warmed miss load. Provision that fallback capacity or deliberately shed some traffic. A cache miss storm occurs when many callers simultaneously refill the same missing data. Coalesce concurrent misses so one caller fetches while others await the same result. Add small random variation to expiration times to avoid synchronized expiry of an entire catalog. Bound refill concurrency so database survival takes priority over hit-ratio recovery.

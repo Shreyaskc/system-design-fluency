@@ -1,0 +1,7 @@
+Protect the market: distributed rate limiting . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Is the limit a strict global entitlement or regional abuse protection? Interviewer: Begin with regional abuse protection. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Can we simply deploy the same bucket in three regions? Candidate: Only if the contract permits the multiplied allowance. For a strict global budget I would allocate bounded regional rights or coordinate through one owner; the former can strand capacity and the latter adds latency and partition unavailability. I would keep billing quotas in a separate durable accounting path.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

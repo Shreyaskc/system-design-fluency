@@ -1,0 +1,5 @@
+7. Partition by ownership, queries, and skew . Request trace: One owner per bucket.
+
+Request trace: One owner per bucket.
+
+A reserve request hashes store s7 to bucket seventeen; routing version eight points to server B; B performs the local transaction. A stale router sends to A after cutover; A must reject or redirect rather than write. This ownership check is essential even if both databases contain apparently complete copies.

@@ -1,0 +1,7 @@
+Case 3 Buyer and seller chat . Clarifying questions and assumed answers.
+
+Clarifying questions and assumed answers.
+
+Assume private conversations between two members, text plus references to previously scanned attachments, history retained for one year, and no large group chat. End-to-end encryption is a possible later product requirement, not silently promised by transport encryption. Ask whether edited messages and deletion are required; support tombstone deletion but defer editing. Messages need order within one conversation; no global order across all conversations. Presence can be stale and must not authorize access.
+
+Set durable-send acknowledgment 95th percentile under 300 milliseconds, online delivery 95th percentile under one second under healthy conditions, and 99.95 percent monthly send availability. Acknowledgment means committed to the chosen durable replicated store. “Delivered” means at least one recipient device acknowledged receipt; “read” means the user explicitly advanced a read position. State that replication policy determines the remaining loss window after a regional disaster. Do not imply that a successful network write is durable storage.

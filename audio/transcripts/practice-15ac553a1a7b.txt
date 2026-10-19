@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 4: At 1,000 requests per second with 200 milliseconds mean time in system, how many requests are in flight?.
+
+Probe 4: At 1,000 requests per second with 200 milliseconds mean time in system, how many requests are in flight?.
+
+Reveal sample reasoning.
+
+At stable load Little’s law gives L equals λW equals 1,000 per second times 0.2 s equals 200. This uses averages at the same boundary, not 99th percentile latency. It does not imply 200 C P U cores. Queueing, downstream connections and asynchronous waits matter.

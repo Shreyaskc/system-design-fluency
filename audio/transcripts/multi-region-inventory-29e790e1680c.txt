@@ -1,0 +1,5 @@
+Case 12 Defend inventory across regions . Exact interview prompt.
+
+Exact interview prompt.
+
+Design multi-region inventory reservation at 20,000 peak reads per second and 2,000 peak writes per second. Prevent overselling, target zero loss of acknowledged writes and recovery within five minutes, and explain regional failure behavior.

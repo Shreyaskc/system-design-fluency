@@ -1,0 +1,7 @@
+6. Replicate data without losing the meaning of success . Availability during partitions.
+
+Availability during partitions.
+
+A partition is a communication failure that prevents some nodes from exchanging messages. For operations requiring a single agreed stock count, a disconnected minority should reject or defer writes rather than independently selling the same last item. That sacrifices immediate write availability to preserve the chosen correctness promise. Browsing cached descriptions can continue with an explicit stale-data policy. “The service is available” is too broad when different operations intentionally behave differently.
+
+Quorum arithmetic needs assumptions. With three replicas, write acknowledgments from two and reads from two have intersecting sets, but intersection alone does not ensure linearizable reads. Version selection, concurrent writes, failed partial writes, leadership, and repair behavior matter. Do not derive a guarantee solely from R plus W greater than N. Explain the actual algorithm or rely on a documented database guarantee that matches the operation.

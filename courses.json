@@ -1,0 +1,22 @@
+{
+  "courses": [
+    {
+      "id": "system-design-fluency",
+      "title": "System Design Fluency",
+      "site": "https://shreyaskc.github.io/system-design-fluency/",
+      "repository": "https://github.com/Shreyaskc/system-design-fluency"
+    },
+    {
+      "id": "ai-fluency",
+      "title": "AI Fluency",
+      "site": "https://shreyaskc.github.io/AI-Learning/",
+      "repository": "https://github.com/Shreyaskc/AI-Learning"
+    },
+    {
+      "id": "dsa-fluency",
+      "title": "DSA Fluency",
+      "site": "https://shreyaskc.github.io/dsa-fluency/",
+      "repository": "https://github.com/Shreyaskc/dsa-fluency"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Count what happened: merchant analytics and streaming . Event contract and architecture.
+
+Event contract and architecture.
+
+The analytics intake accepts batches of events with stable identifiers, event types, schema versions, occurrence times, sessions, products, and merchants. The server adds receipt time, authenticated identity, and validation outcome instead of trusting all client-supplied metadata. Financially meaningful order events carry order identity and version, paid amount in minor units, currency, and occurrence time. Aggregate keys include merchant, product, window start, metric name, and metric-definition version. Versioning the definition prevents a changed calculation from silently mixing with older results. A merchant metrics endpoint specifies time range and resolution, so the query contract makes windowing and reporting granularity explicit.
+
+Use an allowlist of event types, maximum batch size, schema validation, and rate limits. A schema version identifies the shape of data; a metric-definition version identifies the meaning of a computed number. They solve different problems. Server-issued merchant identity prevents one merchant writing or reading another merchant's data. Minimize personal fields and define consent, deletion, and retention requirements before collecting them.
+
+Web and mobile events pass through validated ingestion into a partitioned durable log. Committed order events enter the same downstream architecture from the order database’s outbox. The log feeds two independent paths: a stream processor and a raw object archive. The processor deduplicates events, applies event-time windows, and writes an aggregate query store. The archive supports replay and batch repair. A versioned correction job can repair aggregates without pretending the live stream was complete. The dashboard A P I reads aggregates, while reconciliation compares business metrics against authoritative orders.
+
+These are separate responsibilities: a low-latency chart and a correct order ledger are not interchangeable.

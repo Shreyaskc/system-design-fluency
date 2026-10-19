@@ -11,7 +11,7 @@ class Scan(HTMLParser):
   if tag=='details':
    self.details+=1
    assert 'open' not in a or 'data-navigation' in a, 'Sample answer exposed by default'
-pages=list(R.glob('*.html')); assert len(pages)>=24, len(pages)
+pages=[p for p in R.glob('*.html') if p.name!='listen.html']; assert len(pages)>=24, len(pages)
 for p in pages:
  s=Scan(); text=p.read_text();s.feed(text)
  assert len(s.ids)==len(set(s.ids)),p
@@ -21,7 +21,8 @@ for p in pages:
   target,_,anchor=href.partition('#')
   dest=R/target if target else p
   assert dest.exists(),(p,href)
-  if anchor: assert f'id="{anchor}"' in dest.read_text(),(p,href)
+  if anchor and target=='listen.html': assert anchor in {q['id'] for q in json.loads((R/'audio/catalog.json').read_text())['tracks']},(p,href)
+  if anchor and target!='listen.html': assert f'id="{anchor}"' in dest.read_text(),(p,href)
  assert 'data-study=' in text and 'aria-label="Lesson navigation"' in text
  assert not re.search(r'<script[^>]+src=["\']https?',text)
 index=json.loads((R/'search-index.json').read_text()); assert len(index)==len(pages)
@@ -54,3 +55,12 @@ foundation_text=(R/'content/foundations.json').read_text()
 for label in ['Technical:','Plain English:','Analogy and limit:','Example:']:
  assert foundation_text.count(label)==10,(label,'missing inline layer')
 print('PASS: 25 layered glossary entries and 10 layered inline definitions')
+courses=json.loads((R/'courses.json').read_text())['courses']
+assert len({c['id'] for c in courses})==len(courses)
+for course in courses:
+ assert course['site'] in (R/'README.md').read_text()
+ assert course['repository'] in (R/'README.md').read_text()
+ href='index.html' if course['id']=='system-design-fluency' else course['site']
+ for page in pages+[R/'listen.html']:
+  assert f'href="{href}"' in page.read_text(),(page,course['id'],'missing Courses link')
+print('PASS: shared Courses navigation and README link all three verified apps')

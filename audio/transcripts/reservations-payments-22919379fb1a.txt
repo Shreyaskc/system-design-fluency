@@ -1,0 +1,13 @@
+The last basket: inventory, reservations, and payments . Model and interfaces.
+
+Model and interfaces.
+
+Reservations accept merchant items and quantities under a customer-scoped request key, returning an identifier, expiry, quoted total in minor currency units, and currency. Payment uses a distinct attempt identity, while order retrieval exposes order state separately from payment state. Inventory records distinguish sellable, reserved, and sold quantities. Reservation lines explain which stock a hold covers. Each order references one unique reservation. Payment attempts store a unique provider key and provider reference, allowing uncertain external outcomes to be reconciled. Request-result rows detect incompatible key reuse using a request hash.
+
+Outbox records carry committed business events to asynchronous consumers without requiring the database transaction to include the broker.
+
+Use integer minor currency units and a currency code; do not calculate money with binary floating point. Obtain prices from trusted server state and store the quoted order amount. Define rounding and tax rules separately. Create or lock the scoped request record in the same transaction as the reservation/order effect. A concurrent identical key waits for the durable result or receives an explicit in-progress response. Lock the order before creating a payment attempt, and enforce at most one live attempt per order (for example a partial unique index over order_id for pending/unknown attempts).
+
+A different client key must not bypass that order invariant. Reconcile an unknown attempt before permitting another charge attempt. A request hash prevents one idempotency key being reused with different items. A uniqueness constraint is enforced in storage, not by an earlier “does this exist?” query that races.
+
+A shopper reaches checkout, which changes inventory and order state in the authoritative database. That transaction also writes an outbox event. Payment is a separate external path: checkout calls the provider with a stable provider key. Provider webhooks enter a reconciler, and the reconciler applies an appropriate order-state transition. An outbox publisher independently relays committed events. The expiry worker must examine payment uncertainty before returning held stock. If a capture succeeded but its response was lost, blindly expiring the reservation could release inventory for an already charged order. The diagram therefore separates durable local transitions, external effects, and reconciliation.

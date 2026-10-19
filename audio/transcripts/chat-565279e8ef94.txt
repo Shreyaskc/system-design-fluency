@@ -1,0 +1,15 @@
+Case 3 Buyer and seller chat . Follow-ups and rubric.
+
+Follow-ups and rubric.
+
+Practice: can you guarantee exactly one notification and exactly one stored message?.
+
+A database uniqueness constraint can ensure one stored logical message per idempotency key. External push effects can duplicate across ambiguous retries unless the provider supports equivalent deduplication. State the boundary instead of promising universal exactly-once behavior.
+
+Practice: a recipient comes online after seven days.
+
+Fetch durable history from the saved sequence in bounded pages, then merge live events with deduplication. A connection registry or transient queue is not the history source.
+
+Strong: states acceptance semantics, handles ambiguous commit and reconnect, and distinguishes device delivery from read state. Weak: equates an open socket with reliability, orders by wall clocks, or loses offline messages. Principal depth includes failover fencing, abuse policy, and privacy implications of encryption choices.
+
+Technical references checked 2026-10-19: WebSocket protocol, RFC 6455; PostgreSQL constraints. Durability and failover guarantees depend on the selected deployment configuration.

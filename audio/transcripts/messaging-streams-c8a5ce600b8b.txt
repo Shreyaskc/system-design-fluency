@@ -1,0 +1,9 @@
+8. Make asynchronous work replayable and bounded . The database-to-broker gap.
+
+The database-to-broker gap.
+
+If an order commits and then the process crashes before publishing its event, downstream systems never hear about the order. Publishing first has the opposite problem: consumers may see an order that later rolls back. The transactional outbox writes the order and an event row in the same database transaction. A relay publishes committed event rows and marks progress. Relay crashes can duplicate publication, so consumers must tolerate repeated event identifiers.
+
+The outbox example begins a database transaction, inserts the order header, and inserts an event record containing event identity, aggregate identity, event kind, and payload. It then commits both together. A separate relay publishes only records belonging to committed transactions. This closes the gap where an order could commit but its notification obligation could disappear in a crash. It does not make broker publication atomic with the database. The relay can publish and crash before saving its progress, causing another publication after restart. Consumers therefore still need stable event identity and an appropriate duplicate-handling mechanism.
+
+An event is a statement about something that occurred, such as OrderConfirmed; a command requests an action, such as SendReceipt. Include event identifier, entity identifier, schema version, occurrence time, and necessary nonsecret data. Avoid copying every personal field into every event. Retention, access control, and deletion become harder as copies multiply. A schema change should tolerate older consumers during rollout.

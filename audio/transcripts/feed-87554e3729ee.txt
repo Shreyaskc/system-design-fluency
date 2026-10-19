@@ -1,0 +1,9 @@
+Case 2 A useful neighborhood feed . Capacity and its implications.
+
+Capacity and its implications.
+
+At 1 million users times 20 page requests per day, there are 20 million page reads per day, about 231.5 per second average and 2,315 per second at assumed 10 times peak. At 20 cards/page this is 400 million card impressions per day. Publication volume is 200,000 posts per day approximately 2.31 per second average. If each author has 100 recipients on average, push fanout produces 20 million inbox inserts per day approximately 231.5 per second average; retention of 30 days gives 600 million references. At 32 logical bytes/reference that is 19.2 gigabytes before indexes, storage layout, and replicas.
+
+These averages hide the important tail: one author with 2 million followers produces 2 million inserts per post.
+
+At an explicitly assumed sustained worker throughput of 10,000 inserts per second across a pool, that one post requires 200 seconds, exceeding five-second freshness. This is a planning calculation, not a benchmark. It motivates separating high-fanout authors or changing worker capacity; it does not prove one database technology is slow.

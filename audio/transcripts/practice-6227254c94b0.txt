@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . A reusable scoring sheet.
+
+A reusable scoring sheet.
+
+Score each dimension 0 (missing), 1 (named), 2 (defended with a concrete trace), or 3 (survives a changed assumption): scope; units and capacity; A P I/data contract; correctness; failures/recovery; operations per secondecurity; alternatives/cost; communication. This is a learning rubric, not an employer hiring rubric. A total can hide a dangerous correctness gap: repeat any case whose invariant or acknowledgment boundary scores below 2.
+
+For principal practice add evidence for migration ownership, organizational interfaces, failure containment, measurable decision triggers and reversal cost. Ask a partner to change one requirement halfway through. Record whether you adapt using evidence or merely add components.

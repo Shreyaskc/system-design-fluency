@@ -1,0 +1,15 @@
+Case 1 Share a neighborhood listing . Interviewer follow-ups and rubric.
+
+Interviewer follow-ups and rubric.
+
+Practice: two sellers request the same alias at the same time. What happens?.
+
+The unique constraint accepts one transaction. The loser receives 409 and can choose another alias. Its idempotency record must not claim success. Retrying the winner's original key returns the original response.
+
+Practice: analytics must become billing-grade. What changes?.
+
+Define which redirects count, durable event acceptance, stable event IDs, deduplication, reconciliation, and an explicit behavior when the event path is unavailable. The earlier lossy buffer no longer meets requirements.
+
+Strong answer: ties temporary redirects and T T L to revocation, calculates rates, distinguishes collision probability from uniqueness enforcement, and bounds cache failures. Weak answer: says “use Redis and hashing” without atomic allocation, deletion behavior, or an overload plan. Principal depth includes abuse ownership, regional failure policy, and measurable rollout criteria.
+
+Technical reference checked 2026-10-19: PostgreSQL constraints for atomic uniqueness; H T T P semantics, RFC 9110 for redirect behavior. The workload and design choices above are original assumptions.

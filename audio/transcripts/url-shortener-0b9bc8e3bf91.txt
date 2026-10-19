@@ -1,0 +1,11 @@
+Case 1 Share a neighborhood listing . Deep dives and failure analysis.
+
+Deep dives and failure analysis.
+
+A viral link is a hot key: one key receives a disproportionate share of requests. Replicating that small mapping across service caches reduces database load; merely sharding the database does not spread reads for one code. Coalesce concurrent misses so one request loads a mapping and others wait briefly. Randomize refresh times without extending the maximum takedown budget. A stale cache cannot prove that a link remains non-revoked: never extend an entry beyond the stated revocation deadline without checking the authority.
+
+Include replica lag and refill races in that deadline; use versioned invalidation or authoritative revocation checks if the required bound cannot otherwise be met. Negative lookup traffic still needs per-client limits and bounded cache admission.
+
+On a database outage, serve eligible cached mappings until their allowed lifetime expires; return a retryable 503 for unknown mappings rather than falsely saying they do not exist. A read replica can reduce load but replication lag may make a newly created link appear absent; route recent creation reads to the primary or seed cache after commit, with a primary fallback on a miss. A cache outage must trigger concurrency limits, not an uncontrolled database stampede.
+
+Do not fetch arbitrary destinations synchronously from unrestricted servers. Validate supported schemes, reject control characters, use safe redirect header construction, and isolate any malware fetcher with network restrictions against internal addresses and redirects to them. This prevents server-side request forgery when a scanner visits attacker-chosen URLs. Track abuse reports and audit disable actions without logging secret query strings unnecessarily.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Linearizability.
+
+Linearizability.
+
+Precise definition: A concurrent-object correctness condition in which operations admit a legal sequential ordering, with each taking effect between invocation and response and respecting real-time precedence.
+
+Plain English: Once a write finishes, a later read cannot behave as if that write has not happened.
+
+Analogy and its limit: One authoritative ticket clerk assigns a single order to purchases; distributed implementations need not literally use one clerk.
+
+Concrete example: After a stock update completes, a subsequent linearizable read observes it or a later valid update, rather than an old replica value.
+
+Herlihy and Wing: linearizability checked 2026-10-19.

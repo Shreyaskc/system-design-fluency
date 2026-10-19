@@ -1,0 +1,7 @@
+1. Turn an ambiguous prompt into a contract . Clarify the contract.
+
+Clarify the contract.
+
+Ask who uses the system, the three essential journeys, scope exclusions, traffic shape, data retention, geographic footprint, acceptable staleness, and failure expectations. Offer concrete choices. “Can a catalog show yesterday's price?” is better than “Do we need consistency?” Assume one city initially, catalog prices stale for at most sixty seconds, stock checked when reserving, and payment settlement handled by an external provider. Exclude delivery routing and tax calculation from the first interview. Record these assumptions visibly so an interviewer can change them.
+
+Separate a business promise from an implementation guess. “One successful payment capture per order” is a promise. “Use a distributed lock” is a candidate mechanism whose failure behavior needs proof. Ask what happens when a customer presses Pay twice, loses connectivity, or returns after a reservation expires. Those scenarios expose requirements that a component list misses. Include an explicit owner for every authoritative fact: inventory owns quantity; orders own checkout state; the payment provider reports money movement.

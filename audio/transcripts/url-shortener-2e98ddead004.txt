@@ -1,0 +1,7 @@
+Case 1 Share a neighborhood listing . Contract and data model.
+
+Contract and data model.
+
+The short-link A P I creates a mapping from a validated destination, with an optional custom alias, using a seller-generated retry key. Success returns the short code and complete short URL. A browser requests the code and receives a temporary redirect with the destination in the Location header. Only the owner can disable a mapping through deletion. Stored links include ownership, status, creation, expiry, and version. Separate request records uniquely associate each owner’s idempotency key with its request hash and created code. This prevents a retry from creating another mapping and detects a key reused for incompatible content.
+
+An idempotency key identifies one intended operation across retries. Store its response and request hash in the same transaction as the mapping; a reused key with different input returns conflict. Let the database decide alias uniqueness atomically. Checking availability then inserting is vulnerable to two concurrent requests.

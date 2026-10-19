@@ -1,0 +1,17 @@
+Elective: reliable AI recommendations and feature serving . Alternatives, evolution, and interview close.
+
+Alternatives, evolution, and interview close.
+
+Reject a synchronous full-history warehouse query on every recommendation request: it moves large scans into a tight latency budget. Reject adding a vector database merely because the feature is called AI; ordinary indexed candidate retrieval may satisfy this compact model. Embedding retrieval becomes justified when learned similarity improves candidate quality under measured cost and latency. Reject running a large generative model for this assumed ranking workload without evidence of benefit.
+
+At multi-region scale, replicate relatively stable item features, route user state deliberately, and document freshness during pipeline partitions. Keep model artifacts identical by digest, but allow controlled regional rollouts. Cost includes feature computation, online reads, model execution, experiment logging, retraining, and operational support. Compare benefit with the popular baseline and remove complexity that fails to earn its cost.
+
+Practice: offline accuracy improves dramatically after a backfill, but online results do not. What do you inspect?.
+
+Check temporal leakage, availability-time joins, changed metric definitions, selection bias, feature defaults, train per seconderve transformations, and exposure logging. Reconstruct a historical request using only data actually available then. A larger model is not the first repair.
+
+Follow-ups and rubric.
+
+Follow-ups: How do deletion requests propagate? What does a safe fallback show? How do you roll back incompatible inputs? Strong: defines freshness and feature versions, separates eligibility from prediction, identifies leakage, and includes a baseline. Weak: adds a vector database without a retrieval requirement, treats recent computation as fresh data, or claims offline accuracy proves business impact.
+
+Technical reference checked 2026-10-19: Feast point-in-time join documentation explains reconstructing feature state at historical timestamps. Availability-time handling, operational budgets, and model choices here are explicit exercise design decisions.

@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 5: A worker completes an email then crashes before acknowledging. Can the queue guarantee no duplicate email?.
+
+Probe 5: A worker completes an email then crashes before acknowledging. Can the queue guarantee no duplicate email?.
+
+Reveal sample reasoning.
+
+Redelivery can repeat the email. A queue cannot make its acknowledgment atomic with an arbitrary mail provider. Use a provider-supported stable deduplication key, or accept possible duplicates with a durable attempt ledger and reconciliation. A local done flag written after sending retains the crash window.

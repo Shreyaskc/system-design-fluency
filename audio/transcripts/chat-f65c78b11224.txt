@@ -1,0 +1,9 @@
+Case 3 Buyer and seller chat . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Does sent mean accepted by our database or shown on the recipient device? Interviewer: Accepted durably by the service. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: The socket connection dies immediately after commit. Do you send a second message? Candidate: The client retries its stable message ID. The conversation uniqueness constraint returns the existing committed sequence. Delivery retries can repeat frames, so the recipient deduplicates by message identity and resumes from its last durable cursor.
+
+I would label delivered and read as separate states rather than misrepresenting the durable acknowledgment.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

@@ -1,0 +1,9 @@
+Run it later: a durable job scheduler . Progressive design: transaction first.
+
+Progressive design: transaction first.
+
+Start with a database-backed queue. Workers select due pending rows inside a short transaction, acquire row locks, and update them to running with a lease. A lease grants temporary ownership until a timestamp. With PostgreSQL, FOR UPDATE SKIP LOCKED lets competing workers skip already locked rows; its inconsistent view is suitable for queue-like selection, not general reporting. Commit the claim before doing slow external work. Holding database locks while generating a report or calling an email service ties storage availability to slow dependencies.
+
+Each claim increments lease_generation. Completion is conditional on matching job ID, running state, and generation. A stale worker whose lease expired cannot overwrite a newer worker's result. This generation is a fencing token, a monotonically increasing ownership marker. It fences database state; an external effect also needs its own deduplication or fencing support. Heartbeats extend leases with the same generation. Pick a lease longer than normal execution and renew well before expiry, while accepting that pauses and network partitions can still cause overlapping workers.
+
+Poll due work every second with a bounded batch. Use the database clock consistently for due and lease comparisons. Add randomized poll delays and an index so idle workers do not repeatedly scan history. Separate short notifications from long reports, and enforce tenant concurrency limits so one merchant cannot occupy every slot. A broker can later transport ready jobs, but the database remains the authority for scheduled eligibility; publishing must then use a transactional outbox to avoid losing jobs between commit and send.

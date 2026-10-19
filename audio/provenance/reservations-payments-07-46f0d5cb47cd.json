@@ -1,0 +1,63 @@
+{
+  "backend": "Kokoro-82M v1.0",
+  "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "model_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+  "voice": "af_heart",
+  "voice_sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+  "threads": 1,
+  "sample_rate": 24000,
+  "speed": 1.0,
+  "transcript_sha256": "46f0d5cb47cde089cc3601a28eb63ed5408adb8ac5479e327532653249a94aa6",
+  "source_sha256": "90d3b386ae506713ff8cf1f5d7910515180b124328081a88c5bcd5f204af08ae",
+  "duration": 200.55,
+  "peak": 0.7716891169548035,
+  "rms": 0.05046957731246948,
+  "grapheme_complete": true,
+  "segments": [
+    {
+      "text_sha256": "96eb3bd19e4dd25a1b870dd2a32a8eabdf95b295ad07086e653b7fc4fc6dc2c8",
+      "samples": 172800
+    },
+    {
+      "text_sha256": "437a912e7f711058711c960a7a55e0392eccc33b48c582b6d0ad7f0cafcff4ec",
+      "samples": 79200
+    },
+    {
+      "text_sha256": "18f3f757d3cd732ce8b258d3e58d8c1ca822347862ea91be1f43fc5847d91ff3",
+      "samples": 692400
+    },
+    {
+      "text_sha256": "5914ba914049b982c0db0446fc76b937ac839c8915e6909b0b89e58aa69c865a",
+      "samples": 626400
+    },
+    {
+      "text_sha256": "60daf8c1220fd013f39530597251fe6b978bfdc7ba9620340807db3dd0abeeb5",
+      "samples": 667200
+    },
+    {
+      "text_sha256": "fa41a09ee709f4083a9c46817ce16fe90ed0941f54269a22cd1beb3f71ef68e9",
+      "samples": 928800
+    },
+    {
+      "text_sha256": "5ae3d619e0b8010253a4a27e0902c858aa3185c0b8770b443398c7afcd1e4d35",
+      "samples": 141600
+    },
+    {
+      "text_sha256": "d9accc5f51c0acbb06128e20f521526bd2eb7d970e24026a08eb037dbe4b0c13",
+      "samples": 408000
+    },
+    {
+      "text_sha256": "44d5e4421c341cbc2138b079fb2c8fbf11691dd97d6c856809a59336ff9d688f",
+      "samples": 46200
+    },
+    {
+      "text_sha256": "fa7a04b355ad2ea8bfaa3b18beb032fae47b35ad4166e7fd0694315bf2ff03e7",
+      "samples": 546000
+    },
+    {
+      "text_sha256": "a5ebdfc69e142b5c9b31dbf327a7ed014078d1caa7a347e521f0df67035b435f",
+      "samples": 444600
+    }
+  ],
+  "generation_seconds": 36.58415349991992
+}

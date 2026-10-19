@@ -1,0 +1,7 @@
+Case 1 Share a neighborhood listing . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Must takedown be immediate, or may cached links resolve briefly? Interviewer: Assume a 60-second maximum. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Why not use a permanent redirect for performance? Candidate: A browser may retain it beyond our takedown control. I choose a temporary redirect and bounded cache policy, including refill and replica lag. If you change the requirement to immediate takedown, I must validate revocation authoritatively on each resolution or use a delivery layer that can enforce the new contract.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

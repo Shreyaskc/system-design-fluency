@@ -1,0 +1,3 @@
+Start here a sequence you can follow . Introduction.
+
+This course follows Corner Market, a fictional neighborhood marketplace. Begin with one request and one database. Add a distributed component only after identifying the failure or capacity limit it addresses. All traffic figures are teaching assumptions, not facts about any company.

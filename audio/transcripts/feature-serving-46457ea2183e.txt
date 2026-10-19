@@ -1,0 +1,9 @@
+Elective: reliable AI recommendations and feature serving . Failures and rollout.
+
+Failures and rollout.
+
+If the online store fails, use bounded cached features only within their declared freshness window or fall back to popular eligible items. If inference exceeds its deadline, return fallback and count the timeout. Do not silently serve arbitrary default vectors for every user and call the resulting output personalized. Track fallback rate, feature age, missing-feature rate, schema rejection, batch size, inference latency, and output score distributions.
+
+Deploy a model and its compatible feature set together through a manifest. Preload artifacts, validate checksum and schema, warm instances, and route a small fraction of traffic before expansion. Shadow mode computes predictions without changing the displayed result; it helps measure latency and output differences but does not measure actual user response to the shadow output. Canary rollout exposes a small real audience and therefore requires business guardrails. Keep the previous compatible artifact and feature contract for rollback.
+
+A traffic spike can overwhelm feature storage before model CPUs. Apply admission controls, cap candidates, batch reads, and degrade in a measured order. Cache keys containing only user ID can accidentally mix model or feature versions; include the relevant version and context. Limit cache lifetime for personalization, and prevent cross-user cache leakage through authenticated key construction. A feature pipeline outage should not make checkout unavailable: recommendation and purchase correctness have different dependency budgets.

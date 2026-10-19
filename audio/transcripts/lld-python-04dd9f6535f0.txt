@@ -1,0 +1,7 @@
+11. Implement the boundary: Python and low-level design . Design review before abstraction.
+
+Design review before abstraction.
+
+Prefer explicit domain results such as OutOfStock, PriceChanged, and PendingPayment over catching every exception as “failed.” Separate validation, persistence, and external side effects so tests can target boundaries. Use composition when behavior varies, such as a retry policy or clock; avoid adding factories and inheritance only to decorate a simple function. Explain thread safety, process safety, and distributed safety separately. Each has a different sharing boundary.
+
+Exit artifact: implement all three exercises locally, add meaningful race and failure tests, and explain one guarantee your code does not provide. The snippets are teaching contracts, not a deployable payment implementation. Passing unit tests demonstrates the tested model; it does not establish database, network, or regional behavior that the model omitted.

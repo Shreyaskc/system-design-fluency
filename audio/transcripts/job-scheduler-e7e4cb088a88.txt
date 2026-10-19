@@ -1,0 +1,9 @@
+Run it later: a durable job scheduler . Retries, cancellation, and failure.
+
+Retries, cancellation, and failure.
+
+Classify permanent validation errors separately from temporary timeouts. Retry temporary failures with exponential backoff and random jitter, cap both attempts and elapsed time, and stop after the job deadline. A dead-letter state preserves exhausted work for inspection; it is not an unmonitored trash folder. Alert on oldest eligible age, failure rate by class, lease expiry, and queue depth. Compare incoming work with sustainable completion rate: if arrival exceeds processing, no retry policy can prevent backlog growth.
+
+Cancellation uses a conditional update. Pending becomes cancelled; running becomes cancel_requested, and the worker checks between safe steps. Cancellation and completion racing must have an explicitly allowed outcome. Recurring schedules need a stable occurrence key such as schedule ID plus intended UTC instant, a timezone database version or documented update policy, and a choice for missed runs after outages: catch up all, latest only, or skip. Never “just add 24 hours” to model every local calendar day.
+
+Database failover can repeat claims if recent writes were lost. Ensure the promised recovery point matches business expectations, keep effects idempotent, and test restoration. A worker that loses connectivity must stop starting new effects once it cannot renew ownership; a paused process resuming later still requires fencing. Large outages may create retry storms, so recover gradually with global and tenant admission controls.

@@ -1,0 +1,9 @@
+Elective: reliable AI recommendations and feature serving . Progressive design: earn the model.
+
+Progressive design: earn the model.
+
+Start with a nonpersonalized baseline: available popular items by neighborhood and category, with explicit merchant and safety rules. It establishes an availability fallback and a measurable comparison. Add offline-trained ranking only when the product question and evaluation data justify it. Keep catalog eligibility authoritative outside the model: a high predicted score never authorizes sale of unavailable stock, bypasses access rules, or overrides a merchant's removal.
+
+Generate candidates using simple category and popularity indexes first. Fetch user features once and item features in a batch; cache shared item vectors with versioned keys. Score the candidate batch within a bounded deadline and filter current eligibility before responding. If fewer than 20 remain, fill from the safe baseline or return fewer, according to the user experience contract. Avoid unlimited retries that exceed the request's deadline.
+
+Feature freshness requires two timestamps. source_event_time indicates the newest source fact incorporated; computed_at indicates processing time. Recomputing from yesterday's input now produces a recent computation timestamp with stale information. Check the appropriate freshness measure per feature. A missing feature and a measured zero are different values: include a missing indicator or a documented training-consistent default, and record how frequently defaults are used.

@@ -1,0 +1,3 @@
+Case 1 Share a neighborhood listing . Introduction.
+
+Build the smallest reliable doorway into Corner Market, a fictional neighborhood marketplace. This case trains requirement selection, key allocation, caching, and abuse handling. All numbers are interview assumptions, not claims about a real business.

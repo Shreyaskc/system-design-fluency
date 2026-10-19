@@ -1,0 +1,7 @@
+6. Replicate data without losing the meaning of success . Consensus and fencing.
+
+Consensus and fencing.
+
+Consensus is agreement among nodes on a value or ordered sequence despite some failures. Raft uses leaders, terms, and replicated logs; a majority is central to its commit and election rules. In a five-node voting group, a majority is three, allowing progress with two unavailable nodes when the remaining nodes can communicate under the protocol's assumptions. The original Raft paper, checked 2026-10-19, explains safety and leader election. This does not make a five-copy application automatically a correct consensus implementation.
+
+During a network split, a former leader may continue running even after a new leader is elected elsewhere. Preventing two writers requires fencing: downstream storage rejects operations from obsolete leadership generations. A monotonically increasing fencing token is useful only if the resource enforces it atomically. A lock lease alone is unsafe when a process pauses beyond its lease, resumes, and writes as though it still owns the lock. Timeouts detect suspicion, not certainty of death.

@@ -1,0 +1,3 @@
+Practice failure probes and self-assessment . Introduction.
+
+Use a 45-minute timer for a full case, or five minutes for one failure probe below. Write your answer before opening the sample. These are original exercises; sample answers show a defensible direction rather than a universal architecture.

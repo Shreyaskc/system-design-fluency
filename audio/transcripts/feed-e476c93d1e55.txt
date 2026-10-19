@@ -1,0 +1,7 @@
+Case 2 A useful neighborhood feed . Alternatives and evolution.
+
+Alternatives and evolution.
+
+Reject push-to-everyone as the universal design because celebrity writes dominate. Reject pull-everything as the universal design when wide follow graphs and repeated reads exceed the request budget. Neither is inherently wrong at small scale. A relevance model changes pagination: scores and candidate sets evolve, so freeze a ranked result window or use a session token rather than pretending time order still suffices. Keep a chronological fallback and measure relevance quality separately from system availability.
+
+Monitor feed latency, end-to-end freshness, fanout backlog age, duplicate suppression, empty-feed rate, filtered-card rate, and per-author skew. Audit privacy failures as correctness incidents. Compare cost per thousand pages and per published post as traffic grows. Roll out hybrid changes by cohort and verify no missing or repeated posts with shadow reads.

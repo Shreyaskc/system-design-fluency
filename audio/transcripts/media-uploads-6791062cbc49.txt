@@ -1,0 +1,3 @@
+Case 4 Reliable listing photos and video . Introduction.
+
+A seller uploads a bicycle video over an unreliable mobile connection. Media bytes need a separate data path from control metadata. This case trains resumability, asynchronous state machines, authorization, and cost reasoning.

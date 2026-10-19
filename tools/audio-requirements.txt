@@ -1,0 +1,7 @@
+# Verified local generation environment, Python 3.12.13. Model downloaded separately.
+kokoro==0.9.4
+misaki==0.9.4
+torch==2.14.1
+transformers==5.20.1
+soundfile==0.14.0
+numpy==2.5.4

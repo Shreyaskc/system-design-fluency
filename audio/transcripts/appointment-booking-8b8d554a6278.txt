@@ -1,0 +1,11 @@
+Case 11 Book a community pickup appointment . Labeled architecture and progression.
+
+Labeled architecture and progression.
+
+The diagram has separate browse, book, and invalidate paths. Browsing travels through the calendar A P I and a clinic-day cache before reaching the slot database on a miss. Booking goes directly through an authenticated A P I to a database transaction covering the slot, booking, request identity, and outbox record. A dispatcher later sends the notification work to a worker. After the committed change, cache invalidation updates the browsing view, with expiry as a fallback. A stale calendar may display an unavailable slot, but the authoritative booking transaction still rejects double booking.
+
+Cache freshness improves experience; it does not enforce booking correctness.
+
+Start with a relational database, stateless A P I, and no cache until browsing warrants it. Cancellation locks the booking and clears the slot only when active_booking_id matches that booking, then updates state and writes an outbox event in one transaction. This comparison prevents a delayed duplicate cancellation from clearing a later occupant's booking. Repeated cancellation returns the existing cancelled outcome.
+
+Rescheduling first locks and re-reads the booking row and verifies it remains confirmed and owned by the caller, using the same booking-then-slot lock order as cancellation. It then locks old and new slot rows in a consistent ID order to reduce deadlocks, verifies the old slot still points to this booking and the new slot is available, releases old capacity, claims new capacity, and updates the booking atomically. On conflict, preserve the old appointment. Retry deadlock victims with the same idempotency key and bounded backoff. A transaction boundary matters more here than introducing a queue.

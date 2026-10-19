@@ -1,0 +1,3 @@
+Case 12 Defend inventory across regions . Introduction.
+
+Corner Market expands internationally. Regional independence sounds attractive until two buyers reserve the final bicycle during a network partition. This capstone makes the availability, latency, and correctness contract explicit.

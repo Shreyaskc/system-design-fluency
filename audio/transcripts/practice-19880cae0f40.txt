@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 12: Feature serving is fast, but recommendations degrade after deployment. Where do you investigate?.
+
+Probe 12: Feature serving is fast, but recommendations degrade after deployment. Where do you investigate?.
+
+Reveal sample reasoning.
+
+Check feature version, freshness, missingness and training-serving transformation agreement before adding hardware. Pin model and feature schema versions, compare offline and online values, and canary with quality and operational guardrails. Safe fallback may be a non-personalized ranking; low latency alone does not imply correct predictions.

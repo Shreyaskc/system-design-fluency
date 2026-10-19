@@ -1,0 +1,9 @@
+Case 2 A useful neighborhood feed . Progressive design.
+
+Progressive design.
+
+Start with pull: on a feed request, query recent posts for followed authors using an index beginning with author_id and ordered by time. Merge a bounded number of recent results. This avoids copying data and is easy to reason about. Measure the cost of following hundreds or thousands of authors before moving to push fanout.
+
+Then push references, not duplicated post bodies, into active users' inboxes. An outbox is a table of pending integration events written in the same database transaction as domain data. A dispatcher sends its rows to a queue. If it crashes after sending but before marking dispatched, it sends again; unique (user_id, post_id) makes repeated inserts harmless. Persist an event cursor so fanout can resume after a partial recipient batch.
+
+Use a hybrid for large authors: read their latest posts at request time and merge with the materialized inbox. Materialized means precomputed and stored. Choose the threshold from estimated recipient write cost, audience activity, freshness budget, and measured read cost, not a magical follower count. Deduplicate by post_id because migration between modes can put a post in both paths. New follows need a bounded history backfill; unfollows should be checked when reading until old references are removed.

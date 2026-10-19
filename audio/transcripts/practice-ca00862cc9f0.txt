@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 11: A streaming count changes after late events. Is the old answer wrong?.
+
+Probe 11: A streaming count changes after late events. Is the old answer wrong?.
+
+Reveal sample reasoning.
+
+Define event time, allowed lateness and whether results are provisional. Emit revisions or an explicit finalization boundary. Deduplicate stable event IDs for the agreed retention window. Keep source records for replay and reconcile against batch totals. Different windows and correction rules can both be valid if the contract is explicit.

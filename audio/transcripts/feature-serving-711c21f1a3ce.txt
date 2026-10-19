@@ -1,0 +1,9 @@
+Elective: reliable AI recommendations and feature serving . Capacity, latency, and freshness.
+
+Capacity, latency, and freshness.
+
+Assume 100,000 daily shoppers request 20 recommendation panels per day: 2,000,000 requests per day, or 23.15 requests per second average. Tenfold peak is 232 per second after rounding upward. At 200 candidates/request, peak scoring demand is 46,400 candidate scores per second. Benchmark the actual model and batch shape; this arithmetic does not determine how many C P U cores are sufficient.
+
+Assume 20 user features at 8 bytes each for 100,000 users: 16 megabytes raw numeric values. Forty thousand products with 30 eight-byte features require 9.6 megabytes raw. Keys, missing-value indicators, timestamps, versions, replicas, serialization, and indexes add overhead. Fetching 200 candidate vectors separately would produce 46,400 remote lookups per second at peak. Batch reads and compact cached item features reduce remote call count; monitor payload size as well as calls.
+
+Set a proposed 99th-percentile response target of 150 milliseconds. A sequential budget might allocate 10 milliseconds gateway/network overhead, 20 milliseconds candidate retrieval, 25 milliseconds feature retrieval, 40 milliseconds inference, 15 milliseconds eligibility filtering and response, plus 40 milliseconds reserve. These sum to 150 milliseconds but do not prove the system's 99th percentile: component tails correlate, network conditions vary, and end-to-end load tests are required. Assume user interaction features should be less than five minutes old, catalog availability less than one minute old, and recommendations may fall back safely if these goals are missed.

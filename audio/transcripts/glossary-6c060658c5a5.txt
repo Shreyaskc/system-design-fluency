@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . S L I / S L O.
+
+S L I / S L O.
+
+Precise definition: A service level indicator quantifies a service behavior; a service level objective specifies a target for that indicator over a defined population and time window.
+
+Plain English: Measure what users experience, then state how good it should be.
+
+Analogy and its limit: A grocer measures the fraction of collections ready on time and sets a target; unlike a vague promise, the measurement needs eligibility and timing rules.
+
+Concrete example: Count eligible catalog requests returning a correct result within 300 milliseconds, targeting 99.9 percent over thirty days. A process health check measures something narrower.
+
+Google SRE: indicators and objectives checked 2026-10-19.

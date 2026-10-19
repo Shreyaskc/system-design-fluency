@@ -1,0 +1,11 @@
+Protect the market: distributed rate limiting . Interface, state, and diagram.
+
+Interface, state, and diagram.
+
+The rate limiter checks a subject, a route class, a request cost, and a policy version. It returns an allow decision, remaining capacity, a retry delay in milliseconds, and a reason. A rejected H T T P request uses status four hundred twenty-nine, with Retry-After expressed in seconds, so the boundary converts units deliberately. Each bucket belongs to a tenant, hashed subject, route class, and policy version. Its stored state contains scaled integer tokens and the last refill time. The associated policy defines refill rate, burst capacity, and expiration. Updating refill time and spending tokens must be one atomic operation.
+
+Never accept tenant identity or the policy version directly from an untrusted header. Authenticate at the gateway and derive the key there. Hashing an identifier reduces accidental exposure but does not automatically make the data anonymous. Keep raw identities out of metrics labels.
+
+Follow the request downward through the diagram. The client first reaches a gateway that authenticates identity and classifies the route. The gateway makes a bounded remote call to a limiter instance. Limiter instances refresh versioned policies from the policy store, while mutable token state lives in a sharded bucket store with one authoritative owner per key. The limiter atomically updates that bucket before deciding. An allowed request proceeds to the market A P I. A denied request receives status four hundred twenty-nine and retry guidance.
+
+The policy-refresh path is separate from the per-request state-update path, so policy distribution does not replace atomic token spending.

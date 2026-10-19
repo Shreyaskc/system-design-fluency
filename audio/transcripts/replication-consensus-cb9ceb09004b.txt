@@ -1,0 +1,7 @@
+6. Replicate data without losing the meaning of success . Copies solve different problems.
+
+Copies solve different problems.
+
+Replication maintains multiple copies of data. It can improve read capacity and help survive a machine failure, but copies can disagree. Corner Market starts with a leader database accepting writes and replicas following its change log. A leader is the node authorized to sequence changes for a dataset. Replication lag is the delay between a leader's change and a replica applying it. A fresh reservation may therefore exist on the leader while a replica still reports no reservation.
+
+Asynchronous replication acknowledges a write before a remote copy confirms it; synchronous replication waits for specified confirmation. Neither label is enough: does confirmation mean received in memory, durably written, or applied and visible? Waiting for more distant copies generally increases latency and makes success depend on more network paths. If only an asynchronous replica survives a leader crash, recently acknowledged writes may be absent. State this as a potential recovery-point loss rather than promising durability from the existence of replicas.

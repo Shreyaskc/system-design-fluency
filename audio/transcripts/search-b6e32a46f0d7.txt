@@ -1,0 +1,9 @@
+Case 5 Find the right bicycle . Retrieval, ranking, and pagination.
+
+Retrieval, ranking, and pagination.
+
+Apply structured price, currency, category, status, and distance constraints as filters. Rank remaining candidates using text relevance plus carefully bounded product signals such as recency or distance. State where ranking is applied: candidate retrieval followed by optional reranking of a bounded set. A reranker cannot recover relevant items excluded by retrieval. Use minimum query length, bounded radius, bounded page size, and timeouts to limit expensive queries and abuse.
+
+For stable pagination, return an opaque cursor containing the sort tuple and a bounded search-session or point-in-time identifier if the engine supports it. A point-in-time view fixes the index state for a search session; it consumes resources and expires. Use a deterministic ID tie-breaker after relevance score. Explain expired cursors explicitly and restart the query. Deep numeric offsets require work over discarded results and shift under updates; avoid offering unlimited page numbers.
+
+Hydrate candidates in one bounded batch instead of one database call per hit. Recheck current public per secondold/deleted eligibility and authorization against a reliable source or a tightly controlled revocation mechanism. Oversample to fill a page after filtering, but cap rounds and total candidates. A total-hit count from a stale search view can differ from currently displayable listings; label it approximate or omit it.

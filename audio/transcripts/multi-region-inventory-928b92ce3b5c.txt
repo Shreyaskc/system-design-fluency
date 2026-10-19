@@ -1,0 +1,9 @@
+Case 12 Defend inventory across regions . Clarification dialogue and objectives.
+
+Clarification dialogue and objectives.
+
+Candidate: “Does zero loss mean any single regional failure, and can a partitioned minority reject writes?” Interviewer: “Yes. Single-region failure is the fault model. No overselling; reads may be stale.” Candidate: “I will require durable cross-region quorum before acknowledging a write. I cannot also promise every isolated region accepts writes.”.
+
+Recovery point objective (R P O) is the allowed loss of acknowledged data; assume R P O 0 for a single-region failure under the stated durable quorum model. Recovery time objective (R T O) is the time to restore the specified service; target under five minutes, demonstrated through exercises. These objectives do not cover destruction of every copy, operator corruption without recoverable history, or arbitrary simultaneous regional failures. Define the fault model before claiming a guarantee.
+
+Assume 99.95 percent monthly time-based write availability. Over a 30-day month, the error budget is 30 times 24 times 60 times 0.0005 equals 21.6 minutes. A four-minute incident would consume about 18.5 percent of that budget. This is a time-based simplification; a request-based service-level indicator measures failed eligible requests instead. Reads target 95th percentile under 100 milliseconds from local derived views, with explicit freshness. Writes have a separate latency budget.

@@ -1,0 +1,9 @@
+Elective: reliable AI recommendations and feature serving . Training consistency and temporal leakage.
+
+Training consistency and temporal leakage.
+
+Training-serving skew means training and online inference compute inputs differently. A seven-day count calculated in UTC during training and local days online is one example. Share versioned transformation logic where practical, test with fixed event sequences, and compare sampled online feature values with offline recomputation. A shared codebase alone does not guarantee identical data arrival, window boundaries, or missing-value behavior.
+
+Point-in-time correctness means constructing each training row only from information available at that row's prediction time, subject to the system's actual availability contract. If a shopper was scored at 10:00, a purchase at 10:05 must not enter that score's features. Late-arriving historical data can also leak knowledge if a backfill uses facts not available online at 10:00. Keep event time and availability time where the use case needs both. Join features as of the example timestamp and preserve labels separately.
+
+Use time-based evaluation splits when predicting future behavior, avoid users or sessions accidentally leaking between incompatible splits, and compare against the baseline. Offline ranking metrics are proxies; run a controlled experiment with stable assignment and latency/error guardrails before broad release. Statistical methodology belongs in a dedicated experiment lesson, but the architecture must capture assignment, exposure, outcome, and model version so analysis is possible.

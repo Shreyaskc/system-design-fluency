@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . Alternatives, operations, and evolution.
+
+Alternatives, operations, and evolution.
+
+Reject treating the search index as the sole source of sold status: indexing lag violates reservation correctness. Reject adding embeddings by default; measure failed queries, relevance, language needs, latency, and cost first. If semantic retrieval is added, combine its candidates with lexical retrieval, evaluate with judged queries, and preserve exact filters. A plausible synonym can be wrong for a specific spare part.
+
+Monitor query 95th percentile/99th percentile, error rate, zero-result rate, index lag, eligibility filtering rate, rejected expensive queries, shard size skew, and rebuild duration. Evaluate relevance with a versioned set of representative judged queries, including rare and multilingual terms. A/B experiments need guardrails for irrelevant results, seller fairness, and latency. Rebuild using snapshot plus replay, compare counts and sampled documents, shadow representative queries, then switch an alias atomically with a rollback plan. Avoid changing database schema and index generation in an incompatible single step.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Lease.
+
+Lease.
+
+Precise definition: A time-bounded grant of rights whose continued validity depends on a defined expiration and renewal protocol.
+
+Plain English: You own permission for a limited time unless it is renewed.
+
+Analogy and its limit: A market stall rental expires at closing time; the old tenant may still physically remain there. Software pauses likewise do not stop when permission expires.
+
+Concrete example: A worker’s lease expires during a long pause. Another worker becomes owner, but the first can resume executing. Use resource-enforced fencing when stale execution could corrupt shared state, and state clock and timing assumptions.
+
+Chubby: leases and sessions checked 2026-10-19.

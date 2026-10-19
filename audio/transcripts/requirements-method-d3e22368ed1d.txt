@@ -1,0 +1,7 @@
+1. Turn an ambiguous prompt into a contract . Before distributing: one machine can already race.
+
+Before distributing: one machine can already race.
+
+A process is a running program with its own memory space. Threads share a process's memory; separate processes generally do not share ordinary Python objects. An event loop runs tasks cooperatively: an awaiting task yields so another can run. Concurrency means operations overlap in time; parallelism means operations execute simultaneously. Two tasks can race even on one thread if a read and later write are separated by an await. Two servers each have their own local lock, so neither lock protects the other server's stock update.
+
+Trace one request: accept a socket, authenticate, acquire a bounded database connection, begin a transaction, conditionally change stock, commit, release the connection, respond. A connection pool reuses a limited set of database connections; it is not extra database capacity. If every request opens a new connection during a burst, setup and connection limits can fail before useful work starts. Bound waiting, keep transactions short, and let the database protect shared stock. The invariant stays the same when the application grows from one process to many.

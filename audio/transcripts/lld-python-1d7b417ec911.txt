@@ -1,0 +1,9 @@
+11. Implement the boundary: Python and low-level design . Exercise two: a reservation state machine.
+
+Exercise two: a reservation state machine.
+
+Model states HELD, CONFIRMED, and EXPIRED. A transition function takes the current state, command, authoritative time, and deadline. Confirm succeeds only while held and before the deadline; expire succeeds only while held and at or after it. Repeating a completed operation returns its stable result. Two concurrent operations must compare and update the version atomically. Choose the exact deadline boundary and apply it consistently rather than letting two code paths disagree about equality.
+
+Reveal critical scenarios.
+
+Test confirm just before expiry, expire exactly at the deadline, confirm after expiry, repeated expire, repeated confirm, and a confirm-versus-expire race. Assert that quantity is returned at most once and cannot be both confirmed and returned. A transaction or compare-and-swap against the same reservation version chooses one winner. A test that only calls methods sequentially does not validate the race.

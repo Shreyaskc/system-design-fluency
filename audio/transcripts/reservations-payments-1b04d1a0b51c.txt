@@ -1,0 +1,9 @@
+The last basket: inventory, reservations, and payments . Scale and nonfunctional goals.
+
+Scale and nonfunctional goals.
+
+Assume 100,000 daily shoppers and 0.2 checkout attempts per shopper per day: 20,000 attempts per day, or 0.2315 per second average. A 100-fold promotion peak gives 23.15 attempts per second overall. This modest aggregate does not remove contention: 2,000 simultaneous requests may target the same final 100 boxes. Model hot-item contention separately from average throughput.
+
+Assume five minutes of active reservations at 23.15 per second during a sustained peak: approximately 6,945 active reservations. At 1 kilobytes per reservation, raw active records are roughly 6.95 megabytes. Twenty thousand orders per day at 2 kilobytes each produce 40 megabytes per day before indexes, events, and replicas. Transaction contention and correctness dominate this exercise more than storage volume.
+
+Target reservation responses below 300 milliseconds at the 99th percentile in-region, excluding the external payment interaction. Set a proposed 99.9 percent monthly reservation availability target, but never silently oversell to meet it. During an inventory partition, decline or defer affected reservations. A charge can remain pending when the outcome is unknown; showing “failed” prematurely encourages harmful retries. Maintain an auditable state history and keep sensitive payment data with the provider.

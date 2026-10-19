@@ -1,0 +1,7 @@
+Case 2 A useful neighborhood feed . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Is the five-second freshness target also a promise to immediately hide blocked content? Interviewer: Freshness may lag, but blocked content must be hidden. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Your inbox already contains the post. Is deleting the source enough? Candidate: No. The inbox is a derived list of IDs, not an authorization authority. I filter visibility at serving time and remove stale references asynchronously. If the authority is unavailable, I omit uncertain content rather than expose it. Feed completeness can degrade while the access boundary holds.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

@@ -1,0 +1,15 @@
+Run it later: a durable job scheduler . Alternatives, evolution, and assessment.
+
+Alternatives, evolution, and assessment.
+
+Reject an in-memory timer on an A P I server: restarts erase it, replicas disagree, and deployments shift responsibility. Reject a single cron entry per job at this scale: mutation, cancellation, observability, and ownership become fragile. Begin with indexed due rows; shard by tenant or due-time bucket only when measured lock contention or storage demands it. Partition old history for retention and benchmark due-row queries at realistic backlog sizes. Cost follows retained metadata, polling frequency, execution duration, and repeated work.
+
+Practice: the job takes 90 seconds but its lease is 30 seconds. Diagnose and redesign.
+
+Without renewal, another worker can start at 30 seconds. Renew the lease conditionally, measure heartbeat health, and retain generation checks. This reduces overlaps but does not eliminate them; make effects idempotent. For a non-idempotent external operation, reconcile its status after an uncertain response rather than blindly retrying.
+
+Interviewer follow-ups and rubric.
+
+Follow-ups: What happens after a week-long outage? How do you stop a noisy tenant? Can an operator replay a succeeded job? Strong: separates start from completion, calculates concurrency, explains the duplicate window, and shows conditional ownership transitions. Weak: promises exactly-once email, holds locks through network calls, or treats a queue as a complete recurring scheduler.
+
+Technical reference checked 2026-10-19: PostgreSQL SELECT and locking documentation describes SKIP LOCKED and its queue-oriented use. The selected architecture and all workload numbers are exercise assumptions.

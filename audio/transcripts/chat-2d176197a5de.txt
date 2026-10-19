@@ -1,0 +1,11 @@
+Case 3 Buyer and seller chat . Labeled architecture and progression.
+
+Labeled architecture and progression.
+
+Devices connect through an authenticated gateway to the message service. The service commits three related facts together: the conversation sequence allocation, the message, and its outbox event. A dispatcher transfers committed delivery work to an event queue, which routes it to the recipient’s currently connected gateways. Device acknowledgment occurs afterward and is not the same as the original durable server acceptance. Offline devices or reconnecting sessions use the history A P I to retrieve durable messages after their saved cursor. A dropped WebSocket notification therefore need not lose the underlying message.
+
+Retry identities and sequence ordering handle duplicate attempts and recovery.
+
+Begin with H T T P sends and polling history. For each send, check current membership, then lock/update the conversation row and allocate its next sequence in the same transaction as insertion. This gives one authoritative order per conversation, not a wall-clock guess. A retry with the same client_message_id returns the existing result; different payload with that ID is conflict. A rollback must roll back allocation too, although clients should not assume every system promises gap-free sequences.
+
+Add a transactional outbox and delivery workers, then connection gateways when polling cost or latency justifies them. Gateway registration maps a device to its current gateway with an expiry and connection generation. The durable store remains authoritative. After reconnect, the client fetches messages after its last stored sequence, even if the gateway believes nothing was missed.

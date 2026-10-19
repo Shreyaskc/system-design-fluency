@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . T T L.
+
+T T L.
+
+Precise definition: Time to live is a configured validity or retention duration whose exact start point and expiration behavior depend on the protocol or storage system.
+
+Plain English: An entry has a time limit, under specific rules.
+
+Analogy and its limit: A price label marked valid for sixty seconds expires, but replacing it with an already old label does not make the price current.
+
+Concrete example: A cache entry written from a lagging replica can expire sixty seconds after insertion yet describe an older fact. State whether expiration triggers deletion, revalidation, or refusal; T T L alone does not eliminate stale-fill races.
+
+RFC 9111: freshness lifetime and age checked 2026-10-19.

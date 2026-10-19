@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . R P O / R T O.
+
+R P O / R T O.
+
+Precise definition: Recovery point objective specifies targeted maximum data loss measured backward in time; recovery time objective specifies targeted maximum time to restore the defined service after disruption.
+
+Plain English: How much recent work may be lost, and how long recovery may take.
+
+Analogy and its limit: A shop can reconstruct sales only to its last copied ledger and needs time to reopen; software recovery also includes routing, credentials, and validation.
+
+Concrete example: A five-minute R P O and thirty-minute R T O require a tested procedure that restores sufficiently recent data and usable service inside those targets. Objectives are not demonstrated achievements.
+
+AWS Well-Architected: disaster recovery objectives checked 2026-10-19.

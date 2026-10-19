@@ -1,0 +1,9 @@
+Case 3 Buyer and seller chat . Alternatives, cost, and evolution.
+
+Alternatives, cost, and evolution.
+
+Reject “use WebSockets and Redis Pub/Sub” as a complete design: transient delivery alone cannot recover offline history. Reject global sequence allocation because unrelated conversations do not require shared ordering. Client-generated timestamps are useful metadata but unsuitable as the sole ordering authority. A single sequel store may be sufficient at this assumed write rate; partition based on measured storage and query pressure, not messaging fashion.
+
+For multi-region service, start with one home region per conversation and route writes there. Regional failover needs a fencing epoch, a version proving which owner is allowed to write, plus a documented recovery point and replay strategy. Active writers in two regions cannot casually promise one strict sequence during a partition. Encryption key custody, user export/deletion, moderation access, and audit retention require product decisions before claiming end-to-end encryption.
+
+Track acceptance latency and error rate, oldest undelivered event, reconnect gap recovery, gateway connection count, buffer pressure, and deduplication rate. Test deleting a gateway mid-send and losing a response after commit. Sample content-free traces using message IDs and protect metadata because communication patterns can themselves be sensitive.

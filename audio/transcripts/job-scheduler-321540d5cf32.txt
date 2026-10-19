@@ -1,0 +1,7 @@
+Run it later: a durable job scheduler . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Does no duplicate job mean one accepted owner or one external side effect? Interviewer: The business wants one reminder email. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: A paused worker wakes after its lease expires. Are we safe? Candidate: The new epoch fences state writes only where the receiver checks it. For email I need provider idempotency on a stable effect ID or must disclose the duplicate-versus-loss tradeoff after an unknown result. I cannot promise one email merely because the queue has one current owner.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

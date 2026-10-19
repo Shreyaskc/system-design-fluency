@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . Alternatives and evolution.
+
+Alternatives and evolution.
+
+Proxying every byte through the application server simplifies a tiny prototype but ties A P I scaling to bandwidth and long-lived requests. Direct-to-storage uploads avoid that bottleneck while requiring careful capability scoping. Reject synchronous scanning in the upload request for large videos because processing time and retries exceed ordinary request budgets. Reject storing media blobs in the primary relational database for this workload unless an unusual transactional requirement outweighs backup and serving costs.
+
+Monitor completion rate by device/network, orphan bytes, incomplete upload age, scanner failures, processing backlog age, cost per ready minute of video, CDN hit ratio, and origin traffic. Avoid auto-scaling solely on queue length: a 500 megabytes video costs more than a small image; measure work units and memory pressure. Add adaptive video formats only after device support and viewing behavior justify them. Regional upload acceleration is a latency/cost choice to benchmark, not a default requirement.

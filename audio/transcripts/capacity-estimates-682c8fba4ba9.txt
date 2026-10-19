@@ -1,0 +1,13 @@
+2. Estimate load with units and uncertainty . Model the awkward workload.
+
+Model the awkward workload.
+
+A flash sale can invalidate the tenfold assumption. Suppose 5,000 shoppers attempt to reserve the same item within one second. Total catalog load remains unremarkable, but one inventory row receives 5,000 contending writes. A hot key is one identifier receiving disproportionate traffic. More database shards do not divide one indivisible stock counter. Consider admission control, a waiting room, partitioned stock allocations with reconciliation, or accepting fewer requests while preserving the invariant. Select the mechanism only after discussing acceptable customer behavior.
+
+Use sensitivity analysis: recompute the result when an uncertain input changes. At 200 kilobytes per page instead of 2 kilobytes, catalog transfer becomes 400 gigabytes per day. At a hundredfold peak rather than tenfold, peak request rate becomes 2,315 per second. Write low, expected, and high assumptions; identify which measurement you would collect first. Load tests should reproduce skew, cold caches, slow dependencies, and retry storms, not just uniform random successful reads.
+
+Practice: a worker drains 150 jobs per second while 250 arrive each second for two minutes. What backlog forms?.
+
+The deficit is 100 jobs per second, so 12,000 jobs accumulate after 120 seconds, assuming zero initial backlog and constant rates. When arrivals fall to 50 per second, net drainage is 100 per second, requiring another 120 seconds. “Autoscale workers” is incomplete unless the downstream database can absorb their added load.
+
+Exit artifact: a worksheet with assumptions, equations, units, peak factors, uncertainty ranges, and the architectural decision each estimate informs. Recalculate without a calculator first, then verify arithmetic; order-of-magnitude mistakes should become visible before precision distracts you.

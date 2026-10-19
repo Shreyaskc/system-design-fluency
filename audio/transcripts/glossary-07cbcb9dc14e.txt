@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Outbox.
+
+Outbox.
+
+Precise definition: A durable event record committed atomically with business state and later published by an independent relay.
+
+Plain English: Save the notification obligation with the change, then deliver it afterward.
+
+Analogy and its limit: A shop staples a dispatch slip to the completed order record; a runner may copy a slip twice, so recipients still need duplicate handling.
+
+Concrete example: An order and OrderConfirmed event commit in one transaction. A relay publishes the event and crashes before recording progress. It publishes again after restart; consumers deduplicate by stable event identifier.
+
+AWS: transactional outbox checked 2026-10-19.

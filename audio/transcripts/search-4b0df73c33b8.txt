@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: May results lag price and stock updates? Interviewer: Yes, but checkout must validate current price and inventory. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Why not query the search index when reserving stock? Candidate: It is a derived view and may lag or replay out of order. I use it for candidate retrieval, then the authoritative order transaction validates the quote and available units. If search fails, a narrow database-backed catalog fallback may be acceptable, but it cannot silently promise the same ranking or throughput.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Partitioning / sharding.
+
+Partitioning / sharding.
+
+Precise definition: Partitioning divides a dataset into disjoint subsets; sharding typically assigns subsets to independently managed database nodes using a placement rule.
+
+Plain English: Different owners hold different pieces of the data.
+
+Analogy and its limit: Separate market stalls own different shelves; copying every shelf to another building would instead be replication. The analogy does not address cross-stall transactions.
+
+Concrete example: Store identifier routes inventory to a shard. Shopper history may need a separate derived index. One popular item can still overload its owner. A network partition means broken communication, not this deliberate division.
+
+PostgreSQL: table partitioning; cross-node sharding distinction is course terminology checked 2026-10-19.

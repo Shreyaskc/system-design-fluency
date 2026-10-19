@@ -1,0 +1,9 @@
+3. Follow a request and design a durable A P I . A reservation contract.
+
+A reservation contract.
+
+Expose POST /v1/reservations with a client-generated Idempotency-Key, authenticated shopper identity, store identifier, item identifier, quantity, and expected price version. An idempotent effect means repeating an operation does not multiply its intended state change. This endpoint implements that property through a stored key scoped to the shopper and operation; merely naming a header does not provide it. Save a hash of the request body so reuse with different content is rejected.
+
+The example creates a reservation at the version-one reservation endpoint. The shopper sends a stable idempotency key, identifies store s seven and the apple item, requests three units, and supplies observed price version twelve. The service checks authenticated ownership and authoritative stock and price rules. A successful created response identifies reservation r eighty-one, marks it held, and includes expiration and version one. If the response is lost, the client repeats the same logical request under the same key or retrieves its result. Generating a new key would identify another operation and could create another hold.
+
+The schema is deliberately small. Quantity must be a positive bounded integer. Price is checked against a server-owned version. The response contains a stable identifier that GET /v1/reservations/r81 can retrieve after a timeout. The key table stores shopper, operation, key, body hash, result identifier, and expiration. Commit the key and reservation together. Retain keys for the documented retry window; clients cannot assume protection after keys expire.

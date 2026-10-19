@@ -1,0 +1,13 @@
+Count what happened: merchant analytics and streaming . Prompt and assumed answers.
+
+Prompt and assumed answers.
+
+Exact prompt: “Build Corner Market's merchant dashboard showing product views, checkout conversion, and paid order totals within one minute. Support historical reports and recovery after processing outages.” Streaming means processing a continuing sequence of events incrementally. An event is a record of something that happened, with an identity and occurrence time; it is not automatically a unique or trustworthy fact.
+
+Is the dashboard financially authoritative? Assume view and funnel numbers are approximate operational analytics. Paid totals originate from confirmed order transitions and are reconciled against the order database. Settlement reporting is separate.
+
+How fresh? Assume 95 percent of valid events become queryable within 60 seconds during healthy operation. Late events can correct recent windows for 24 hours.
+
+How long retained? Assume 7 days in the replay log, 1 year in object storage, and 90 days of fine-grained aggregates.
+
+Can clients resend? Yes. Client timestamps may be wrong, and mobile devices can upload later. Trust server-recorded order events more than client claims.

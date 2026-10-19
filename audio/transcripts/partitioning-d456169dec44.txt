@@ -1,0 +1,7 @@
+7. Partition by ownership, queries, and skew . Reshard without guessing ownership.
+
+Reshard without guessing ownership.
+
+A migration must decide which location may accept writes at every moment. One workable outline creates a target copy, streams subsequent source changes, verifies counts and checksums at a known log position, briefly fences or redirects writes, catches up the target, then switches the routing directory version. Retain a rollback window. A dual-write phase without a durable reconciliation mechanism can leave source and target divergent whenever one write succeeds and the other fails.
+
+Routing clients should learn a mapping version and handle stale routes through a bounded redirect or retry. Move requests with their idempotency identity so a retry crossing the cutover cannot create duplicate reservations. Monitor both missing records and duplicated effects. Checksums of a whole dataset may conceal which range diverged; compare per-range or per-bucket summaries and sample semantic queries as well.

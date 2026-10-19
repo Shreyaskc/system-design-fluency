@@ -1,0 +1,5 @@
+Case 5 Find the right bicycle . Exact interview prompt.
+
+Exact interview prompt.
+
+Design listing search for Corner Market with text, category, price, and distance filters. New listings should appear quickly. Explain indexing, pagination, relevance, and behavior when the search cluster fails.

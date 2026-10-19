@@ -1,0 +1,15 @@
+Case 2 A useful neighborhood feed . Follow-ups and answer rubric.
+
+Follow-ups and answer rubric.
+
+Practice: a user follows an author while their post is being fanned out. Must the post appear?.
+
+Define semantics first. Our assumed policy shows the author's recent public posts after follow. Backfill plus read-time merging covers the race; deduplicate IDs. A stricter publish-time membership snapshot would require versioned graph semantics.
+
+Practice: a deleted post appears on page two from an old cursor.
+
+The cursor determines ordering, not authorization. Current visibility filtering must remove the post on every page and every cache path.
+
+Strong: derives hybrid fanout from skew, specifies resumable/idempotent work, and separates freshness from privacy. Weak: draws a queue without replay behavior, says “eventual consistency” to excuse deleted content, or uses offsets without discussing shifting pages. Principal depth includes cohort migration, per-tenant isolation, and cost/freshness controls.
+
+Technical reference checked 2026-10-19: PostgreSQL unique constraints. Cursor, hybrid fanout, freshness targets, and workload figures are design assumptions rather than vendor guarantees.

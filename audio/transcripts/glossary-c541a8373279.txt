@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Observability.
+
+Observability.
+
+Precise definition: The capacity to infer relevant internal system behavior from externally available outputs and telemetry.
+
+Plain English: Have enough useful evidence to explain what happened and why.
+
+Analogy and its limit: A grocer combines till totals, delivery notes, and queue observations to diagnose a delay; collecting more paper without a question does not improve understanding.
+
+Concrete example: Metrics show rising checkout failures, traces locate slow inventory calls, and correlated logs explain lock contention. Include business outcomes and careful sampling. Telemetry that leaks personal data or cannot connect request stages creates new problems rather than sufficient visibility.
+
+OpenTelemetry: observability and telemetry signals checked 2026-10-19.

@@ -1,0 +1,7 @@
+Case 3 Buyer and seller chat . Ordering, duplicates, and receipts.
+
+Ordering, duplicates, and receipts.
+
+Delivery is at least once: messages may repeat after retries. Devices merge by stable message_id or conversation sequence and render one copy. Concurrent sends from two devices receive an order at the authoritative conversation owner. If sequence 132 arrives before 131, buffer briefly or fetch the missing range; do not reorder by client timestamps, which can be inaccurate or manipulated. A single busy conversation is serialized by design. Partitioning by conversation_id scales many conversations, but does not make one conversation infinitely scalable.
+
+Read position updates are monotonic: store max(existing, requested), after verifying the position belongs to that conversation and is valid. A slow device cannot move it backward. Delivery and read receipts are separate: receiving a background push notification does not prove reading. Push notification payloads should avoid private message bodies unless product privacy policy explicitly permits them.

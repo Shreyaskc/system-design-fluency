@@ -1,0 +1,13 @@
+1. Turn an ambiguous prompt into a contract . Build and challenge the smallest design.
+
+Build and challenge the smallest design.
+
+Begin with a web application and relational database. Follow one reserve request from authentication through validation, conditional inventory update, order creation, commit, and response. Then deliberately break a dependency: the response is lost after commit. The client cannot distinguish this from a failed commit, so introduce a stable request identifier and a retrievable result. Add a queue only when email should succeed independently from checkout; add a cache only when a measured read bottleneck or geographic latency calls for one.
+
+A useful drawing labels arrows with operation and protocol, stores with ownership, and boundaries with failure scope. Write the invariant beside the transaction boundary. Every new component should answer three questions: what pressure requires it, what new failure does it create, and how will operators know that it works? A principal-level discussion also identifies the team that can operate the choice and a migration plan that avoids rewriting everything simultaneously.
+
+Practice: the interviewer says “design a grocery app.” What do you say first?.
+
+“I will focus on browsing, reserving inventory, and checkout. Is one city sufficient? Must we prevent overselling, and can catalog data lag by sixty seconds? I assume one successful capture per order and external payment processing. I will first show a working single-region flow, then explore hot inventory and payment timeouts.” This makes scope and correctness reviewable. A weak answer immediately names five databases without establishing any promise.
+
+Completion check: write a one-page contract for a library hold system using the same method, then explain which grocery assumptions no longer apply. Reading this chapter is study completion; doing that exercise with a changed prompt supplies evidence of transfer.

@@ -1,0 +1,15 @@
+Count what happened: merchant analytics and streaming . Evolution and practice.
+
+Evolution and practice.
+
+Keep immutable source events under retention rules, version transformations, and support deterministic backfills. If regulations require deletion, an append-only slogan does not override it: implement deletion or cryptographic and storage controls appropriate to the requirement, and propagate effects to derived data. Keep order correctness outside the analytics path so a dashboard outage cannot stop checkout.
+
+Practice: a replay doubles paid totals. What failed, and how do you repair it?.
+
+The sink probably increments totals without deduplicating event IDs or replacing deterministic windows. Pause publication, rebuild a new aggregate version from trusted order events, compare totals to authoritative orders, and switch readers after validation. Preserve the bad run for audit without exposing it as current data.
+
+Follow-ups and rubric.
+
+Follow-ups: What does “one minute” measure? How do definitions change? What happens beyond retention? Strong: distinguishes times, derives backlog recovery, defines denominators, and bounds deduplication. Weak: promises exactly-once end to end from a broker setting, ignores late events, or confuses dashboard totals with settlement accounting.
+
+Technical reference checked 2026-10-19: Apache Kafka design documentation explains partition ordering and the scope of transactional processing guarantees. Workload, lateness, and retention policies above are chosen interview assumptions.

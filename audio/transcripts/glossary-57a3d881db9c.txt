@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Atomicity.
+
+Atomicity.
+
+Precise definition: A transaction property under which its participating state changes commit as one unit or have no committed effect.
+
+Plain English: Either all the included database work counts, or none does.
+
+Analogy and its limit: A sealed parcel contains every promised item or is not dispatched; the analogy does not make a separate courier transaction atomic.
+
+Concrete example: Creating a reservation and decrementing inventory belong in one database transaction. A payment-provider call outside that database is not automatically rolled back with it.
+
+PostgreSQL: transactions checked 2026-10-19.

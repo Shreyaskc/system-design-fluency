@@ -1,0 +1,5 @@
+Case 4 Reliable listing photos and video . Exact interview prompt.
+
+Exact interview prompt.
+
+Design photo and short-video uploads for Corner Market. Uploads must resume after network interruption, files must be checked before publication, and popular listings should load quickly.

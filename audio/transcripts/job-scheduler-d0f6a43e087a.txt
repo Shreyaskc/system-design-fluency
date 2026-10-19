@@ -1,0 +1,13 @@
+Run it later: a durable job scheduler . Prompt and clarifications.
+
+Prompt and clarifications.
+
+Exact prompt: “Design a durable scheduler for Corner Market. Merchants schedule sale reminders and nightly inventory reports. Jobs must survive crashes, run close to their requested time, retry safely, and support cancellation.” Durable means acknowledged work remains recoverable after the failures covered by the storage contract. Scheduling decides when work becomes eligible; workers perform the actual effects.
+
+One-time or recurring? Assume both. Recurrence uses an explicit named timezone and a defined daylight-saving policy; store each generated occurrence separately.
+
+Timing precision? Assume 99 percent of eligible jobs start within 30 seconds when dependencies are healthy. This is a start-delay target, not a completion promise.
+
+Delivery semantics? Assume jobs may execute more than once. The observable business effect should be deduplicated where possible.
+
+Cancellation? Define “start” as the successful atomic claim transition into RUNNING. Cancellation that wins before that claim prevents execution; after the claim it is best effort, even if the worker has not yet called the external provider. An email already accepted by an external provider may be impossible to recall.

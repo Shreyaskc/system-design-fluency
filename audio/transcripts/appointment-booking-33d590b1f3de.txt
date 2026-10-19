@@ -1,0 +1,11 @@
+Case 11 Book a community pickup appointment . Challenge, alternatives, and operations.
+
+Challenge, alternatives, and operations.
+
+Interviewer: “Why not lock the slot in Redis?” Candidate: “A cache lock expiring during a slow database operation can permit two holders. The database conditional update already enforces the invariant where durable state lives. I would use a distributed lock only with a demonstrated need and a fencing mechanism enforced by the resource.” A fencing mechanism rejects stale owners using increasing ownership versions.
+
+Reject read-then-write availability checks without atomic enforcement. Reject serializing every clinic through one global queue because independent slots need no shared order. If variable durations arrive, fixed slot uniqueness is insufficient: use interval reservations with an exclusion constraint or serialize each resource's overlap check and insertion under an appropriate transaction policy. Do not assume a row-level check constraint can enforce arbitrary cross-row non-overlap.
+
+Monitor booking latency, conflict rate, lock wait time, deadlocks, request-key conflicts, outbox lag, and cache age. A high conflict rate may reflect real scarcity rather than a broken service. Protect popular releases with admission control and per-account limits. Audit staff overrides and cancellation ownership. Restore drills must verify slot pointers and booking state together.
+
+Evolve temporary holds only with an explicit expiry authority: a hold consumes capacity until a database-checked deadline; a late confirmation must atomically verify that hold still owns the slot. Partition by clinic when measured pressure warrants it. Cross-partition rescheduling then requires a different product contract or coordination; explain that added complexity before promising the original atomic behavior.

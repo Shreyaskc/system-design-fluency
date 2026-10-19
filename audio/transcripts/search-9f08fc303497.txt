@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . Clarifications and assumptions.
+
+Clarifications and assumptions.
+
+Assume 10 million active public listings, 1 million new or updated listings per day, and 10 million searches per day. Text is short titles and descriptions; no web crawling. Include exact category/price filters and geographic radius; defer semantic vector search until evidence shows a need. Ask how sold or private listings behave: authoritative eligibility must be checked before display and again before reservation. New listings should become searchable within 30 seconds at 95th percentile; removed listings must stop appearing within five seconds under healthy dependencies. If the authoritative eligibility check is unavailable, suppress uncertain results.
+
+Propose 99.9 percent monthly search availability and server-side 95th percentile latency under 300 milliseconds. These are negotiated targets, not inherent engine properties. Search freshness is separate from write success: the listing creation response confirms database commit, with a “search indexing pending” state if necessary. Do not promise immediate search visibility from a successful database write.

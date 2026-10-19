@@ -1,0 +1,9 @@
+Case 1 Share a neighborhood listing . Labeled architecture and progressive design.
+
+Labeled architecture and progressive design.
+
+The architecture distinguishes four flows. Creation goes from seller through authentication to a transaction storing the mapping and request identity. Redirection goes from browser through an edge or load balancer to the redirect service, which checks its cache and falls back to the mapping database on a miss. Analytics travels through a bounded event buffer into daily aggregation, avoiding a synchronous analytics dependency on every redirect. Disabling a link updates authoritative status, then triggers cache invalidation with expiry as fallback. The disable contract must account for stale cached mappings, while analytics overload should not exhaust the redirect service.
+
+First deliver a single service and relational database with an indexed primary-key lookup. Add multiple stateless redirect instances when measured demand warrants them. A cache stores frequently requested mappings for at most 30 seconds. A time to live (T T L) is the maximum cache residence duration. Always check expiry and status in cached data. Use short-lived negative caching for missing codes to reduce random-code attacks, but invalidate negative entries when a custom alias is created. Never let analytics determine whether the redirect succeeds.
+
+Choose a temporary 302 redirect and explicit cache directives because owners can disable links. A permanent redirect may remain cached in clients beyond your purge control. The 60-second disable promise requires bounding every participating cache, including an edge cache if added. Sensitive or urgent takedowns may need a small denylist checked before normal cache lookup. Explain the availability cost of making that check authoritative.

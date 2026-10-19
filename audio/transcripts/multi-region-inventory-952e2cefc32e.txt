@@ -1,0 +1,15 @@
+Case 12 Defend inventory across regions . Follow-ups and rubric.
+
+Follow-ups and rubric.
+
+Practice: the read cache says one item remains, but reservation fails. Is the design broken?.
+
+No. The displayed number is approximate. The authoritative conditional transaction decides, returns a clear conflict, and prompts a refresh. Misrepresenting the display as guaranteed would be a product contract error.
+
+Practice: why does three replicas not automatically prove R P O 0?.
+
+All copies might share a failure domain, acknowledgment might precede durable replication, or failover might promote an incomplete replica. Verify placement, commit rules, failure scope, and safe promotion semantics.
+
+Strong: states the partition behavior, enforces stock atomically, computes the latency lower bound and budget, and distinguishes recovery objectives from evidence. Weak: promises low latency, universal availability, and strict shared-stock correctness simultaneously. Principal depth includes quota alternatives, rollout compatibility, and tested recovery ownership.
+
+Checked 2026-10-19: PostgreSQL constraints; Raft consensus paper. This architecture specifies required guarantees rather than asserting a particular vendor deployment meets them.

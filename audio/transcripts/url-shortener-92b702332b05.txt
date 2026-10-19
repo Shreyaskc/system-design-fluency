@@ -1,0 +1,9 @@
+Case 1 Share a neighborhood listing . Estimate with units.
+
+Estimate with units.
+
+Assume 1 million new links per day and 100 million redirects per day; decimal units throughout. Average creation rate is 1,000,000 divided by 86,400 approximately 11.6 writes per second. Redirect rate is approximately 1,157 per second. With an assumed 10 times peak, provision and test 116 writes per second and 11,574 redirects per second. A 500-byte logical mapping costs 500 megabytes per day, or 182.5 gigabytes/year before indexes, replicas, database overhead, and backups. Three complete copies alone require 547.5 gigabytes.
+
+A 90 percent cache hit rate leaves about 1,158 peak database reads per second, but a cold cache must survive much more.
+
+Use 10 random base62 characters: 62 choices per character gives 62 to the power 10 approximately 8.39 times 10 to the power 17 possible codes. At 365 million stored links, the approximate probability that a fresh candidate collides is n/N approximately 4.35 times 10 to the power minus 10. This does not mean no collision ever occurs; birthday effects accumulate across all draws. A unique database constraint, with bounded retry on conflict, is the actual guarantee.

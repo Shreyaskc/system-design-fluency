@@ -1,0 +1,7 @@
+8. Make asynchronous work replayable and bounded . Delivery and effects.
+
+Delivery and effects.
+
+At-least-once delivery may repeat a message; at-most-once delivery may lose it. Exactly-once claims always need a boundary. Apache Kafka documents transactional processing guarantees and the limits when interacting with external systems in its design documentation, checked 2026-10-19. A broker transaction does not automatically make an external email or payment provider participate atomically.
+
+For a local projection, insert the event identifier into a processed-events table and update the projection in one database transaction under a unique constraint. For an external effect, pass a stable provider idempotency key if the provider supports a suitable contract, or maintain an attempt record and reconcile uncertain outcomes. A worker that crashes after sending a receipt but before recording completion can send it twice on retry; accepting duplicate email may be reasonable, accepting duplicate captures is not.

@@ -1,0 +1,13 @@
+3. Follow a request and design a durable A P I . Pagination, compatibility, and trust.
+
+Pagination, compatibility, and trust.
+
+For order history, sort by (created_at, order_id) and return an opaque cursor containing the last pair. Keyset pagination resumes from the last observed key; offset pagination skips a count of rows and can become expensive or unstable when new rows arrive. Define whether a browsing session sees a fixed snapshot or a changing history. Always add a unique tiebreaker because timestamps can coincide.
+
+Authentication establishes identity; authorization decides whether that identity may perform this operation on this object. Never accept a supplied shopper identifier as proof of ownership. Enforce authorization on each retrieved reservation and each mutation. Bound body sizes, item counts, and query complexity. Avoid putting secrets in URLs because URLs often enter logs. Version contracts by making additive changes first; removing a field requires evidence that old clients no longer depend on it.
+
+Practice: POST times out, then the client retries with a new key. What breaks?.
+
+The server may interpret the retry as a second operation and hold stock twice. Retry with the same key and unchanged body, or retrieve the original result. If the original key is unknown because local client state was lost, show pending status and reconcile rather than claiming the first attempt failed.
+
+Exit artifact: document one success, one business rejection, one authentication failure, and one uncertain outcome. Draw the entire request path and label every place a deadline, identity, or identifier must survive.

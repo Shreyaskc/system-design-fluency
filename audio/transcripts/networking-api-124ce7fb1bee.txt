@@ -1,0 +1,7 @@
+3. Follow a request and design a durable A P I . Errors are part of the interface.
+
+Errors are part of the interface.
+
+Return a structured error with a machine-readable code, human-readable message, request identifier, and retry guidance. Distinguish invalid quantity, unavailable stock, authorization failure, and temporary dependency failure. H T T P defines method and status semantics; for example, GET is safe, and PUT and DELETE have idempotent semantics, while POST is not inherently idempotent. Those properties concern intended server effects, not whether every repeated response has identical bytes. See RFC 9110, checked 2026-10-19.
+
+A timeout tells the client it stopped waiting; it does not prove the server failed. Set a total request deadline and allocate smaller dependency timeouts within it. If a 500-millisecond server deadline allows a database call to wait two seconds, the work outlives its purpose. Propagate cancellation where supported, but preserve a committed operation's retrievable outcome. Retry only operations whose effects are safe to repeat, with a limited attempt count, increasing delay, and randomness to avoid synchronized retries.

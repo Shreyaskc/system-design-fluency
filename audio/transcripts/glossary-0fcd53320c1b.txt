@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Backpressure.
+
+Backpressure.
+
+Precise definition: A flow-control mechanism by which downstream capacity constrains upstream production or admission of work.
+
+Plain English: Slow down incoming work when the next stage cannot keep up.
+
+Analogy and its limit: A cashier stops accepting baskets when the packing bench is full; a warehouse-sized waiting line only delays overload. Unlike people, software producers need explicit signals or enforced limits.
+
+Concrete example: A bounded queue makes producers wait or reject work at capacity. If 250 jobs arrive per second and workers finish 150, backlog otherwise grows by 100 each second.
+
+Java Flow: demand-based flow control checked 2026-10-19.

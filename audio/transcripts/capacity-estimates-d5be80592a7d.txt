@@ -1,0 +1,5 @@
+2. Estimate load with units and uncertainty . Request trace: Resource bounds.
+
+Request trace: Resource bounds.
+
+At a flash sale, 5,000 shoppers arrive; a bounded admission queue accepts a safe subset; the rest receive explicit retry guidance. If each rejected client retries immediately, offered traffic grows. Keep admitted work below sustainable service capacity and test the retry policy, rather than multiplying server counts from daily averages.

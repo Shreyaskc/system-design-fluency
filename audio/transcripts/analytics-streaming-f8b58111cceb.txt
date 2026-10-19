@@ -1,0 +1,9 @@
+Count what happened: merchant analytics and streaming . Duplicates, replay, and the denominator.
+
+Duplicates, replay, and the denominator.
+
+Deduplicate by stable event ID within an explicit retention window. At 5 million events per day and 24 hours of deduplication, 32 bytes per ID is 160 megabytes raw before state-store overhead. A duplicated event arriving after that window can be counted again unless archival repair or a longer-lived unique record catches it. Do not sell bounded deduplication as eternal uniqueness.
+
+Make aggregate writes replay-safe. One option writes deterministic window values keyed by window and processor version, replacing prior values rather than blindly incrementing on every delivery. Another commits processed offsets and output in a transactional boundary supported by the chosen stack. Broker-level transactional processing does not make arbitrary external databases, emails, or downstream APIs exactly once. Verify the entire boundary. During repair, write a new version of aggregates and atomically switch readers after validation instead of mixing old and new partial results.
+
+Conversion needs a definition. “Paid orders / views” is not the same as “sessions with a paid order / sessions with a product view.” Suppose 1,000 eligible sessions contain views and 80 of those sessions pay: conversion is 80 divided by 1,000 equals 8 percent. If those sessions generated 4,000 views, dividing 80 by 4,000 yields 2 percent, a different metric. Establish attribution window, identity rules, bot treatment, and timezone boundaries before implementing joins. Cross-device identity and missing events limit certainty; display suitable caveats.

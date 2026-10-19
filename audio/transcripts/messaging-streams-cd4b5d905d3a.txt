@@ -1,0 +1,5 @@
+8. Make asynchronous work replayable and bounded . Request trace: One projection effect per event.
+
+Request trace: One projection effect per event.
+
+Order O commits with outbox event E; relay publishes E; consumer commits a count increment and E receipt together; acknowledgment is lost; E returns. The receipt prevents a second increment. Choose at-least-once transport with atomic deduplication for this projection because occasional retries are preferable to silently missing orders.

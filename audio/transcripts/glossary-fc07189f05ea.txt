@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Isolation.
+
+Isolation.
+
+Precise definition: The transaction property specifying permitted observations and interference among concurrently executing transactions.
+
+Plain English: It controls how overlapping database operations may affect one another.
+
+Analogy and its limit: Separate checkout desks can share inventory under different coordination rules; physical desk separation alone does not prevent selling the same last item.
+
+Concrete example: Two transactions reading the same stock then writing independently can lose a decrement. Choose an atomic update or appropriate locking and isolation; merely writing BEGIN does not establish every desired guarantee.
+
+PostgreSQL: isolation levels checked 2026-10-19.

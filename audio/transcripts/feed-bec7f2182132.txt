@@ -1,0 +1,7 @@
+Case 2 A useful neighborhood feed . Pagination and visibility deep dive.
+
+Pagination and visibility deep dive.
+
+Order by (created_at, post_id), with post_id as a deterministic tie-breaker. An opaque signed cursor contains that pair and a feed session cutoff time. Request the next page strictly older than the last pair and not newer than the cutoff. Offset pagination shifts when new posts arrive and repeats items. A keyset cursor avoids that shift, although deleting or hiding posts can still shorten pages; oversample within a bounded limit and report exhaustion honestly.
+
+Never treat a stale inbox reference as permission to show content. Batch-load current post status and evaluate blocks, group membership, and privacy. If the authorization dependency fails, fail closed for restricted content. For public content, the interviewer must approve any bounded stale policy. Deletions create tombstones, small records indicating removed content, and trigger asynchronous cleanup; read filtering provides the immediate correctness barrier.

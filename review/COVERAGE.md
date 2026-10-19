@@ -47,7 +47,7 @@ Every case contains an exact original prompt, clarifying questions and assumed a
 
 ## Honest remaining gaps
 
-- Browser surface was unavailable. Desktop/mobile rendering, real keyboard/screen-reader behavior and visual overflow have not been empirically checked. Responsive CSS and semantic structure are implemented and structurally checked.
+- Initial publication had no browser surface. During audio work, local real-browser playback/resume/continuation and desktop/390px listening layouts were checked, plus one mobile case with contained code scrolling. This is not a screen-reader, physical iOS or background/lock-screen playback pass.
 - Labs are deterministic teaching models. They do not simulate real distributed consensus, network partitions, database failover or load. SQL reservation tests use an in-memory single connection and do not prove multi-process race freedom.
 - Architecture exercises include full reasoned answers, but most are not executable end-to-end services. No benchmarks, cloud deployments or chaos experiments were run.
 - Consensus proofs, storage-engine internals, operating-system scheduling, sophisticated search ranking, cryptographic protocols and production payment compliance require further specialist work. References provide starting points; the course makes no certification or interview guarantee.

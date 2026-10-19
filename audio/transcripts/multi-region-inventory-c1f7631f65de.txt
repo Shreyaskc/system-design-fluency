@@ -1,0 +1,7 @@
+Case 12 Defend inventory across regions . Operations and evolution.
+
+Operations and evolution.
+
+Monitor quorum health, leader changes, replication/commit latency, rejected minority writes, reservation conflict rate, hold-expiry lag, and read-view age. Alert on user-visible symptoms and budget burn, not every election. Run regional isolation and recovery exercises, measure routing and retry convergence, and verify acknowledged reservations after failover. R T O includes detection, election, routing, and safe client recovery, not merely starting a replacement process.
+
+Keep backups and point-in-time recovery for accidental deletion; quorum replicates mistakes too. Roll out schema changes compatibly across versions. Reconcile inventory movements with durable reservation events and investigate invariant violations rather than silently resetting counts. Add regional quota allocation only for appropriate product classes; high-demand scarce items may retain coordinated writes. Measure the cost of extra copies, cross-region traffic, and write latency against the business value of the stated disaster objective.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Ambiguous outcome.
+
+Ambiguous outcome.
+
+Precise definition: A caller knowledge state in which available observations do not determine whether an operation committed or produced its external effect.
+
+Plain English: No answer does not mean no action happened.
+
+Analogy and its limit: A shopkeeper cannot hear whether a shouted collection request was fulfilled; shouting again may duplicate it. Unlike the analogy, software can preserve a durable request identity.
+
+Concrete example: A provider captures payment but its response is lost. Keep the attempt pending, query or safely retry using its original identity, and reconcile before asserting failure.
+
+RFC 9110: retries and method semantics checked 2026-10-19.

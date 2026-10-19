@@ -1,0 +1,9 @@
+Protect the market: distributed rate limiting . Goals and estimates.
+
+Goals and estimates.
+
+Assume 100,000 daily active shoppers, 200 A P I requests per active shopper per day, and a peak ten times the daily average. These are interview inputs, not observed production measurements. Traffic is 20,000,000 divided by 86,400 equals 231.48 requests per second on average; use 2,315 requests per second for peak planning. Assume 50,000 concurrently active identity/route keys. At a planning allowance of 200 bytes per key including overhead, state is about 10 megabytes per copy; measure the actual datastore representation before buying capacity. One atomic decision per request creates about 2,315 datastore operations per second at peak.
+
+A tenfold safety scenario is 23,150 decisions per second, not a claim that one node can sustain it.
+
+The proposed service-level objective (S L O), a measurable reliability target, is 99.9 percent successful limiter decisions monthly with added latency below 5 milliseconds at the 99th percentile inside the region. A percentile says what fraction of observations finish below a threshold. Set an explicit timeout smaller than the caller's remaining deadline. Rejections should be distinguishable from dependency failures, and policy changes should become visible within one minute.

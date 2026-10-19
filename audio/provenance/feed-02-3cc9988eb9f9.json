@@ -1,0 +1,31 @@
+{
+  "backend": "Kokoro-82M v1.0",
+  "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "model_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+  "voice": "af_heart",
+  "voice_sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+  "threads": 1,
+  "sample_rate": 24000,
+  "speed": 1.0,
+  "transcript_sha256": "3cc9988eb9f9bc0efef0a7ff9d78cb9014078da548a54950cc63c52141210e9a",
+  "source_sha256": "686fc1a4a8516b584380c31246942e312936cb6de2acf77af7f5de184e8f34ae",
+  "duration": 17.575,
+  "peak": 0.5741060972213745,
+  "rms": 0.049647118896245956,
+  "grapheme_complete": true,
+  "segments": [
+    {
+      "text_sha256": "153a9f7060b3422e6940c66ff66ccf2db97adae47a9c6f9d2f75d8fb44fe473e",
+      "samples": 105000
+    },
+    {
+      "text_sha256": "212853cd8744a9389b771536352c4179350092008564ed622dea973a634bad71",
+      "samples": 49800
+    },
+    {
+      "text_sha256": "46f8dafde617f10c6b89834cacb46ebf7fa639132aa5a9b3594b364d950ff533",
+      "samples": 255000
+    }
+  ],
+  "generation_seconds": 3.0641497920732945
+}

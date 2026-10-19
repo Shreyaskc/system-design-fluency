@@ -1,0 +1,7 @@
+Case 3 Buyer and seller chat . A P I and storage contract.
+
+A P I and storage contract.
+
+Sending a chat message includes a client-generated message identifier, text, and attachment identifiers. The server returns its message identifier, conversation sequence, and acceptance time. History retrieval asks for messages after a known sequence, enabling reconnection. Read-position updates are separate from message creation, and WebSocket events carry availability notices, delivery receipts, and presence hints. Conversation state tracks membership and the next sequence. Messages are ordered uniquely within a conversation, while a second unique constraint on conversation, sender, and client message identity deduplicates retries. Read positions track each user’s progress, and outbox records support durable asynchronous delivery.
+
+A WebSocket is a persistent bidirectional connection established through an H T T P handshake. It reduces repeated connection overhead but provides no durable history by itself. The same logical send endpoint can be exposed over H T T P or a socket command; it must enforce identical authorization and deduplication.

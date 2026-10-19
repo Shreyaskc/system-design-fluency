@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . Calculate workload.
+
+Calculate workload.
+
+10 million searches per day / 86,400 approximately 115.7 queries per second average, and 1,157 per second at assumed 10 times peak. Updates average 11.6 per second and peak at 116 per second under the same factor. At an assumed 2 kilobytes searchable document, raw document content is 20 gigabytes; an assumed 3 times indexing expansion gives 60 gigabytes for one complete index copy. One replica doubles this to 120 gigabytes, before spare capacity and segment merge overhead. A full blue-green rebuild temporarily needs both old and new index generations: at least 240 gigabytes under these simplifying assumptions.
+
+If a worker indexes an assumed measured 1,000 documents per second, rebuilding 10 million documents requires 10,000 seconds, about 2.78 hours before catch-up and verification. The number is an explicit planning assumption. Benchmark real mappings and analyzers: token count, field cardinality, and update frequency affect storage and throughput substantially.

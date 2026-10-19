@@ -1,0 +1,15 @@
+Practice failure probes and self-assessment . Interview-platform interpretation.
+
+Interview-platform interpretation.
+
+Sources reviewed 19 October 2026. These observations inform practice structure; they do not establish question frequency or any employer’s hidden scoring.
+
+Source and evidence type ; Interpretation used in this course.
+
+LeetCode Discuss: droplet1’s framework community account, not official LeetCode hiring guidance ; The author emphasizes explaining assumptions and decision logic. We turn that into a trace and a rejected alternative per case. Personal offer claims are anecdotal and are not evidence of effectiveness.
+
+Hello Interview: Delivery Framework interview-preparation platform’s own advice ; It recommends reaching a working design before deep dives and using estimates when they affect decisions. We require an end-to-end request path and tie arithmetic to a bottleneck. The course’s prompts and worked solutions are original.
+
+Amazon SDE III preparation official employer guidance for that role ; Use it to confirm the stated process and preparation areas for that employer and role. Our principal rubric is a teaching device and is not represented as Amazon’s hiring standard.
+
+The case families—read-heavy lookup, fanout, persistent connections, large objects, retrieval, admission control, leased work, transactional state, event aggregation and model serving—exercise different constraints. Their inclusion is a curriculum choice, not a ranking of commonly asked questions. No paid material was accessed or reproduced.

@@ -1,0 +1,9 @@
+Case 12 Defend inventory across regions . Labeled architecture and progression.
+
+Labeled architecture and progression.
+
+Clients in three regions all route a stock-changing request to the current authority for the relevant partition. That leader orders the transaction into a replicated log. Replicas in regions A, B, and C exchange updates, and acknowledgment follows the selected majority-durable-commit rule. Committed changes then populate regional read views and caches. The control path elects leadership and assigns a term or epoch, which the write path must enforce to fence an obsolete leader. During a communication split, isolated replicas cannot independently promise the same stock. Regional read availability is broader than write availability under this correctness contract.
+
+Begin with one authoritative write region and local replicas, then identify the unmet disaster objective: local-only durability does not provide R P O 0 for regional loss. Select a proven database offering the required cross-region synchronous durability and transactional behavior, and verify its documented failure modes. Do not implement consensus in application code. With three voting replicas placed in three independent regions, a majority can survive loss of one region if the remaining two communicate; placement, durable acknowledgment, and election configuration must be validated.
+
+Partition inventory by sku so independent products scale. Each partition has one current logical authority. Consensus terms or epochs distinguish leadership generations; replicas reject operations from stale leaders. Application routing follows the elected authority and never promotes a disconnected copy simply because it is reachable. Consensus coordinates ordered state across replicas; replication alone does not imply safe ownership changes.

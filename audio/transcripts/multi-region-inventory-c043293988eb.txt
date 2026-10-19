@@ -1,0 +1,7 @@
+Case 12 Defend inventory across regions . Latency and capacity reasoning.
+
+Latency and capacity reasoning.
+
+Assume hypothetical 80 milliseconds inter-region round-trip time (RTT), meaning a request and response across regions take 80 milliseconds before durable storage and processing. A coordinated write requiring that exchange cannot achieve a 50 milliseconds response under those assumptions. Negotiate a feasible write objective, for example 95th percentile under 250 milliseconds subject to measurements. Parallel local processing does not remove the communication lower bound. Actual topology and consensus protocol determine the precise path.
+
+At 2,000 writes per second and assumed 250 milliseconds average in-flight duration, Little's law predicts 500 concurrent requests. This uses an assumed mean, not the 95th percentile target as measured evidence. At 1 kilobytes logical mutation payload, peak application writes are 2 megabytes per second before protocol, replication, indexes, and log overhead. Reads at 20,000 per second with an assumed 90 percent cache hit rate leave 2,000 per second view-store reads; cold-cache tests must cover far more. The final-item hotspot is a serial correctness problem, even when bandwidth is ample.

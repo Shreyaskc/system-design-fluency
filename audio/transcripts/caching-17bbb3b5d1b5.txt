@@ -1,0 +1,9 @@
+5. Cache with a freshness and failure contract . Invalidate without hand-waving.
+
+Invalidate without hand-waving.
+
+Suppose reader A misses, reads old price version twelve, and pauses. Writer B commits version thirteen and deletes the cache key. Reader A then fills version twelve after the delete. “Delete on every write” did not prevent stale resurrection. A short T T L bounds this particular stale fill, but strict freshness needs a stronger mechanism: compare versions against a retained current-version marker when populating (not merely against the cached value, which may be absent).
+
+Keep a version tombstone beyond the maximum stale-reader lifetime, and atomically reject any refill older than that marker; otherwise eviction or deletion can erase the fence and permit stale resurrection. If that lifetime cannot be bounded, validate against the authority rather than claiming a strict freshness guarantee. Other options include using versioned immutable keys with an authoritative current-version pointer, or bypass the cache for the critical operation. Each mechanism has a coordination cost.
+
+Write-through updates the backing store through a controlled path that also updates the cache. Write-behind acknowledges a cache update before later persistence and risks loss or reordering unless backed by durable machinery. Name the actual acknowledgment boundary; the label alone proves nothing. An event-driven invalidation channel may lag or lose an invalidation, so combine it with bounded expiration and monitoring when the freshness contract allows that compromise. Redis describes server-assisted client cache invalidation in its client-side caching documentation, checked 2026-10-19; that mechanism still needs application failure handling.

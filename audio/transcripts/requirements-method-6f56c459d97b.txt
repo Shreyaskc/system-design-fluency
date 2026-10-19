@@ -1,0 +1,7 @@
+1. Turn an ambiguous prompt into a contract . A forty-five-minute interview.
+
+A forty-five-minute interview.
+
+Spend minutes zero through five defining journeys and invariants; five through ten estimating the dominant load; ten through twenty choosing APIs, records, and the simplest end-to-end design; twenty through thirty-five exploring the two highest-risk decisions; thirty-five through forty-two analyzing failures and evolution; and the final three minutes summarizing choices and unresolved risks. This is a negotiation aid, not a rigid performance script. Ask whether the interviewer prefers correctness, scale, or operations before selecting deep dives.
+
+HLD explains why an order service talks to inventory and how failures cross that boundary. LLD explains the reservation state machine, repository interface, and concurrency-safe update. Move between levels when it resolves a risk. Writing twenty classes before deciding whether stock may oversell is premature; drawing services without explaining one atomic stock update is incomplete.

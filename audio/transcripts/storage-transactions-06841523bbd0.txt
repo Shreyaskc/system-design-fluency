@@ -1,0 +1,11 @@
+4. Model data around queries and invariants . Predict two interleavings.
+
+Predict two interleavings.
+
+Lost update: stock starts at five. A reads five; B reads five; A computes four and writes four; B computes four and writes four. Two reservations were accepted but only one unit was deducted. The invariant is that decrements equal accepted quantities. A conditional database decrement, not application read-modify-write, fixes this single-row race.
+
+Write skew: workers A and B are both active. Transaction T1 reads both and sees two; T2 reads both and sees two; T1 disables A; T2 disables B; both commit under snapshot isolation without a shared write conflict. The invariant “at least one active worker” fails. Serialize the decision using one coordinating row or use serializable isolation with whole-transaction retries.
+
+Transfer: does a mutex around one Python dictionary fix both database races?.
+
+Only for callers that actually share and obey that mutex in one process. Another process, script, or server bypasses it. Protect the invariant at the shared authoritative boundary and test concurrent database sessions.

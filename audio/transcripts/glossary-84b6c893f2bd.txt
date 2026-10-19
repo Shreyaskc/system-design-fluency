@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Replication.
+
+Replication.
+
+Precise definition: Maintaining multiple copies of a dataset or state machine through a mechanism that propagates updates among copies.
+
+Plain English: Keep other copies so one failure need not remove all usable data.
+
+Analogy and its limit: Several shop ledgers copy each day’s changes; copying yesterday’s mistake reproduces the mistake rather than creating a backup.
+
+Concrete example: A leader accepts a reservation while an asynchronous replica has not yet applied it. Reading that replica may show old stock. The acknowledgment and failover policy determine which acknowledged writes can survive a failure.
+
+PostgreSQL: high availability and replication checked 2026-10-19.

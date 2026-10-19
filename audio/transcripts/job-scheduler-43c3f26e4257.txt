@@ -1,0 +1,11 @@
+Run it later: a durable job scheduler . A P I, state, and architecture.
+
+A P I, state, and architecture.
+
+Create a job with its type, payload reference, scheduled UTC time, deadline, and tenant. A merchant-scoped idempotency key identifies retries of the same creation request. A retrieval endpoint exposes progress; a cancellation endpoint requests a state transition rather than promising already running work can be undone. The jobs table tracks state, attempt count, lease expiry, lease generation, original request hash, and last error. A unique tenant-and-key constraint prevents duplicate creation. An index beginning with state and scheduled time supports finding due work. A separate ordered event history records transitions and reasons, making retries and operator investigation explainable.
+
+Idempotency means repeating the same logical request has the same intended effect. Reuse of a key with a different request body returns a conflict instead of silently changing the job. Authenticate ownership before reads and cancellations. Permit only registered job types and validated parameters; arbitrary uploaded code is a different, much harder isolation problem.
+
+The merchant sends create and cancel operations to the job A P I, which persists authoritative job state in a durable database. Workers are grouped by job class. They claim due rows using leases, then invoke an idempotent business operation such as generating a report or requesting delivery. A lease reaper identifies expired running attempts and determines whether they are eligible for retry. Separately, a recurrence expander creates uniquely identified future occurrences. Notice that a lease expiring does not stop a paused worker.
+
+Generation checks and downstream idempotency are still needed so an old attempt cannot overwrite or repeat a newer attempt’s completed effect.

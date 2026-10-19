@@ -1,0 +1,7 @@
+9. Define reliability from the shopper outward . Observe causes and consequences.
+
+Observe causes and consequences.
+
+Metrics are numerical measurements over time; logs are individual event records; traces connect steps across a request. Track request rate, errors, duration, saturation, database lock waits, replica lag, queue age, and business invariant violations. Use stable correlation identifiers without embedding personal data. High-cardinality labels such as raw shopper identifiers can overwhelm metric systems and expose sensitive information. Sample traces carefully so rare errors and slow paths remain diagnosable.
+
+Alert on user impact or imminent loss of a critical promise. A high C P U reading may be healthy utilization; a rising duplicate-capture count deserves immediate attention even when C P U is low. Build runbooks with safe first actions, verification queries, escalation ownership, and rollback instructions. Run a restore exercise and a dependency-outage exercise before claiming recovery readiness. A backup job's success signal is weaker evidence than a verified restoration.

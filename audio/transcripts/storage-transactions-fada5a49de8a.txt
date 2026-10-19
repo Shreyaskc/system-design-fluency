@@ -1,0 +1,9 @@
+4. Model data around queries and invariants . Atomicity beats a hopeful read.
+
+Atomicity beats a hopeful read.
+
+A transaction groups operations that succeed or fail together. Atomicity means no partial committed result; isolation controls interference among concurrent transactions. For one stock row, use a conditional update and check the affected-row count, then insert the reservation in the same transaction:.
+
+Begin one database transaction. Conditionally decrement the apple inventory at store s seven by three, while incrementing its version, only if at least three units remain. Continue only when exactly one row changed. Then insert the reservation and commit the complete unit. If stock was insufficient, do not insert a successful hold. If insertion fails, roll back the decrement. The important concurrency property is that the stock check and decrement occur inside one database update, rather than a separate application read followed by a stale write. Commit joins the accepted hold and its inventory effect.
+
+Reading available stock into application memory, checking it, and later writing a new value can lose concurrent changes. The conditional update makes the eligibility check and decrement one database operation. A database constraint supplies a final guard. Multi-item orders need one transaction with consistent lock order, or an explicit partial-reservation workflow and compensation. A deadlock is a cycle of transactions waiting on each other's locks; retry the aborted transaction with a bounded policy.

@@ -1,0 +1,9 @@
+Case 11 Book a community pickup appointment . Work the numbers.
+
+Work the numbers.
+
+2,000 clinics times 100 slots per day times 90 days equals 18 million slot rows. At 200 logical bytes/row, that is 3.6 gigabytes before indexes, row overhead, booking history, replicas, and backups. Three full copies of those logical bytes alone total 10.8 gigabytes. Assume 200 peak mutations per second and a measured or hypothesized 50 milliseconds mean database residence time. Little's law gives average in-flight database work L equals arrival rate times residence time equals 200 per second times 0.05 s equals 10 concurrent operations.
+
+This is not a recommendation for a ten-connection pool: transaction contention, headroom, failover, and tail latency still require measurement.
+
+Assume 20 browse requests per mutation: 4,000 peak browse requests per second. Cache clinic-day availability for up to five seconds, coalesce concurrent misses, and bound fallback concurrency. A single famous clinic can still create a hot slot even when aggregate database load is small; its successful write capacity is one booking, regardless of infrastructure size.

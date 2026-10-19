@@ -1,0 +1,5 @@
+Case 4 Reliable listing photos and video . Labeled data and control paths.
+
+Labeled data and control paths.
+
+The control flow authenticates the seller, stores upload metadata, and issues short-lived, narrowly scoped upload URLs. The byte flow bypasses application servers and sends multipart data directly into private quarantine object storage. Completion verifies the object and parts, then records a state change and durable processing event. Queue workers run isolated scanning and decoding before resizing or transcoding. Failure leads to rejection; success publishes ready variants. Viewers read only ready content through the content delivery network. Quarantine is therefore a deliberate trust boundary: merely possessing uploaded bytes does not make them safe or publicly available.

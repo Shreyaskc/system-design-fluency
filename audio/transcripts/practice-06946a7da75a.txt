@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 6: A five-node consensus group loses three nodes. May two survivors accept writes?.
+
+Probe 6: A five-node consensus group loses three nodes. May two survivors accept writes?.
+
+Reveal sample reasoning.
+
+A majority is three. Two cannot safely elect a leader and commit new entries under the assumed Raft model. Serve only reads whose semantics are justified; a stale read must be labeled as such. Restoring availability by forming a new cluster without a recovery protocol risks losing acknowledged state.

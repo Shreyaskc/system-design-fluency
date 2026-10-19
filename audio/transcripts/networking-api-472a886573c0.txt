@@ -1,0 +1,9 @@
+3. Follow a request and design a durable A P I . Predict an uncertain external outcome.
+
+Predict an uncertain external outcome.
+
+Payment sequence: the client creates attempt P7; the service sends capture P7; the provider captures money; the response is lost; the local deadline expires. “Failed” is now an incorrect conclusion because the effect occurred. Store P7 as pending, retrieve provider status or retry under the provider's documented idempotency contract, then reconcile the order. The invariant is one successful capture per order. A local database rollback cannot roll back the provider.
+
+Debug: would a longer timeout remove this failure mode?.
+
+No. It changes probability and waiting cost, but any finite deadline can expire after an effect occurs. Durable attempt identity and reconciliation address ambiguity.

@@ -1,0 +1,5 @@
+Case 11 Book a community pickup appointment . Exact interview prompt.
+
+Exact interview prompt.
+
+Design appointment booking across 2,000 community clinics. Users browse available slots, book one, cancel, and retry after network failures. Prevent double booking and explain how your design evolves.

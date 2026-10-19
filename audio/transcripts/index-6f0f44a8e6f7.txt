@@ -1,0 +1,9 @@
+Start here a sequence you can follow . How to use each lesson.
+
+How to use each lesson.
+
+Read the request trace, then cover the solution and reproduce it. Change one assumption: tenfold load, a slow replica, a duplicate message, or a regional partition. Explain which guarantee changes and why. Answer disclosures remain closed until you open them. Diagrams are plain text with labeled edges so they remain selectable, zoomable and usable without a graphics library.
+
+First diagnostic: the checkout timed out. Should the client retry?.
+
+The timeout does not prove failure. The server may have committed the order before its response was lost. Retry the same logical operation with a stable idempotency key and query its durable result. A new key can create a second order. A blanket “never retry writes” also fails availability goals.

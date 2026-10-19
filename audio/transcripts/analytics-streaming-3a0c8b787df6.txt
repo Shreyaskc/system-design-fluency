@@ -1,0 +1,9 @@
+Count what happened: merchant analytics and streaming . Start simple, then make time explicit.
+
+Start simple, then make time explicit.
+
+Begin with server-side order events written through the transactional outbox and a batch dashboard refreshed every minute. Add client views through validated ingestion. Partition the log by merchant when ordered merchant processing is useful, but recognize that one large merchant can become a hot partition. Partitioning by merchant plus a stable subkey spreads load at the cost of merging partial aggregates. Log order is normally scoped to a partition; do not assume one global ordering of every shopper's actions.
+
+Distinguish event time, when the action occurred, from processing time, when the processor handled it. A phone records a view at 12:00 but reconnects at 12:10. Counting by processing time puts the view in the wrong minute. Count valid events into event-time windows, with a policy for implausible client timestamps. Use received time or quarantine when timestamps are outside accepted bounds, and disclose this interpretation in metric definitions.
+
+A watermark is the processor's estimate of how far event-time progress has advanced. It is a policy informed by observations, not proof that older events can never arrive. With a two-minute lateness allowance, a window can publish a provisional value promptly, then accept updates. Our contract permits corrections for 24 hours; older arrivals go to a repair path or a separately labeled late-event count. Define what a dashboard displays when a previous total changes.

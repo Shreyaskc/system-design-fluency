@@ -1,0 +1,7 @@
+12. Practice principal-level decisions and demonstrate mastery . Choose a learning path.
+
+Choose a learning path.
+
+A beginner should complete foundations one through five, implement the low-level exercises, and solve URL shortening before adding replication and partitioning. A backend practitioner should begin with the estimates and transaction exercises, then attempt correctness-heavy reservations, payments, and scheduling. A data or AI architect should still complete request-path and transactional reasoning, then emphasize streams, analytics, feature freshness, and model-serving failure modes. A principal interview path adds migration, multi-region ownership, cost, organizational constraints, and adversarial follow-ups to every worked case.
+
+Use deliberate practice rather than reading every sample first. Attempt a prompt for forty-five minutes, record assumptions and unresolved questions, then open the concealed answer. Change one condition: tenfold traffic, an unavailable region, a malicious tenant, or a stricter invariant. Explain which part of your design changes and which remains justified. Repeating the same diagram from memory demonstrates recall; adapting it with explicit consequences demonstrates transferable understanding.

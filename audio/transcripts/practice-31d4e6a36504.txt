@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 3: A cache says a user may see a private photo. Permission has just been revoked. What happens?.
+
+Probe 3: A cache says a user may see a private photo. Permission has just been revoked. What happens?.
+
+Reveal sample reasoning.
+
+Revocation is a security boundary. Do not authorize from a potentially stale content cache. Re-check authoritative permission or a versioned policy with an explicitly bounded revocation contract; invalidate delivery credentials and caches as needed. A short expiry reduces exposure but does not meet immediate revocation.

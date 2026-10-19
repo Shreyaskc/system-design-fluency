@@ -1,0 +1,13 @@
+The last basket: inventory, reservations, and payments . Exact prompt and business contract.
+
+Exact prompt and business contract.
+
+Exact prompt: “Corner Market sells limited bakery pickup boxes. Design reservation and checkout so two shoppers cannot buy the last box, retries do not duplicate a charge, and payment failures do not strand inventory forever.” The central invariant, a rule that must always hold, is that confirmed plus active reserved units never exceed sellable inventory for a stock item. Payment correctness is a second invariant: one order must not accumulate multiple unintended successful charges.
+
+Assume each checkout contains stock from one merchant; cross-merchant carts are out of scope for the first version.
+
+Assume a reservation lasts five minutes, but payment attempts started before expiry need explicit reconciliation before stock is released.
+
+Assume the payment provider supports idempotency keys and status lookup. Its precise key retention and webhook behavior must be checked before implementation.
+
+Assume authorization holds funds and capture requests settlement; availability and timing depend on the chosen provider and payment method. We do not build a card network or store card credentials.

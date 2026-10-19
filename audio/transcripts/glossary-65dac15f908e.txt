@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Consensus.
+
+Consensus.
+
+Precise definition: A distributed agreement problem requiring participating nodes to decide consistently on values despite a specified failure model, with progress under stated communication and availability assumptions.
+
+Plain English: Nodes agree which decision counts, even when some stop responding.
+
+Analogy and its limit: A committee records one approved motion; software protocols must also handle delayed messages and changing leadership, not human judgment.
+
+Concrete example: A five-voter Raft group uses a majority of three. Three connected functioning voters can make progress under suitable timing assumptions; arbitrary malicious behavior lies outside Raft’s crash-failure model.
+
+Raft: agreement and leader election checked 2026-10-19.

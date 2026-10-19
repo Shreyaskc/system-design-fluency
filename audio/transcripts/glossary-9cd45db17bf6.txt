@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . CDN.
+
+CDN.
+
+Precise definition: A content delivery network distributes content-serving infrastructure across network locations, commonly caching origin responses nearer consumers.
+
+Plain English: Serve reusable bytes from a nearby copy instead of the main application each time.
+
+Analogy and its limit: Neighborhood collection lockers save everyone a trip to the central shop; a locker does not decide whether a customer is entitled to a private parcel.
+
+Concrete example: A product image with a versioned public URL can be cached at edge locations. Private order receipts need deliberate authorization and cache policy. Proximity can improve delivery without guaranteeing the newest origin state.
+
+RFC 9111: shared-cache behavior; CDN example is illustrative checked 2026-10-19.

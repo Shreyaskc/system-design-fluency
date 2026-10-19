@@ -1,0 +1,13 @@
+8. Make asynchronous work replayable and bounded . Backpressure and poison messages.
+
+Backpressure and poison messages.
+
+Backpressure slows or rejects producers when consumers cannot keep up. At 250 arrivals per second and 150 completions per second, backlog grows by 100 per second. A large queue postpones overload; it does not create capacity. Bound queue size, prioritize critical work, limit worker concurrency, and protect downstream services. Track oldest-message age alongside queue depth because users experience delay, not abstract message counts.
+
+A poison message repeatedly fails due to data or code that retries cannot fix. Retry transient failures with a bounded schedule, then isolate the item in a dead-letter queue with reason and safe inspection tools. Assign an owner and replay procedure. Replaying an entire backlog after a bug fix must preserve deduplication and downstream rate limits. Otherwise recovery becomes a second incident.
+
+Practice: a consumer crashes after updating its projection but before acknowledging. What must happen on replay?.
+
+The projection update and processed-event record commit together. On replay the unique event identifier reveals prior completion, so the consumer acknowledges without repeating the update. If those writes are separate, a crash between them can still double-count or skip work.
+
+Exit artifact: draw the crash points before and after each commit, publish, external call, and acknowledgment. For every point, state whether replay loses, duplicates, or safely repeats the intended effect.

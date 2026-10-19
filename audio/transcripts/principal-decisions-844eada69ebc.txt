@@ -1,0 +1,11 @@
+12. Practice principal-level decisions and demonstrate mastery . Assess evidence, not page completion.
+
+Assess evidence, not page completion.
+
+Score each attempt from zero to three on requirement clarity, quantitative reasoning, data correctness, failure analysis, tradeoff depth, and communication. Zero means absent; one means named without mechanism; two means coherent under stated assumptions; three means defended under a changed assumption with a recovery or migration plan. Keep the original attempt so improvement is observable. Reading completion and quiz scores are useful study signals, but neither certifies mastery or guarantees an interview outcome.
+
+Final oral drill: your preferred database is unavailable for six hours. What do you do?.
+
+First clarify whether this is a new-design constraint or an incident. During an incident, preserve invariants, stop unsafe writes, expose pending outcomes, use tested recovery, and communicate measured impact. For a new design, revisit requirements and compare alternatives by transactions, query patterns, recovery, team skill, and migration. Naming a different product without reconstructing its guarantees is not a complete answer.
+
+Exit artifact: maintain three independently attempted cases, one implemented concurrency exercise, one failure rehearsal, and one written decision record with a rejected alternative. Ask a peer to challenge assumptions and record the feedback. Treat remaining uncertainties as a practice backlog with concrete experiments, not as an excuse to add unmotivated components.

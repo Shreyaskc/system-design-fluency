@@ -1,0 +1,11 @@
+12. Practice principal-level decisions and demonstrate mastery . Practice case: shared platform versus team autonomy.
+
+Practice case: shared platform versus team autonomy.
+
+Prompt: three teams each built a job scheduler; leadership proposes a single company-wide scheduler. Clarify task volume, deadlines, execution duration, isolation needs, retry semantics, and incident ownership. Shared infrastructure can remove duplicate maintenance but concentrates failure and couples migrations. Separate control-plane functions, such as schedule storage and dispatch policy, from execution environments where tenant workloads run. A control plane manages configuration and coordination; a data plane performs the actual user work.
+
+Propose an adoption path: standardize task identifiers and result states first, onboard a low-risk workload, verify fairness and recovery, then migrate critical tasks with dual observation. Keep tenant quotas and resource isolation so one customer's backlog does not starve another. Define who owns a misbehaving task, who operates the scheduler, and who can pause a tenant. Reject a forced simultaneous rewrite because it creates a large irreversible coordination event without proving the platform's fitness.
+
+Reveal the important tradeoff.
+
+A shared scheduler is valuable when it offers a better reliability contract and lower total operating effort than the existing systems. It is costly when teams need incompatible execution guarantees or no team can operate it. A principal answer proposes evidence, staged adoption, and clear ownership rather than equating standardization with universal centralization.

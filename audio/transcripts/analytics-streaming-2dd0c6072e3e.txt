@@ -1,0 +1,9 @@
+Count what happened: merchant analytics and streaming . Failure and operational decisions.
+
+Failure and operational decisions.
+
+If a processor is down for two hours while traffic averages 58 per second, backlog is about 417,600 events. A recovering processor able to handle 300 per second while 58 per second continue arriving drains at 242 per second, requiring about 1,726 seconds, or 28.8 minutes. Simply dividing by 300 understates recovery time. Provision and alert using remaining retention headroom: once seven-day log data expire, recovery needs the object archive.
+
+Poison events must not stall an entire partition forever. Preserve failed events with reason and schema version in a quarantined stream, count them, and provide a controlled replay tool. For a query-store outage, stop or buffer within bounded capacity rather than silently advancing progress and dropping output. Track oldest unprocessed event, source-to-dashboard delay, duplicates, late-event rate, invalid events, state growth, and reconciliation differences.
+
+Reject querying the production order database for every dashboard refresh: analytics scans can impair checkout and cannot reconstruct client views. Reject treating a cache increment as an auditable financial total. Reject starting with a complex stream platform if minute-level batch satisfies requirements. Add streaming when latency, volume, and operational ownership justify it; ongoing cost includes replicas, retained data, state checkpoints, repair jobs, and on-call expertise.

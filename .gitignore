@@ -1,3 +1,11 @@
 __pycache__/
 *.pyc
 .DS_Store
+.audio-work.lock
+.audio-generation.log
+
+.audio-venv/
+
+.audio-error-fixture.html
+
+.audio-model/

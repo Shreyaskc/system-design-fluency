@@ -1,0 +1,7 @@
+Case 11 Book a community pickup appointment . A P I, schema, and exact enforcement.
+
+A P I, schema, and exact enforcement.
+
+The appointment A P I separates browsing slots from creating bookings. Creation submits a slot identifier and a stable client request key, returning a confirmed booking identifier on success. Cancellation and rescheduling have explicit endpoints. The slots table identifies the clinic and time range, tracks its active booking and version, prevents duplicate clinic start times in this simplified model, and checks that the end follows the start. Bookings retain user ownership and state. Request records uniquely identify a user’s retry and store its request hash and response. An outbox records booking events within the authoritative transaction, enabling reliable notification afterward.
+
+Enforce one active occupant with an atomic conditional update: UPDATE slots SET active_booking_id=:booking WHERE id=:slot AND active_booking_id IS NULL. Require exactly one affected row, then insert booking, request response, and notification outbox row in the same transaction. Roll back all work on failure. The slot primary key makes all competing updates contend on the same authoritative row. An idempotency key identifies one intended action across retries; a repeated key with different input is rejected. Serialize concurrent uses of the same key using its unique request record inside the transaction.

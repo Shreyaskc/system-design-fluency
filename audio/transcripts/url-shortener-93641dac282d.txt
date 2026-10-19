@@ -1,0 +1,7 @@
+Case 1 Share a neighborhood listing . Alternatives, operations, and evolution.
+
+Alternatives, operations, and evolution.
+
+A monotonically increasing integer encoded in base62 is simpler but exposes enumeration; adding obscurity is not authorization. Hashing the long URL does not remove collisions and creates policy questions about ownership and destination normalization. A global distributed key service is unnecessary for this workload unless allocation becomes a measured bottleneck. Start in one write region with backups and restore drills; multi-region reads can follow. Multi-region writes need collision enforcement and an explicit conflict policy for custom aliases.
+
+Monitor redirect success and latency, cache hit rate, primary fallback rate, collision retries, disable propagation, and analytics event loss. Sample logs; billions of full request logs can cost more than mappings. Add capacity before cache cold-start tests exceed the database budget. Partition old mappings by retention only after examining lookup and expiration costs.

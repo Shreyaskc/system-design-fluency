@@ -1,0 +1,7 @@
+Protect the market: distributed rate limiting . Deep dives: contention and geography.
+
+Deep dives: contention and geography.
+
+Hash identity keys across partitions. A hot merchant remains one hot key even after adding partitions. Local token leases can amortize calls: a central owner grants a gateway a bounded number of tokens, which it spends locally. Define the extra admitted work during a failure as at most the total unspent outstanding leases, provided leases cannot be reused after reassignment. Give leases expiry and an owner generation. This spends accuracy to gain availability and latency; do not describe it as exact.
+
+For three regions, choose a home region for strict per-account policy, accepting remote latency and reduced availability during partitions. For browsing, split a global budget into regional allocations whose sum is bounded and rebalance conservatively. Three regions each enforcing the entire nominal global budget triples the allowance. An exact global decision across a partition cannot simultaneously offer uninterrupted independent regional admission; state the business choice rather than hiding it behind a product name.

@@ -1,0 +1,7 @@
+9. Define reliability from the shopper outward . Prevent overload from becoming collapse.
+
+Prevent overload from becoming collapse.
+
+A timeout caps waiting; a circuit breaker temporarily stops calls to a failing dependency; a bulkhead limits one class of work so it cannot exhaust all resources. Configure each around the customer contract. Bound database connection pools and request queues. When the system is saturated, reject some new work promptly with retry guidance rather than allowing every request to time out while consuming memory. Retried work is still work: three retries can multiply offered traffic precisely when capacity is weakest.
+
+Degradation should be intentional. Serve a cached product description with visible freshness when allowed, omit optional recommendations, and disable new checkout if inventory correctness cannot be preserved. Avoid returning “order failed” after a payment timeout when the actual outcome is unknown. Persist a pending state and reconcile. Make support tools able to locate the attempt by a nonsecret identifier.

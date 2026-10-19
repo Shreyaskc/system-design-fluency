@@ -1,0 +1,7 @@
+7. Partition by ownership, queries, and skew . Partition only when there is a pressure.
+
+Partition only when there is a pressure.
+
+Partitioning divides a dataset into subsets. Sharding usually means placing subsets on independently managed database nodes. A table partition inside one database can simplify retention without independently scaling every resource. Corner Market's baseline order volume does not itself justify sharding. First improve queries, indexes, archival, connection management, and vertical capacity. Partition when storage, write throughput, operational isolation, or geographic ownership has a measured requirement that one node cannot economically satisfy.
+
+A partition key decides where a record belongs. Choosing store identifier keeps a store's inventory and reservations together, helping local transactions. Choosing shopper identifier makes shopper history local, but a checkout touching several stores may cross shards. Choosing random order identifier spreads writes while forcing shopper history to consult an index or multiple shards. There is no universally correct key: list the important reads, writes, transaction boundaries, and expected skew before choosing.

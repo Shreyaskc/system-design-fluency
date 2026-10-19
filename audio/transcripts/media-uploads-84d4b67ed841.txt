@@ -1,0 +1,15 @@
+Case 4 Reliable listing photos and video . Follow-ups and rubric.
+
+Follow-ups and rubric.
+
+Practice: an upload URL leaks before expiry. Can you call it single use?.
+
+Not by default. The exact storage capability may be reusable while valid. Use short expiry, narrowly scoped keys and permissions, controlled finalization, and explicit provider-supported conditional mechanisms where required. Do not promise revocation that the chosen capability cannot enforce.
+
+Practice: moderation rejects an already popular published file.
+
+Set authoritative status to removed, stop issuing access, purge caches, remove ready references, and record purge completion against the takedown objective. Existing downloaded copies cannot be recalled.
+
+Strong: separates accepted bytes from ready media, designs idempotent state transitions, verifies content, and budgets orphan/egress cost. Weak: treats a client completion call or storage event as proof of safety, publishes originals immediately, or assumes a signed URL is single use. Principal depth includes parser isolation, reconciliation ownership, and takedown guarantees.
+
+Technical references checked 2026-10-19: S3 multipart upload; S3 signed URL behavior. AWS is a concrete example; verify limits and checksum behavior for the chosen storage provider.

@@ -1,0 +1,3 @@
+Elective: reliable AI recommendations and feature serving . Introduction.
+
+Worked interview data freshness and safe fallback 45 minutes.

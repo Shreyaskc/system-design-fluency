@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . A P I, data model, and diagram.
+
+A P I, data model, and diagram.
+
+The search request includes free text, category, maximum price in minor units, currency, geographic center and radius, and a continuation cursor. The response includes results, another cursor, measured index freshness, and a degraded indicator. Authoritative listings store seller, title, description, price, currency, category, location, status, and version. The outbox carries listing identity, version, and operation so index updates can reject obsolete changes. Search documents hold analyzed text and filterable fields, including geography and status. This is a derived representation for retrieval, not the final authority for purchase eligibility or current ownership.
+
+The listing write path commits the authoritative record and its outbox event together. A dispatcher feeds a durable change stream, and a version-aware indexer updates a particular search-index generation. The query path retrieves and ranks candidate identifiers, batch-checks authoritative eligibility, and hydrates a bounded result set before responding. The rebuild path combines a database snapshot with a change-stream watermark to construct a new generation, then switches an alias when the new index is ready. Version checks prevent older updates from overwriting newer documents. Keeping the old generation during validation supports a controlled rollback rather than an irreversible in-place replacement.

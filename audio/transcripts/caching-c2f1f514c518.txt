@@ -1,0 +1,5 @@
+5. Cache with a freshness and failure contract . Request trace: Authoritative price at purchase.
+
+Request trace: Authoritative price at purchase.
+
+A catalog request hits price version twelve; checkout submits that version; inventory checks the authoritative quote; a changed price triggers explicit reconfirmation. If invalidation is delayed, browsing may be stale but the purchase promise remains protected. Choose cache-aside for browsing because the sixty-second freshness allowance permits a bounded stale view.

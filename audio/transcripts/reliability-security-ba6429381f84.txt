@@ -1,0 +1,7 @@
+9. Define reliability from the shopper outward . Budgets and dependency arithmetic.
+
+Budgets and dependency arithmetic.
+
+If 600,000 eligible checkout requests occur in a thirty-day window, a 99.9 percent request-success objective permits 600 bad requests. A time-based 99.9 percent objective over thirty days permits 43.2 minutes of failure because 30 times 24 times 60 times 0.001 equals 43.2. Request and time budgets differ when traffic is uneven. Do not interchange them. An error budget is the allowed imperfection implied by the objective; it supports explicit release and reliability decisions.
+
+Suppose a request requires three independently available dependencies, each available 99.9 percent of the time. Under that simplifying independence assumption, all three are available approximately 0.999 cubed, or 99.7003 percent. Shared network or identity failures violate independence and may be worse. Reduce required dependencies by making email asynchronous, storing necessary local state, or degrading optional recommendations. Replicating every component without examining shared failure causes can leave the same weakness intact.

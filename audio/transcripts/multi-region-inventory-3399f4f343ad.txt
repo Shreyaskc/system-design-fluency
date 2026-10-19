@@ -1,0 +1,9 @@
+Case 12 Defend inventory across regions . Three failure traces.
+
+Three failure traces.
+
+Region A loses connectivity: if B and C form a majority, they elect an authorized leader and resume writes after election. A cannot commit alone and rejects or times out writes. Local stale reads may continue only under the approved display contract. Checkout routes to the majority.
+
+Commit acknowledgment is lost: the buyer retries the original request key. The durable request record returns the same reservation. Do not decrement inventory again. If outcome cannot yet be established, report pending/retryable status rather than claiming failure and issuing a new operation.
+
+Hold expiry races confirmation: both transactions condition on current held state and database-evaluated expiry. Exactly one transition wins. Expiry restores quantity only if it changes held to expired; confirmation succeeds only before the deadline and changes held to confirmed. Duplicate expiry cannot increment stock twice.

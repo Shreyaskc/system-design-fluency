@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . 99th percentile latency.
+
+99th percentile latency.
+
+Precise definition: The ninety-ninth percentile of measured operation durations for a specified population, observation boundary, interval, and percentile calculation convention.
+
+Plain English: Approximately ninety-nine percent of measured operations finish at or below that duration.
+
+Analogy and its limit: In a sorted line of one hundred collection times, look near the slow end rather than the average; real percentile estimators need not select exactly one sample.
+
+Concrete example: A 300-millisecond server 99th percentile excludes client-side connection failures unless measured there. Adding three dependencies’ 99th percentile values does not give the request 99th percentile because their slow observations may differ.
+
+Google SRE: latency distributions and measurement checked 2026-10-19.

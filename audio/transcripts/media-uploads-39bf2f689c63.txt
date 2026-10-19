@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Can an upload be visible before validation completes? Interviewer: No; only verified and scanned media may be published. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: The object exists but finalize timed out. Should the client upload it again? Candidate: First retry finalize with the existing upload ID. The service checks object identity, size and checksum and conditionally advances metadata. A stored object alone is not publication authority. Cleanup uses an age threshold and state check so it does not erase an active upload; validation workers remain idempotent.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

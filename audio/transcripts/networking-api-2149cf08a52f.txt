@@ -1,0 +1,7 @@
+3. Follow a request and design a durable A P I . Trace the path.
+
+Trace the path.
+
+A network request crosses independently failing boundaries. The shopper's client resolves a hostname using the DNS, establishes a transport connection, negotiates TLS, and sends an H T T P request. A load balancer distributes requests among healthy application instances. Connection reuse avoids repeating setup for every request, but a broken reused connection still needs bounded recovery. A server marked healthy may have a failing database, so distinguish process liveness from readiness to accept useful traffic.
+
+Latency is elapsed time for one operation; throughput is completed operations per unit time. Greater bandwidth does not remove a long round trip. Four sequential dependent calls across a 70-millisecond path spend at least 280 milliseconds on those trips before processing. Batch independent lookups, colocate related operations, or redesign a chatty interface. Parallel calls help independent work but create additional load and complicate cancellation when the parent request no longer needs results.

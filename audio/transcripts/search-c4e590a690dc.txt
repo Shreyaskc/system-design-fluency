@@ -1,0 +1,7 @@
+Case 5 Find the right bicycle . Failure and correctness analysis.
+
+Failure and correctness analysis.
+
+If indexing stalls, keep accepting listing writes while exposing freshness and alerting on oldest unprocessed event age. If the search cluster fails, return a deliberately limited recent/category browse view if the database has capacity; do not silently run unbounded wildcard sequel across 10 million rows. Protect fallback with concurrency limits and its own latency budget. Search availability may be lower than listing-write availability; that is an explicit product tradeoff.
+
+If a shard is unavailable, decide whether partial results are acceptable and mark them. A shard is one partition of the index. Replicas improve read availability but a correlated deployment or zone failure can still affect both if placement is poor. During a hot query surge, cache public query results with bounded freshness and eligibility filtering. Do not put precise personal locations in shared cache keys or broad logs unnecessarily.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Watermark.
+
+Watermark.
+
+Precise definition: A stream-processing progress indication describing how far event time is considered advanced under the system’s timestamp and lateness policy.
+
+Plain English: The processor estimates which earlier time windows are ready to evaluate.
+
+Analogy and its limit: A delivery clerk announces that the morning mail is probably complete; a delayed envelope can still arrive, depending on the policy. It is not a universal proof of completeness.
+
+Concrete example: A five-minute order-count window closes when its watermark passes the boundary. A late offline order may trigger a correction, be retained separately, or be dropped according to the documented rule.
+
+Flink: event time and watermarks checked 2026-10-19.

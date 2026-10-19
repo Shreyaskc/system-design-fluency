@@ -1,0 +1,7 @@
+Case 2 A useful neighborhood feed . A P I, schema, and labeled diagram.
+
+A P I, schema, and labeled diagram.
+
+Publishing a post includes text, attachment identifiers, and a client request identity. Feed retrieval uses an opaque cursor and bounded page size, returning items, a continuation cursor, generation time, and freshness information. Follow and unfollow operations address the author explicitly. Posts retain author, time, body, status, and version. Follow relationships are unique per follower and author. Inbox rows are unique per user and post, which helps repeated fanout avoid duplication. The read index orders each user’s entries by descending creation time and post identifier, providing a stable tiebreaker for pagination. Outbox events connect committed publishing to asynchronous distribution.
+
+Publishing commits a post and its outbox record together. A retryable dispatcher sends work through a queue to fanout workers, which populate user inboxes. The follow graph supplies recipients. Reading uses a hybrid strategy: the feed A P I merges inbox entries with recent posts from high-fanout authors, then batch-loads post content and applies current visibility rules before responding. The follow graph also identifies those read-time author sets. This avoids writing a celebrity’s post into every follower inbox while retaining fast reads for ordinary authors. Because deliveries and follows can change asynchronously, the final visibility filter protects current access rules.

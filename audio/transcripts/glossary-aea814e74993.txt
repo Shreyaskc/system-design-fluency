@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Fanout.
+
+Fanout.
+
+Precise definition: Expansion of one input operation or event into multiple downstream deliveries, requests, or materialized updates.
+
+Plain English: One thing happening creates work for many destinations.
+
+Analogy and its limit: A grocer sends one sale announcement to every subscriber; the analogy hides failures and duplicate deliveries that software must handle explicitly.
+
+Concrete example: A post with ten thousand followers may create ten thousand inbox updates with fanout-on-write, or be combined into feeds during reads. Large follower skew changes the cost. Define whether partial delivery, retries, ordering, and duplicate recipients are acceptable.
+
+RabbitMQ: fanout exchange publish per secondubscribe example checked 2026-10-19.

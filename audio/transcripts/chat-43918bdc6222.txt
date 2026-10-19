@@ -1,0 +1,7 @@
+Case 3 Buyer and seller chat . Calculate load and connection resources.
+
+Calculate load and connection resources.
+
+Assume 200,000 daily messaging users sending 20 messages each: 4 million messages per day, or 46.3 per second average and 463 per second at a 10 times assumed peak. At 1,000 logical bytes/message, history adds 4 gigabytes per day and 1.46 terabytes/year before indexes and replicas. Attachment bytes live in object storage and are excluded. Suppose 50,000 simultaneous devices hold connections; at an assumed 20 kilobytes application state each, that is 1 gigabytes of connection state across gateways, excluding operating-system socket buffers and runtime overhead.
+
+With one heartbeat every 30 seconds/device, the service handles about 1,667 heartbeat sends per second and corresponding replies. Heartbeats can exceed average message traffic. Capacity testing must include reconnect storms, TLS handshakes, slow consumers, and file-descriptor limits. TLS is transport layer security, which encrypts a connection; it does not encrypt data from the service itself.

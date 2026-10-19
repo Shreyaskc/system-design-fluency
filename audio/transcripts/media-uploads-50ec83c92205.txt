@@ -1,0 +1,9 @@
+Case 4 Reliable listing photos and video . Progressive design.
+
+Progressive design.
+
+Start with a single object upload for small images and a metadata row. Keep originals in a private quarantine location. Add multipart upload for large or unreliable transfers: divide the object into separately retryable parts, then complete assembly. With a 10 megabytes chosen part size, a 500 megabytes object has 50 parts. A failure on part 49 need not resend the preceding 480 megabytes. Keep concurrency bounded so one upload does not overwhelm mobile bandwidth or create excessive requests.
+
+The A P I allocates the storage key, records owner, expected size, checksum, and expiry, then signs only necessary operations. On completion, verify actual stored size, checksum semantics, upload ownership, and all expected parts. An object-storage ETag is not universally a whole-file cryptographic checksum, particularly for multipart objects; use an explicitly supported checksum mechanism. Server verification must not trust a client's declaration that a file is an image.
+
+Use a state machine: initiated leads to uploading leads to verifying leads to processing leads to ready, with rejected, expired, and cancelled terminal states. A state machine explicitly defines allowed transitions. Apply conditional updates using a version so a late worker cannot publish a cancelled upload. Repeated completion returns the current state. A persistent outbox or reconciler closes the gap between marking verified and scheduling processing; database and object storage do not share one ordinary transaction.

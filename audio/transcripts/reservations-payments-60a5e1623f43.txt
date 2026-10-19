@@ -1,0 +1,9 @@
+The last basket: inventory, reservations, and payments . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: What should happen if payment succeeds after the hold expires? Interviewer: Do not oversell; refund if stock cannot be obtained safely. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Why not roll back the sequel transaction to reverse the charge? Candidate: The provider is another authority. A local rollback cannot undo its committed effect. I reconcile the stable payment identity, then attempt the permitted order transition.
+
+If inventory cannot be reacquired, I create an auditable refund action with its own retry and reconciliation state, rather than calling the whole workflow atomic.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

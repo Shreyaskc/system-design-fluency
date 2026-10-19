@@ -1,0 +1,15 @@
+Protect the market: distributed rate limiting . Prompt and scope.
+
+Prompt and scope.
+
+Exact prompt: “Design a distributed rate limiter for Corner Market. Protect product browsing, merchant writes, and checkout from accidental overload and abusive clients. Explain what happens when the limiter itself fails.” A rate limiter decides whether an operation may proceed within a configured traffic budget. It does not prove that a client is trustworthy, prevent every denial-of-service attack, or reserve inventory.
+
+Ask before drawing.
+
+What identity is limited? Assume authenticated account plus route class, with a separate coarse anonymous network limit. Shared network addresses must not be the sole identity for logged-in shoppers.
+
+What policy? Assume browsing allows 10 requests per second with a burst of 20, merchant mutation allows 2 per second with a burst of 5. Checkout has a separate admission budget and transaction safeguards.
+
+How strict? Assume small temporary over-admission is acceptable for browsing, but a merchant's contracted quota must not increase merely because servers are added.
+
+Where? One region initially; three regions later. Global billing quotas are a separate durable accounting problem.

@@ -1,0 +1,5 @@
+10. Add regions only with a recovery and ownership plan . Request trace: One regional inventory owner.
+
+Request trace: One regional inventory owner.
+
+A shopper in region B reserves an item owned by region A; B forwards to A and waits within a deadline. A partition occurs after A commits. B reports pending and reconciles using the same request identity. It must not independently repeat the decrement against a writable regional copy.

@@ -1,0 +1,9 @@
+Start here a sequence you can follow . Prerequisites and exit criteria.
+
+Prerequisites and exit criteria.
+
+You should be able to read a Python function, explain a dictionary lookup, write a sequel SELECT, and distinguish a byte from a bit. A byte is eight bits; 1 megabytes here means 1,000,000 bytes, so a 10 megabytes per second payload is 80 Mb per second before protocol overhead. A sequel query such as SELECT n FROM stock WHERE id=1 reads the column n from the matching row. A Python dictionary maps keys to values; its lookup is expected constant time under ordinary hash assumptions.
+
+If Python functions or basic sequel are new, learn those prerequisites first; the labs below are application exercises rather than a complete programming introduction. Run python3 labs/design.py and manually trace its assertions once those basics are comfortable. No cloud account or package installation is needed.
+
+High-level design (HLD) assigns responsibilities to services and stores and explains data movement, capacity and failure behavior. Low-level design (LLD) specifies interfaces, state transitions and concurrency within a component. A box marked “payment service” is HLD; the permitted transition from pending to captured and its idempotency key are LLD. A convincing answer connects both.

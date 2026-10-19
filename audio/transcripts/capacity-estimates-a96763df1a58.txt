@@ -1,0 +1,7 @@
+2. Estimate load with units and uncertainty . Concurrency and service time.
+
+Concurrency and service time.
+
+Concurrency is work in progress. For a stable system, average work in progress equals arrival rate times average time in the system; this is Little's Law. At 231.5 requests per second and 0.2 seconds average response time, approximately 46.3 requests are in flight. This does not mean forty-seven C P U cores are required: much of the time may be waiting for a database or network. If each request actually consumes 5 milliseconds of C P U time, that workload consumes 1.1575 C P U-seconds per second before overhead, suggesting more than one fully utilized core and headroom for bursts.
+
+Utilization is the fraction of resource capacity in use. Queueing delays rise sharply as arrivals approach service capacity, so a benchmark at maximum throughput is not a safe operating target. Measure throughput together with tail latency: 99th percentile is the response time below which ninety-nine percent of observations fall. Percentiles do not add across services. A whole-request 99th percentile cannot be obtained by simply adding each dependency's 99th percentile because their slow events may overlap or occur on different requests.

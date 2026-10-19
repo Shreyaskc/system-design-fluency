@@ -1,0 +1,11 @@
+6. Replicate data without losing the meaning of success . Recovery is an operational procedure.
+
+Recovery is an operational procedure.
+
+A replica faithfully reproduces accidental deletes, so replication is not a backup. Backups preserve recoverable historical states; test restoration, ownership, access, and replay to a target point. Failover includes detection, election or promotion, fencing, routing updates, client reconnects, and data reconciliation. Test the entire sequence. Observe lag by time and log position, last successful backup restoration, rejected stale writes, and application-visible errors during failover.
+
+Practice: can an isolated store keep selling its locally cached stock?.
+
+Only if the business accepts possible overselling, or stock was previously allocated into a bounded store-owned quota that cannot overlap other sellers. A quota changes the model: each side may spend only its allocation. On reconnection, reconcile allocations and sales. Simply copying the shared stock count to both sides does not create independent ownership.
+
+Exit artifact: state one read guarantee and one write guarantee, draw a partition, and identify which requests succeed, wait, or fail. Include the acknowledged data that could be lost under your selected replication policy.

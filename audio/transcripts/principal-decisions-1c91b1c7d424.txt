@@ -1,0 +1,7 @@
+12. Practice principal-level decisions and demonstrate mastery . Move from a plausible diagram to an accountable choice.
+
+Move from a plausible diagram to an accountable choice.
+
+A principal engineer explains why a design fits a business, how teams will change it safely, and which evidence would overturn the choice. Corner Market has grown from a city pilot into several independently operated markets. A recommendation to split the application must name the bottleneck: conflicting ownership, release coupling, scaling pressure, regulatory boundaries, or operational blast radius. “Microservices scale” is not a decision argument. A modular application can preserve clear ownership until separate deployment has a concrete benefit.
+
+An architecture decision record captures context, options, choice, consequences, and revisit triggers. Keep the consequence specific: one store owns inventory writes, so distant shoppers pay an extra network trip; in return the last-item invariant is easier to protect. A useful revisit trigger is measured checkout latency exceeding the agreed objective for a sustained interval, rather than a vague intention to “scale later.” Include migration cost, staffing, and recovery practice alongside infrastructure capability.

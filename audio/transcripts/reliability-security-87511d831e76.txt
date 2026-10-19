@@ -1,0 +1,13 @@
+9. Define reliability from the shopper outward . Security belongs in the data flow.
+
+Security belongs in the data flow.
+
+Identify trust boundaries: client to gateway, service to database, workers to payment provider, and operator to administration tools. Authenticate identity, authorize each object access, encrypt transport, minimize stored secrets, and grant each service only necessary permissions. Treat uploaded files and search text as untrusted input. Validate content and size; avoid using unchecked user input as a network destination. An upload service fetching an arbitrary URL can become a path into private networks.
+
+Keep public catalog data separate from private orders. Redact credentials and payment details from logs. Define retention and deletion policies with qualified business and legal owners rather than inventing universal compliance rules. Audit privileged actions and test revoked access. A design diagram should show both ordinary traffic and administrative paths because maintenance interfaces often bypass assumptions made for the public A P I.
+
+Practice: checkout availability improves, but support sees more charged-without-order complaints. Is the release successful?.
+
+No conclusion follows from availability alone. Investigate the payment/order invariant, uncertain attempts, and reconciliation lag. A faster acknowledgment that hides an inconsistent business outcome can improve a narrow metric while harming shoppers. Rollback or disable the risky path based on the correctness impact.
+
+Exit artifact: define two user-facing indicators and one invariant alarm, then explain the first five minutes of response to each breach.

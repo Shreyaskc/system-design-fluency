@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . Failure analysis.
+
+Failure analysis.
+
+If a client disappears, a lifecycle rule or sweeper aborts abandoned multipart uploads and expires metadata after a documented window. Otherwise uploaded parts can accumulate cost indefinitely. If completion succeeds but its response is lost, retry queries current state; do not allocate a second object. If the worker queue is delayed, show processing status and backlog age rather than publishing unchecked bytes. If a worker crashes after writing output but before state transition, retry validates existing output and completes the transition.
+
+If the metadata database fails after object creation, reconciliation finds orphan objects using a bounded inventory process and deletes only after a grace period. If storage emits duplicate or out-of-order notifications, deduplicate by upload and pipeline version, and verify current state before processing. Notifications are hints to inspect durable state, not proof of readiness. Cancellation and publication must contend through the same conditional transition to prevent a race.

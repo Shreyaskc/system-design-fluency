@@ -1,0 +1,9 @@
+Count what happened: merchant analytics and streaming . Capacity and contracts.
+
+Capacity and contracts.
+
+Assume 100,000 daily shoppers, each producing 50 product-interaction events per day. That is 5,000,000 events per day, or 57.87 per second average. Tenfold peak is about 579 per second. At 500 bytes per encoded event, raw traffic is 2.5 gigabytes per day, 17.5 gigabytes for seven days, or 52.5 gigabytes with three log copies, before protocol overhead and indexes. A year of raw events is approximately 912.5 gigabytes before compression and redundant storage. Compression is workload-dependent; benchmark rather than claiming a universal ratio.
+
+Assume 2,000 merchants, 20 relevant products per merchant, and two event counters per one-minute window. A dense upper bound is 2,000 times 20 times 2 times 1,440 equals 115.2 million counter cells per day. Sparse activity, coarser historical windows, and retaining only useful dimensions can save far more than changing storage brands. Do not materialize every user, product, region, campaign, and device combination without a query requirement.
+
+The proposed ingestion target is 99.9 percent monthly successful server acknowledgments after the configured durable log write. Define which failures that durability covers. Track ingestion latency separately from end-to-end freshness. A service can accept every event while its dashboard is hours stale.

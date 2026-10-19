@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . Contract and data model.
+
+Contract and data model.
+
+Creating an upload supplies filename, declared size, media type, and checksum. The response returns upload identity, expiry, part size, and signed URLs for individual parts. Completion submits numbered part checksums and tokens, but returns accepted with a verifying state rather than claiming immediate publication. A status endpoint exposes progress, rejection reasons, and ready variants; deletion requests cancellation. Metadata records track owner, unique storage key, declared and actual size, checksum, version, state, and expiry. Variant uniqueness prevents duplicate outputs of one kind. Processing-job uniqueness per upload and pipeline version supports safe retries while allowing an intentional new processing pipeline.
+
+A signed upload URL grants time-limited permission for a specific storage operation. It is a bearer capability: whoever holds it can exercise its permission. Do not put it in analytics logs. An unpredictable object key and restricted creator permissions reduce exposure but do not replace ownership checks in the control A P I.

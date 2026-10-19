@@ -1,0 +1,7 @@
+7. Partition by ownership, queries, and skew . Hash and range placement.
+
+Hash and range placement.
+
+Hash partitioning maps a key through a function to a partition, tending to spread many unrelated keys. Range partitioning groups ordered values, helping range scans and time-based retention but risking concentrated writes to the newest range. A mapping such as hash(key) modulo node count is simple, yet changing node count remaps many keys. A directory or stable logical bucket layer decouples records from physical nodes: hash into 1,024 logical buckets, then map buckets to servers.
+
+At an illustrative 2 terabytes dataset and 1,024 uniformly populated buckets, each bucket averages approximately 1.95 gigabytes using decimal units. Moving sixteen buckets moves about 31.25 gigabytes on average. Actual bucket sizes and hotness can differ dramatically. Keep both byte and request metrics per bucket; equal storage does not imply equal compute demand. Stable hashing is a placement aid, not proof that the workload is balanced.

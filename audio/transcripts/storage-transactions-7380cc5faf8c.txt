@@ -1,0 +1,7 @@
+4. Model data around queries and invariants . Isolation is a choice with consequences.
+
+Isolation is a choice with consequences.
+
+Serializable isolation makes committed concurrent transactions behave like some serial ordering. It may abort work that must then be retried. PostgreSQL's default Read Committed isolation gives each statement its own committed snapshot; Repeatable Read provides a stable transaction snapshot but does not eliminate every serialization anomaly. Consult PostgreSQL transaction isolation, checked 2026-10-19. These product-specific facts do not imply every database implements identically named levels the same way.
+
+Consider an invariant across two rows: at least one on-call stock reconciliation worker must remain active. Two transactions can each observe two active workers and disable a different worker, leaving none. This is write skew: independent writes violate a shared predicate. Protect the actual invariant using a locked coordinating row, a serializable transaction with retries, or a model that makes the decision atomic. Choosing “a transaction” without identifying its isolation and locked data is insufficient.

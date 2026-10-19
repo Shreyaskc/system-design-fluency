@@ -1,0 +1,13 @@
+10. Add regions only with a recovery and ownership plan . Evolve through reversible steps.
+
+Evolve through reversible steps.
+
+Use an expand-migrate-contract change: add a compatible new field or store, populate historical data, run both readers or compare outputs, switch traffic gradually, then remove the old path after evidence supports removal. Shadow reads compare a new implementation without making it authoritative. A canary release exposes a small traffic fraction to a change, with meaningful rollback signals. These techniques need representative traffic; a canary that never touches the rare payment path cannot validate that path.
+
+Write a migration ledger: current owner, desired owner, cutover conditions, rollback conditions, data reconciliation, and the last reversible point. Some external actions, such as sending a shipment, cannot be undone by deploying old code. Separate a code rollback from a data repair or business compensation. Feature flags should have owners and removal dates so temporary branches do not become permanent architecture.
+
+Practice: management asks for active-active because a region outage is frightening. What evidence do you bring?.
+
+Bring the specific customer impact, required R T O/R P O, measured current recovery time, ownership model, and estimated complexity and cost of alternatives. Compare tested active-passive recovery against partitioned active-active writes. If each store has one home writer, explain how cross-region customers behave during home-region loss. Do not promise universal write availability while concealing correctness compromises.
+
+Exit artifact: rehearse a regional loss and a failback using a timed checklist. Every recovery objective should map to a demonstrated procedure or an explicitly recorded gap.

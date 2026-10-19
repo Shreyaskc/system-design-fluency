@@ -1,0 +1,9 @@
+Run it later: a durable job scheduler . Numbers that drive choices.
+
+Numbers that drive choices.
+
+Assume 1,000,000 jobs per day, an average runtime of 2 seconds, and a peak arrival rate ten times average. Average rate is 1,000,000 divided by 86,400 equals 11.57 jobs per second; round peak to 116 jobs per second. Little's Law relates average work in progress to throughput times duration in a stable system: at peak, 116 times 2 equals 232 concurrent executions. At a planning utilization of 70 percent, need about 232 divided by 0.7 equals 332 execution slots. Slots are concurrency capacity, not necessarily machines; C P U-heavy and waiting-heavy jobs require different sizing.
+
+At 1 kilobytes of metadata per job and 30 days of retained history, 30 million rows require about 30 gigabytes of raw metadata, before indexes and replication. Large report payloads belong in object storage with references in the job record. If all one million jobs arrive at midnight, the tenfold peak assumption is false: identify scheduled bursts, introduce allowed jitter, and provision or negotiate the completion window.
+
+Other goals: no acknowledged job silently disappears after a single worker failure, tenant isolation, bounded retries, auditable state changes, and a clearly documented disaster recovery point. Recovery point objective is the acceptable amount of recent data loss; recovery time objective is the acceptable restoration duration. Neither follows automatically from “database replication.”.

@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 7: A seller with ten million followers posts. Your feed uses write fanout. What changes?.
+
+Probe 7: A seller with ten million followers posts. Your feed uses write fanout. What changes?.
+
+Reveal sample reasoning.
+
+Ordinary-seller assumptions no longer bound fanout cost. Use a hybrid: precompute ordinary feeds and merge high-fanout sellers at read time. Preserve a durable post log, deduplicate by post ID, cap work per request and define freshness under backlog. The threshold comes from measurements, not an arbitrary celebrity number.

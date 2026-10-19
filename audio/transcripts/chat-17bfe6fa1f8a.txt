@@ -1,0 +1,5 @@
+Case 3 Buyer and seller chat . Exact interview prompt.
+
+Exact interview prompt.
+
+Design one-to-one buyer–seller messaging for Corner Market, including offline delivery, retries, read receipts, and multiple devices. Explain what “message sent” means during failures.

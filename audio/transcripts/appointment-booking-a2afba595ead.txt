@@ -1,0 +1,9 @@
+Case 11 Book a community pickup appointment . Three failure traces.
+
+Three failure traces.
+
+Two users book s42: A updates the empty slot and commits. B waits on the row, then its conditional predicate no longer matches. B changes zero rows and receives 409. A stale browse cache cannot override this result.
+
+Commit succeeds; response disappears: the client retries the same key. The stored response returns the original booking. A new key would mean a new intended operation and must not be substituted automatically.
+
+Notification worker crashes after sending: outbox replay may send a duplicate notification. The booking remains confirmed once. Include a stable event ID and use provider deduplication when supported; otherwise notifications remain at least once.

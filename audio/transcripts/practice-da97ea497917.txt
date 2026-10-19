@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 1: A response is lost after an order commits. Show a safe retry protocol.
+
+Probe 1: A response is lost after an order commits. Show a safe retry protocol.
+
+Reveal sample reasoning.
+
+Persist a client-scoped idempotency key, request fingerprint and outcome in the same transaction as the order. Retry the same key. Reject changed payloads. Return the stored outcome; expire keys only after defining the retry window. A volatile cache alone cannot protect a durable side effect.

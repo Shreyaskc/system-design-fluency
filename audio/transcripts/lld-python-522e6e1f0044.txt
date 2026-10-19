@@ -1,0 +1,11 @@
+11. Implement the boundary: Python and low-level design . Make the promise executable.
+
+Make the promise executable.
+
+Low-level design turns system promises into interfaces, data structures, state transitions, and tests. Start with one narrow component rather than a hierarchy of speculative classes. Corner Market needs a reservation service whose public operation either creates one hold, returns the existing result for a repeated request, or explains a business rejection. Inject a clock so expiry tests do not sleep, and inject persistence so concurrency assumptions are visible. An in-memory implementation teaches interfaces but is not evidence of distributed correctness.
+
+The Python example separates immutable input, persistence guarantees, and orchestration. A frozen reservation command carries shopper identity, request key, store, item, and quantity. A repository protocol declares one operation, reserve once, whose contract atomically deduplicates requests, checks stock, and creates a hold. The service receives that repository and an injected clock in its constructor. Its reserve method rejects quantities outside one through one hundred, then passes the command and current time into the repository. Injecting the clock makes timing tests deterministic.
+
+The strong repository contract still needs a real transactional implementation; a Python interface or frozen dataclass does not itself prevent distributed races.
+
+The repository contract is deliberately strong: it must implement all listed effects atomically, compare repeated request bodies, and return the original result when appropriate. Splitting these into independent repository calls would leak a race into the service. A production implementation uses a database transaction and unique constraint, not a Python dictionary shared by several servers. Use wall-clock timestamps for business deadlines, with a documented authority; use a monotonic clock for local elapsed durations so clock adjustments do not refill tokens backward.

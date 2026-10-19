@@ -1,0 +1,21 @@
+The last basket: inventory, reservations, and payments . Failures, alternatives, and operating model.
+
+Failures, alternatives, and operating model.
+
+An expiry worker conditionally expires only eligible held reservations. It cannot blindly release PAYMENT_PENDING stock at five minutes: a charge might have succeeded during a timeout. Track an uncertainty deadline, look up provider status, and escalate stuck cases with operational visibility. Use the database's time for expiry comparisons. Test the exact boundary where expiry and confirmation race, plus crash-after-provider-success and duplicate-webhook sequences.
+
+Reject a cache lock as the sole overselling defense: lease expiry can let another process enter while the first still runs. Reject separate inventory writes followed by order writes without a transaction or documented compensation. Reject a blanket claim of “exactly-once payments”; the relevant guarantee is stable request identity plus provider deduplication, reconciliation, and constrained state transitions.
+
+Track reserved-age distribution, payment-pending age, stock invariant violations, authorization-to-capture lag, reconciliation backlog, and duplicate-key conflicts. Log correlation IDs and provider references without storing secrets. Restrict refund and manual-adjustment privileges; audit operator actions. Reconcile totals against provider settlement records on a scheduled basis because callbacks alone are not a financial ledger.
+
+Scale by merchant when merchants own disjoint stock. A single hot SKU remains serialized at its correctness boundary; shard counters only with an explicit stock-allocation scheme whose allocations sum to the actual stock. Multi-region writes should route a stock owner to one authoritative region or use an appropriate strongly coordinated store. Cross-region independent decrements cannot safely enforce one remaining unit during a partition. Evolve cross-merchant carts into per-merchant reservations with explicit partial-failure handling, rather than pretending the original single-database transaction extends globally.
+
+Practice: the provider times out, then the shopper presses Pay again. What should the service do?.
+
+Return the existing attempt's pending status, retry or look up that attempt using its original provider key, and reconcile. Do not assume timeout means failure. If the provider's deduplication window has elapsed, investigate before issuing another charge.
+
+Follow-ups and rubric.
+
+Follow-ups: What if price changes during checkout? Who can adjust stock? What happens when refunds fail? Strong: states invariants, demonstrates conditional updates, exposes payment uncertainty, and names the recovery owner. Weak: reads cached stock as authoritative, uses a new key for every retry, or releases stock while payment status is unknown.
+
+Technical reference checked 2026-10-19: PostgreSQL row-locking documentation. Provider-specific payment guarantees are intentionally requirements to verify, rather than assumed universal behavior. All merchant and workload details are fictional.

@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . Clarifications and assumed requirements.
+
+Clarifications and assumed requirements.
+
+Ask maximum size, formats, privacy, processing needs, and freshness. Assume 100,000 uploads per day, average original size 20 megabytes, maximum 500 megabytes, public listing media after validation, and one original plus resized/transcoded outputs. Do not make private chat attachments publicly accessible by reusing this policy. Upload completion can precede readiness; processing 95th percentile under two minutes for supported files is a proposed target requiring benchmarking. Metadata A P I availability objective is 99.9 percent monthly. A successful upload means durable original bytes verified by the service; “ready” additionally means checks and transformations succeeded.
+
+Use decimal megabytes and gigabytes. Average ingress is 100,000 times 20 megabytes equals 2 terabytes per day, or about 23.15 megabytes per second; assumed 10 times peak is 231.5 megabytes per second before overhead. At 30 days original retention, originals total 60 terabytes. Assume all generated outputs add 50 percent of original bytes: 1 terabytes per day and 30 terabytes retained, giving 90 terabytes logical media storage before replicas and versioning. If each upload generates 50 views and each view transfers an assumed 1 megabytes, delivery is 5 terabytes per day. Transfer and transcoding can dominate metadata cost.

@@ -1,0 +1,7 @@
+10. Add regions only with a recovery and ownership plan . Recovery objectives are contracts.
+
+Recovery objectives are contracts.
+
+R T O states a restoration-time target. R P O states tolerated data loss. Assume an illustrative thirty-minute R T O and five-minute R P O for catalog administration; payment records may require a stricter contract. A backup every day cannot by itself satisfy five-minute R P O. Continuous log shipping might support that goal only if shipping, retention, credentials, restoration, and replay are tested together.
+
+Break recovery into detection, decision, fencing the old writer, data promotion or restore, traffic movement, dependency reconnection, and validation. If these take 3 plus 5 plus 4 plus 6 plus 2 plus 3 plus 4 minutes, total recovery is 27 minutes, leaving little margin under a thirty-minute objective. DNS caching, stuck clients, or missing secrets can consume the margin. Recovery drills should measure the shopper-visible endpoint, not just the moment a database starts.

@@ -1,0 +1,7 @@
+8. Make asynchronous work replayable and bounded . Ordering and event time.
+
+Ordering and event time.
+
+A partition is an independently ordered subset of a log. Key inventory events by store-item when per-item ordering matters. There is no global order across independent partitions unless an additional mechanism creates one. Consumers must handle missing versions and out-of-order arrivals from other sources. An event's occurrence time differs from processing time. A receipt event generated offline may arrive after newer events, so a dashboard must state its policy for late data.
+
+A watermark estimates event-time completeness for a processing window; it is a policy based on observed progress and lateness assumptions, not proof that no older event can ever arrive. Count orders in five-minute windows with a defined late-arrival allowance, then emit corrections or route very late events for reconciliation. Distinguish business totals from an approximate live chart so an operational dashboard does not become an accidental financial ledger.

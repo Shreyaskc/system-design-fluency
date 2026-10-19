@@ -1,0 +1,11 @@
+12. Practice principal-level decisions and demonstrate mastery . Practice case: search is late, checkout is correct.
+
+Practice case: search is late, checkout is correct.
+
+Prompt: catalog updates appear in search several minutes late, and product leadership asks for instant search and instant checkout everywhere. Clarify the observed lag distribution, which fields need freshness, geographic scope, and whether “instant” means a specific percentile. Assume product descriptions may lag sixty seconds, deletion from public search must propagate within that bound, and price is revalidated at checkout. The first task is to locate delay: outbox age, broker lag, indexing throughput, refresh timing, or client cache.
+
+Do not replace the search engine before measuring the pipeline. If indexing workers are saturated, scale them within storage capacity and apply backpressure; if invalidations are missing, fix event reliability. Serve authoritative details when a result opens and handle deleted items gracefully. For a hard removal promise, a query-time suppression list or authoritative permission check may be required while indexes catch up. That adds a dependency and must itself meet availability and latency requirements.
+
+Reveal a strong answer and a weak answer.
+
+A strong answer separates search discovery freshness from checkout correctness, proposes measurements at each boundary, and identifies the smallest compatible fix. It states what users see during lag and how removal requests are verified. A weak answer adds a cache to an already stale path, or promises globally instant indexing without a latency budget and failure policy.

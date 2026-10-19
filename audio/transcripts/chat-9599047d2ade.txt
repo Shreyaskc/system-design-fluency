@@ -1,0 +1,3 @@
+Case 3 Buyer and seller chat . Introduction.
+
+A buyer asks whether a bicycle is available. A duplicate message is annoying; acknowledging a message and then losing it damages trust. This case separates durable acceptance, delivery, reading, and connection state.

@@ -1,0 +1,9 @@
+Case 12 Defend inventory across regions . A P I, schema, and invariant.
+
+A P I, schema, and invariant.
+
+A multi-region reservation request contains a product identifier, quantity, requested hold duration, and buyer-scoped retry identity. A successful response returns the hold identifier, state, expiration, and version. Confirmation can return confirmed or expired, and release is explicit. Availability reads are deliberately labeled approximate and timestamped. The authoritative inventory table enforces nonnegative available quantity. Reservation records hold buyer identity, quantity, state, expiry, and version. Unique request records prevent duplicate effects for one buyer and key. Versioned outbox events communicate transitions to regional views. Approximate reads therefore remain distinct from the transaction that actually spends stock.
+
+The invariant is available at least 0, with each held or confirmed unit accounted for exactly once. Under the authoritative transactional database, execute atomically update the inventory row for the requested item: subtract quantity q from available stock and increase the version by one, but only if that same row currently has at least q units available. Check that exactly one row changed, and commit the reservation and request result in the same transaction, require one affected row, then insert reservation, request response, and event in the same transaction.
+
+A check constraint is defense in depth; the conditional update decides acceptance. The database's selected transaction and consensus implementation must preserve this atomicity across failover.

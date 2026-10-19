@@ -1,0 +1,9 @@
+Case 11 Book a community pickup appointment . Clarification dialogue and requirements.
+
+Clarification dialogue and requirements.
+
+Interviewer: “Can users choose arbitrary durations?” Candidate: “May I begin with fixed, pre-generated, single-capacity slots? Overlapping variable-duration appointments require interval conflict detection.” Interviewer: “Yes. Confirmations must never overlap for a slot.” Candidate: “Then the booking transaction, not the cached calendar, owns that invariant.”.
+
+Assume each clinic offers 100 slots per day, published 90 days ahead. One account can book multiple distinct slots, subject to abuse limits. Cancellation releases capacity; no payment or temporary holds in the first version. Ask about rescheduling: support an atomic move within the same database. Store instants in UTC with the clinic's named time zone for display and schedule generation. A local time can be ambiguous or nonexistent around daylight-saving changes; generate slots using an explicit policy and preserve the resulting instant. The examples are fictional assumptions.
+
+Propose 99.9 percent monthly booking availability and 95th percentile server response below 300 milliseconds under normal regional operation. Successful confirmation means a durable transaction committed. Availability browsing may lag by five seconds; booking always checks current authoritative state. Users receive a conflict response when another person wins. Notifications are asynchronous and do not determine whether the appointment exists.

@@ -1,0 +1,11 @@
+11. Implement the boundary: Python and low-level design . Exercise three: bounded asynchronous workers.
+
+Exercise three: bounded asynchronous workers.
+
+Use a bounded asyncio.Queue(maxsize=100) and a fixed worker count to avoid creating one task per unbounded incoming item. A queue's put waits when its configured capacity is exhausted, and task_done and join support tracking completed queue work. Those mechanics are documented in Python's asyncio queues, checked 2026-10-19. The queue is process-local and does not survive a crash.
+
+Reveal implementation review criteria.
+
+Each worker gets an item, performs a bounded operation, and calls task_done in a finally block after deliberately handling the outcome. task_done is queue bookkeeping, not proof of business success or a durable acknowledgment. On failure or cancellation, persist a terminal outcome or arrange an explicit retry/requeue before treating the work as handled; blindly calling it and discarding the exception can silently lose work. Handle cancellation and shutdown deliberately. Distinguish an attempted job from a successful business effect. Test a slow dependency, a failing item, a full queue, and shutdown with work pending.
+
+If durable delivery is required, replace the process-local queue with a persistent broker and preserve the acknowledgment and deduplication contract.

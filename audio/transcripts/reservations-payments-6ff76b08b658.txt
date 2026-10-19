@@ -1,0 +1,9 @@
+The last basket: inventory, reservations, and payments . Progressive design: keep stock atomic.
+
+Progressive design: keep stock atomic.
+
+Begin with one transactional database for a merchant's inventory and orders. A transaction updates stock only if sellable stock minus reserved stock minus already sold stock must be at least the requested quantity, then inserts the reservation and order. Check affected row count. For several stock items, lock rows in a deterministic SKU order, verify all quantities, and commit all or none. Consistent locking order reduces deadlocks; the application must still retry a deadlock-aborted transaction safely. Do not read availability, release the connection, and later subtract: both buyers could read one remaining unit.
+
+For 100 boxes, reserving 3 sets reserved to 3 and leaves 97 available. Confirmation moves 3 from reserved to sold in one transaction; availability stays 97. Expiry moves 3 out of reserved and leaves sold unchanged. Every transition checks the current reservation state. Expiring twice cannot release 6 units. A cache may show approximate availability for browsing, but the transactional conditional update decides whether checkout succeeds.
+
+A durable state machine makes permitted transitions explicit: HELD leads to PAYMENT_PENDING leads to CONFIRMED, or HELD leads to EXPIRED; PAYMENT_PENDING may become CANCELLED only after the payment outcome is resolved. Persist an attempt before calling the provider. Use its stable key for retries of that same attempt. If the response is lost, query or reconcile the original attempt instead of creating a new key and another possible charge.

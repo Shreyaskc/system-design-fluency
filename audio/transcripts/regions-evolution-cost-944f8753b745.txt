@@ -1,0 +1,7 @@
+10. Add regions only with a recovery and ownership plan . Resolve ownership before conflicts.
+
+Resolve ownership before conflicts.
+
+During a regional partition, two writable copies cannot both independently promise the last apple to different customers while preserving a single shared stock invariant. Options include a single reachable owner, prior regional quota allocation, or an explicit oversell policy. Last-write-wins reconciliation discards one update based on an ordering rule; that may be acceptable for a cosmetic preference but cannot undo a fulfilled purchase. Timestamps also carry clock uncertainty and are not proof of causal order.
+
+Failback is a second migration. After the old region returns, do not simply reopen writes there. Determine which region is authoritative, reconcile changes, rebuild or catch up replicas, verify state, then move traffic under controlled ownership. Test what happens when the original region returns while automation is still promoting the standby. Human approval may be part of a business recovery procedure, but its staffing and decision time belong in the R T O model.

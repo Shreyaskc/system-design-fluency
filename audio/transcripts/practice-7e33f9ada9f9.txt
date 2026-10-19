@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 2: Two requests each observe one remaining item. Both purchase it. Identify the broken invariant and repair it.
+
+Probe 2: Two requests each observe one remaining item. Both purchase it. Identify the broken invariant and repair it.
+
+Reveal sample reasoning.
+
+The invariant is reserved quantity plus sold quantity never exceeding stock. A read followed by an unconditional update permits both reads before either write. Use a conditional atomic decrement and check affected rows inside the reservation transaction. Add a unique request key. A Python mutex in one replica does not protect another replica.

@@ -1,0 +1,7 @@
+Case 3 Buyer and seller chat . Failure analysis.
+
+Failure analysis.
+
+If commit succeeds but the response is lost, the client retries its original ID and receives the original sequence. If a worker sends an event then crashes, replay produces a duplicate event, which devices tolerate. If a gateway dies, messages are still durable and reconnect history fills the gap. If a device is slow, bound its send buffer and disconnect with a resumable cursor rather than allowing unbounded memory growth.
+
+When database quorum is unavailable, do not acknowledge durable acceptance. Quorum is the required number of replicas participating in an operation under the selected replication scheme. A gateway may keep a local optimistic message marked “sending,” but must not label it committed. For blocked or removed members, recheck membership before history reads and sends; transport connection authentication from ten minutes ago is insufficient. Rate limits and spam controls should apply per sender and conversation, with explicit rejection rather than silently dropped accepted messages.

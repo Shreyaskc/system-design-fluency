@@ -1,0 +1,15 @@
+Case 5 Find the right bicycle . Follow-ups and rubric.
+
+Follow-ups and rubric.
+
+Practice: version 12 arrives before version 11, then a delete at 13. What should remain?.
+
+Accept 12, ignore 11, then record the deletion at 13. Replaying 12 must not resurrect the document. Tombstone retention and rebuild watermarks must cover the supported replay window.
+
+Practice: the index says a bicycle is available. Can checkout reserve it?.
+
+No. Search supplies candidates. The reservation service checks authoritative current inventory and commits the reservation transaction; the result page is not a lock.
+
+Strong: explains derivation and replay, separates relevance from correctness, and makes filtering and rebuild cutover concrete. Weak: names Elasticsearch without update semantics, claims indexes are immediately current, or uses search as inventory truth. Principal depth includes relevance evaluation, migration rollback, fallback budgets, and privacy-aware observability.
+
+Technical references checked 2026-10-19: Elastic near-real-time search; PostgreSQL full text search. Refresh timing and engine-specific point-in-time APIs must be verified for the deployed version; our 30-second freshness objective is an application requirement.

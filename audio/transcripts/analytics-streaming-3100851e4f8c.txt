@@ -1,0 +1,7 @@
+Count what happened: merchant analytics and streaming . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: Are these dashboard counts provisional or financial settlement records? Interviewer: Provisional product dashboards with later corrections. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: A replay sends every event again. Will counts double? Candidate: Not if identity, retention and aggregate replacement are designed together. I deduplicate stable event IDs within the declared horizon and rebuild into a new version before cutover. Events older than that horizon require a separate controlled backfill. Financial settlement would need stronger source reconciliation and an explicit accounting contract.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.

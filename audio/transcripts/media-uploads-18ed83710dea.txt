@@ -1,0 +1,7 @@
+Case 4 Reliable listing photos and video . Processing and delivery deep dives.
+
+Processing and delivery deep dives.
+
+Workers identify actual formats, enforce decoded pixel/frame/duration limits, scan as appropriate, and run parsers in resource-limited isolated environments. A small compressed file can expand into enormous memory. Never execute uploaded content or trust filenames. Produce immutable output keys incorporating upload ID and pipeline version. Retrying a job can safely overwrite only its own deterministic unpublished output or detect an already verified output; publication is a conditional metadata transition.
+
+A content delivery network (CDN) caches objects near viewers. Use immutable versioned paths and long cache lifetimes for public ready variants. Deleting metadata alone does not purge a CDN, so define takedown propagation and purge operations. For restricted media, use an authenticated delivery mechanism with bounded signed access lifetimes and explicit cache rules. Do not assume the listing page's login protects a publicly addressable object.

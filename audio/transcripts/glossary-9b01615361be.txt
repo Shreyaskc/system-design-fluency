@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Fencing token.
+
+Fencing token.
+
+Precise definition: A monotonically ordered ownership generation carried with operations and enforced by the protected resource to reject superseded owners.
+
+Plain English: The storage system refuses commands from yesterday’s owner.
+
+Analogy and its limit: A new supervisor receives a higher-numbered authorization badge; this works only if the warehouse checks the badge on every protected action.
+
+Concrete example: Worker A pauses holding token seven. Worker B obtains token eight and writes. When A resumes, storage rejects token seven. Generating tokens without atomically enforcing them at the resource does not prevent stale writes.
+
+Chubby: sequencers and stale lock holders checked 2026-10-19.

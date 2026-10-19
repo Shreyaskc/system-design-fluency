@@ -1,0 +1,7 @@
+7. Partition by ownership, queries, and skew . Hot keys need a separate answer.
+
+Hot keys need a separate answer.
+
+Suppose one celebrity grocer receives forty percent of all traffic. With sixteen shards, a store-key scheme still concentrates that traffic on one shard. A hot key is a single identifier with excessive demand; a hot partition can contain many individually ordinary keys. Cache immutable reads, split large stores into item groups, or isolate the tenant. A single inventory item's strict stock counter remains a contention point unless the product supports quota allocation or queued admission.
+
+Salting appends a random or chosen suffix to spread writes. It helps independent events because readers can aggregate across suffixes. It complicates unique constraints, ordered pagination, and atomic counters. “Salt the key” is therefore incomplete for stock: independently decrementing several counters requires safe initial allocation and rules for transferring unused quantity. Global unique usernames similarly need a coordinating namespace or a uniqueness mechanism beyond local shard constraints.

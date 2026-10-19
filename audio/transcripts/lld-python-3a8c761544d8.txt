@@ -1,0 +1,5 @@
+11. Implement the boundary: Python and low-level design . Predict the confirm-versus-expire race.
+
+Predict the confirm-versus-expire race.
+
+Reservation R is HELD at version four. Confirm reads HELD just before the deadline; expiry reads HELD at the deadline; expiry changes R to EXPIRED and returns three units; confirm blindly changes R to CONFIRMED. Now the system sold stock it already returned. Require both operations to condition their transition on the same authoritative state and version, within the transaction that changes inventory. Only one wins. Define the deadline comparison using a shared clock policy, and treat a losing confirmation as a business rejection rather than overwriting the winning state.

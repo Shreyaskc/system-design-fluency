@@ -1,0 +1,9 @@
+Protect the market: distributed rate limiting . Failure analysis and alternatives.
+
+Failure analysis and alternatives.
+
+If the bucket store times out, browsing may use a deliberately smaller local emergency budget, with a metric identifying degraded decisions. This is bounded fail-open behavior: some requests continue without the normal shared decision. Merchant writes can fail closed with a retriable dependency error, subject to the product's tolerance for lost availability. Neither policy should bypass authentication, authorization, or payment correctness. A retry after an uncertain decision might consume two tokens; conservative double charging is acceptable here, but must not become a duplicate checkout charge.
+
+Reject a fixed one-minute counter when smooth overload control matters: 100 requests at the end of one minute and 100 at the start of the next may pass almost together. A sliding log records every timestamp and offers a precise rolling window but consumes memory proportional to request volume. A sliding counter is a cheaper approximation. Token buckets fit our explicit burst contract; they do not offer a strict “no more than N in every rolling minute” promise.
+
+Track allowed and denied counts, decision latency, store failures, hot partitions, policy age, and emergency mode usage. Alert on saturation and unexpected admission changes, not on every rejection. Set per-tenant fairness and weighted costs so a cheap metadata lookup and expensive export do not share a misleading one-request cost. Protect the limiter's own A P I and cap key cardinality to prevent attackers manufacturing endless keys.

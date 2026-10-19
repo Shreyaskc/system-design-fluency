@@ -1,0 +1,9 @@
+Case 12 Defend inventory across regions . Challenge and defended choice.
+
+Challenge and defended choice.
+
+Interviewer: “I need 50 milliseconds writes everywhere, even during disconnection.” Candidate: “That conflicts with the 80 milliseconds coordination path and our single shared-stock contract. We can change the contract by allocating regional quotas. A region sells only its locally owned quota, and transferring quota requires coordination. That buys local acceptance while some regions may show sold out despite remote stock.” This is escrow allocation: distribute bounded rights whose total never exceeds global inventory.
+
+Reject unconstrained active-active counters merged after the fact: two regions may each sell the final unit, and conflict resolution cannot undo a physical promise. Reject asynchronous failover when claiming R P O 0; acknowledged data may not have reached the promoted region. Escrow is a legitimate alternative when quota fragmentation is acceptable, not a universal substitute for transactions. Allocation preserves the stock-rights bound, but does not independently provide R P O 0: reservations accepted only inside an isolated region can disappear if that region is then lost.
+
+Zero-loss acknowledgment still needs durable copies outside the regional failure domain, adding coordination latency or forcing rejection during isolation. If local-only isolated acceptance is required, explicitly renegotiate the durability/R P O contract rather than retaining the original promise.

@@ -1,0 +1,13 @@
+Elective: reliable AI recommendations and feature serving . Exact prompt and scope.
+
+Exact prompt and scope.
+
+Exact prompt: “Corner Market wants personalized product recommendations. Design the feature and inference serving path, including training consistency, freshness, failure behavior, and safe rollout.” A feature is a measurable input to a model, such as a customer's seven-day category-view count. Inference is applying a trained model to inputs to obtain a prediction. This elective follows analytics because it reuses event collection, replay, and freshness reasoning; it is not a requirement to add artificial intelligence to every system.
+
+What outcome? Assume rank up to 200 eligible candidate products and return 20. Candidate generation chooses a smaller relevant set; ranking orders that set.
+
+What model? Assume a compact C P U-served ranking model, not a large language model. Model training research and graphics-processor infrastructure are outside this interview's scope.
+
+What quality contract? Assume experiments evaluate useful purchases and user experience, with guardrails for errors, latency, stale inventory, and merchant concentration. No guaranteed business uplift is claimed.
+
+Which data? Assume consented product interactions and current catalog eligibility. Never use payment credentials or sensitive personal attributes as features.

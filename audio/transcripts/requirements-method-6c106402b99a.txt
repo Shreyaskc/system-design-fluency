@@ -1,0 +1,7 @@
+1. Turn an ambiguous prompt into a contract . Start with a person and a decision.
+
+Start with a person and a decision.
+
+Corner Market is a fictional service connecting residents with local grocers. A shopper browses produce, reserves stock, pays, and collects an order. The examples are teaching assumptions, never claims about a real business. A system is the cooperating software, data, people, and operating procedures that deliver that journey. System design means choosing their boundaries and behavior under constraints. Before drawing boxes, say what success means for a shopper and what must never happen.
+
+A functional requirement describes behavior: reserve three apples for ten minutes. A nonfunctional requirement describes a quality of that behavior: finish most reservations quickly despite a failed server. An invariant is a rule that every valid state preserves: available stock never becomes negative. Availability is whether a request receives a useful response; durability is whether acknowledged data survives failures. These words answer different questions. A fast error is available only if the contract counts that error as useful.

@@ -1,0 +1,19 @@
+Start here a sequence you can follow . A 45 minute interview method.
+
+A 45 minute interview method.
+
+0–5 minutes: restate the user action, define scope, ask for peak load, durability and freshness. Name one invariant: a condition that must always hold.
+
+5–10: estimate requests per second, bytes per day and concurrent work. Keep units. Decide which number actually changes the design.
+
+10–15: define two APIs, the source of truth and keys. Trace a successful write and read.
+
+15–25: draw a minimal working system. Label synchronous calls, durable writes and asynchronous edges. Explain the acknowledgment boundary.
+
+25–35: choose two deep dives driven by the prompt. Trace a retry after an ambiguous timeout and a dependency failure.
+
+35–42: evaluate skew, recovery, privacy, cost and growth. Explain one rejected alternative.
+
+42–45: summarize assumptions, the largest remaining risk and the experiment that would validate it.
+
+If the interviewer changes the scale, revise the bottleneck and retain unaffected decisions. Do not restart by naming fashionable components. Ask permission to spend time on correctness when the prompt involves money or inventory.

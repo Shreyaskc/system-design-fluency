@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 10: An active-active inventory design merges counters after a network partition. Is overselling prevented?.
+
+Probe 10: An active-active inventory design merges counters after a network partition. Is overselling prevented?.
+
+Reveal sample reasoning.
+
+No: both regions can spend the same remaining unit. Route ownership to one region, use coordination and reject unavailable writes, or allocate non-overlapping bounded stock rights to each region. Reconciliation detects an oversell after the fact; it does not preserve the invariant.

@@ -1,0 +1,15 @@
+Glossary precise definitions and practical meaning . Invariant.
+
+Each entry gives an original precise definition, a plain-English meaning, a relatable analogy with its limit, and a concrete system example. Analogies aid intuition; the definition and explicit contract govern correctness. References support the stated technical concept, not the invented market examples. Sources checked 2026-10-19.
+
+Invariant.
+
+Precise definition: A predicate over system state that is true initially and preserved by every permitted state transition.
+
+Plain English: A rule the system must never break, including during competing requests and recovery.
+
+Analogy and its limit: A shop cannot hand out more numbered collection tickets than it has allocated goods; unlike a physical counter, software copies can disagree.
+
+Concrete example: If stock begins at five, accepting two reservations of three violates the nonnegative-stock invariant. Protect the decrement where authoritative state changes.
+
+Herlihy and Wing: correctness and invariants checked 2026-10-19.

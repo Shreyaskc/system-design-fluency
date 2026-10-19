@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Quorum.
+
+Quorum.
+
+Precise definition: A subset of participants sufficient for a protocol step, chosen so required subsets intersect in ways the protocol’s safety argument needs.
+
+Plain English: Enough relevant members must respond before an action counts.
+
+Analogy and its limit: A committee may require three of five signatures; signatures alone do not specify how contradictory proposals are handled.
+
+Concrete example: Two majorities of a five-node set overlap. That overlap helps consensus safety, but R plus W greater than N alone does not prove linearizability without version, ordering, failure, and repair rules.
+
+Raft: majority quorums checked 2026-10-19.

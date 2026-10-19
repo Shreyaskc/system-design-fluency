@@ -1,0 +1,13 @@
+4. Model data around queries and invariants . Indexes buy reads with writes and space.
+
+Indexes buy reads with writes and space.
+
+An index is an auxiliary structure locating records without scanning every row. For WHERE shopper_id equals ? ORDER BY created_at DESC, id DESC LIMIT 20, consider an index on (shopper_id, created_at DESC, id DESC). Composite-index order should follow actual predicates and sort requirements. PostgreSQL documents how leading equality constraints affect multicolumn B-tree scans in Multicolumn Indexes, checked 2026-10-19. Verify with realistic query plans and data distributions; adding every imaginable index increases write work and storage.
+
+A relational store suits the first design because relationships and atomic updates dominate. Object storage suits large immutable product images; storing image bytes in order rows bloats transactional reads and backups. A document store may suit independently retrieved product documents, but denormalizing inventory into every document creates a synchronization problem. Choose based on operations and invariants rather than declaring one category universally faster.
+
+Practice: how does reservation expiry avoid returning stock twice?.
+
+Within a transaction, change held to expired only when its state is still held and the deadline has passed. Return quantity only if that transition changed a row. Repeated expiry attempts then do nothing. Confirm and expire must contend over the same reservation state so only one transition wins. Test a race between those operations.
+
+Exit artifact: write three important queries, propose their indexes, and state which invariant each transaction protects. Explain recovery when the process crashes before commit and after commit but before responding.

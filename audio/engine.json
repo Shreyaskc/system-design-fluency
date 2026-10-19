@@ -1,0 +1,23 @@
+{
+  "python": "3.12.13",
+  "packages": {
+    "kokoro": "0.9.4",
+    "misaki": "0.9.4",
+    "torch": "2.14.1",
+    "transformers": "5.20.1",
+    "soundfile": "0.14.0",
+    "numpy": "2.5.4",
+    "en-core-web-sm": "3.8.0"
+  },
+  "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "files": {
+    "config.json": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+    "kokoro-v1_0.pth": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+    "voices/af_heart.pt": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff"
+  },
+  "device": "cpu",
+  "threads": 1,
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "encoding": "AAC mono 64kbit/s M4A"
+}

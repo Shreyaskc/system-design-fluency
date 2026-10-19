@@ -1,0 +1,5 @@
+9. Define reliability from the shopper outward . Request trace: Authorized recovery.
+
+Request trace: Authorized recovery.
+
+A shopper requests order O; the service checks identity and O ownership before reading details; a database timeout triggers bounded retry. If an operator later investigates, the support path must enforce its own permission and audit checks. Reliability recovery never grants permission to expose another shopper’s order.

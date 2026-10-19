@@ -1,0 +1,11 @@
+Protect the market: distributed rate limiting . Build the smallest correct design.
+
+Build the smallest correct design.
+
+Start with one process and a token bucket. A token represents permission for one unit of work; the bucket refills at rate r up to capacity B. For elapsed seconds dt, compute the available token count is the smaller of bucket capacity B and the old token count plus refill rate r multiplied by elapsed time delta t. Admit only if available covers cost, then subtract cost. This bounds accepted work over any interval of length t by roughly B plus r times t, assuming a correct monotonic elapsed-time calculation. A full browsing bucket admits 20 immediate requests.
+
+Request 21 needs 0.1 seconds of refill at 10 tokens per second.
+
+Two gateways independently storing a full bucket would admit 40 immediate requests. Move each identity's state to a shared owner and combine read, refill, decision, and write into one atomic operation: other requests cannot observe a half-completed update. A short Redis script is one implementation option; atomic script execution does not imply durable global consensus. Use integer-scaled tokens to make rounding explicit, clamp negative elapsed time to zero, and cap large elapsed intervals at a full bucket. Prefer time obtained consistently at the state owner; wall-clock jumps still require a documented policy and tests.
+
+Expire idle bucket state only after enough idle time to refill completely. Deleting a partially empty bucket early grants a fresh burst. Include policy version in the key only with a deliberate migration rule: changing versions resets state and can grant another burst. An alternative updates rate and capacity while preserving and clamping existing tokens. Test rollout behavior, not merely steady state.

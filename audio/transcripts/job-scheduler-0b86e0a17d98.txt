@@ -1,0 +1,7 @@
+Run it later: a durable job scheduler . The unavoidable duplicate window.
+
+The unavoidable duplicate window.
+
+Consider a worker that sends a reminder successfully and crashes before marking the job completed. The lease expires and another worker retries. Marking complete before sending instead creates a lost-effect window. A scheduler alone cannot make an arbitrary external side effect happen exactly once. Pass the stable occurrence ID as the downstream idempotency key when the provider supports a documented durable deduplication contract. Otherwise record the uncertainty and choose explicitly between possible duplicates and possible omission.
+
+For reports, write output under a stable job-derived object key and publish a manifest conditionally. For internal database work, insert the business effect and mark completion in the same transaction when both share a database. A unique constraint on effect ID is the final concurrency defense. Retain deduplication records long enough to cover retries, replays, and backup restoration; a five-minute record is insufficient if operators can replay a month later.

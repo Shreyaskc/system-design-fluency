@@ -1,0 +1,15 @@
+Case 11 Book a community pickup appointment . Follow-ups and rubric.
+
+Follow-ups and rubric.
+
+Practice: cancellation retries after another user has booked the released slot. What prevents damage?.
+
+Clear only if the slot still points to the cancelled booking. The old request must not unconditionally clear active_booking_id.
+
+Practice: does five-second calendar caching allow five seconds of double booking?.
+
+No. Caching affects displayed availability only. Every confirmation uses the authoritative conditional transaction.
+
+Strong: identifies the slot invariant, names the atomic enforcement, handles ambiguous responses, and preserves the old booking on failed reschedule. Weak: equates a cached “available” flag with a reservation or proposes locks without expiry/failure semantics. Principal depth includes interval evolution and cross-partition contract changes.
+
+Checked 2026-10-19: PostgreSQL constraints and explicit locking. Numbers and service objectives are worked assumptions.

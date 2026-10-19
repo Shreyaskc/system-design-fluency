@@ -1,0 +1,9 @@
+Case 5 Find the right bicycle . Progressive design.
+
+Progressive design.
+
+For an early product, a relational database with proper text search and indexes can satisfy modest scale with fewer moving parts. Once retrieval features, query load, or ranking experimentation justify separation, add a search index as a rebuildable derived view. A derived view stores data computed from an authoritative source. It is not the transaction system for inventory or payment decisions.
+
+An inverted index maps a normalized term to the documents containing it. An analyzer transforms text into terms through tokenization and optional normalization. Test how “bikes,” “bike,” punctuation, and multiple languages behave; blindly stemming product model names can damage precision. Precision measures how many retrieved results are relevant; recall measures how much relevant material was retrieved. Neither equals service latency.
+
+The listing transaction writes an outbox event with a monotonically increasing listing version. A dispatcher retries delivery; the indexer ignores older versions so delayed updates cannot overwrite new content. Represent deletions as versioned tombstones and retain them long enough to cover possible replay. A fresh index rebuild must also honor changes after its snapshot watermark. Otherwise a deleted listing can reappear after cutover.

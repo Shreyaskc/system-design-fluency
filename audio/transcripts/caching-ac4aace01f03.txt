@@ -1,0 +1,7 @@
+5. Cache with a freshness and failure contract . A cache is a disposable copy.
+
+A cache is a disposable copy.
+
+A cache stores data closer to its consumer or in a faster medium to reduce latency or repeated computation. It creates another version of reality. Corner Market can cache product descriptions because a short delay is tolerable; the final stock reservation still consults authoritative inventory. First define the maximum acceptable staleness, key ownership, invalidation mechanism, eviction behavior, and what happens when the cache disappears. A cache that is necessary to reconstruct purchases is functioning as a database and needs a different durability contract.
+
+In cache-aside, the application checks a key, reads the database on a miss, and populates the cache. A hit returns the cached value. A T T L bounds an entry's residence time, not necessarily the age of the underlying fact if a stale source repopulates it. Use versioned product values and include the version in invalidation messages. Keep shopper-private results out of shared public keys; include tenant, authorization scope, language, and other response-shaping inputs where appropriate.

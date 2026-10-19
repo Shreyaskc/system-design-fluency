@@ -1,0 +1,9 @@
+Case 2 A useful neighborhood feed . Clarifying questions and assumed answers.
+
+Clarifying questions and assumed answers.
+
+Ask whether the feed is chronological or personalized. Start with reverse chronological order; introduce relevance later. Assume 1 million daily active users, 100 followed authors per user on average, public posts with block and takedown rules, 30-day feed history, and 20 cards/page. Users publish 0.2 posts per day on average. A daily active user is one who uses the app that day; it is not the number simultaneously connected. Exclude comments and ads from the first design. A new post may take five seconds to appear, but blocked or deleted content must be filtered at read time.
+
+Freshness and visibility correctness have different requirements.
+
+Propose feed 95th percentile server latency under 250 milliseconds and 99.9 percent monthly availability, with graceful stale results during fanout failure. Fanout means distributing one post reference into many recipients' inboxes. Publishing must acknowledge after durable storage without waiting for every recipient. No promise of an exact immutable feed snapshot across changing moderation rules.

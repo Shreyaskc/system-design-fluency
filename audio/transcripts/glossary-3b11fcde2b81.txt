@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Cursor pagination.
+
+Cursor pagination.
+
+Precise definition: A pagination method that resumes traversal from an encoded position in a defined ordering, often using the last observed ordering key.
+
+Plain English: Continue after where you stopped instead of skipping a count of rows.
+
+Analogy and its limit: A bookmark identifies the last shelf position visited; rearranging shelves can still change the next page. The bookmark alone does not freeze the catalog.
+
+Concrete example: Order history sorts by created_at and unique order_id, returning the last pair in an opaque cursor. Specify snapshot behavior and use a unique tiebreaker. Large OFFSET queries otherwise compute skipped rows.
+
+PostgreSQL: ordering and OFFSET costs; cursor design is the course example checked 2026-10-19.

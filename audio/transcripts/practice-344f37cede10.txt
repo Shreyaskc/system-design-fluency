@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 8: A search index still contains a deleted listing. How do you meet a five-second deletion requirement?.
+
+Probe 8: A search index still contains a deleted listing. How do you meet a five-second deletion requirement?.
+
+Reveal sample reasoning.
+
+Index removals through a durable versioned event, measure propagation lag, and filter against a deletion tombstone or current visibility check at serving time. Replay must not resurrect older versions. A periodic full rebuild alone cannot bound deletion latency.

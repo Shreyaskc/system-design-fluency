@@ -1,0 +1,7 @@
+Case 1 Share a neighborhood listing . Clarify before drawing.
+
+Clarify before drawing.
+
+Ask: arbitrary websites or only our listings? Assume both, with malware controls. Can destinations change? Assume immutable destinations; owners may disable links. Are aliases required? Optional custom aliases are in scope. Anonymous creation? No; authenticated sellers only. Is a short link a secret? No. Do we need exact click counts? Approximate daily analytics suffice. Retain mappings for one year. A removed or expired code is never reassigned within the retention period.
+
+Set nonfunctional requirements: redirect service availability objective 99.95 percent monthly, redirect server-side 95th percentile latency under 100 milliseconds in the primary region, and owner creation response 95th percentile under 300 milliseconds. A percentile means the stated fraction of observations fall below that value. These are proposed objectives to validate with the interviewer and load tests; network time is separate. Disable propagation must complete within 60 seconds, so cache policy is part of the correctness contract.

@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Serializability.
+
+Serializability.
+
+Precise definition: An isolation guarantee that committed concurrent transactions are equivalent to some serial execution of those transactions.
+
+Plain English: Overlapping transactions produce a result possible if complete transactions ran one at a time.
+
+Analogy and its limit: A manager can arrange whole order slips into an equivalent processing sequence; this does not require matching wall-clock completion order.
+
+Concrete example: A multi-row inventory rule remains correct if every serial transaction preserves it. Serializable databases may abort conflicting attempts, so applications must retry the whole transaction safely.
+
+PostgreSQL: serializable isolation checked 2026-10-19.

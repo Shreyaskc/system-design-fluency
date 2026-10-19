@@ -1,0 +1,9 @@
+4. Model data around queries and invariants . Choose the unit of truth.
+
+Choose the unit of truth.
+
+A data model defines records, relationships, valid states, and access patterns. Corner Market begins with stores, items, inventory, reservations, orders, and payment attempts. A primary key uniquely identifies a record; a foreign key constrains a reference to another record. Inventory belongs to a store-item pair. Reservations record quantity and expiration, while order lines preserve the purchased description and price. Copying the purchased price is intentional history: a later catalog edit must not rewrite an old receipt.
+
+Inventory is uniquely identified by store and item, with available quantity constrained to remain nonnegative and a version supporting concurrency control. Reservations record shopper ownership, quantity, state, and expiry. Order headers keep shopper, state, and creation time, while order lines preserve item quantity, historical unit price in minor units, and currency. Historical order prices must not change when a catalog price changes. Request keys are uniquely scoped by shopper, operation, and key. Their body hash detects reuse for different content, and their result identifier retrieves the original effect. These relationships define authority and retry behavior before any cache is introduced.
+
+Money uses an integer in the currency's defined minor unit or a carefully selected decimal representation, with currency stored explicitly. Do not assume every currency has two decimal places. State transitions are explicit: held becomes confirmed or expired; confirmed does not silently become held again. A separate adjustment records a refund. The database is authoritative; a search index and cache are derived views that can be rebuilt.

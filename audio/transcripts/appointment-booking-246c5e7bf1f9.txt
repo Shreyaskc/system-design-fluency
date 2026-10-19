@@ -1,0 +1,3 @@
+Case 11 Book a community pickup appointment . Introduction.
+
+Corner Market partners with community clinics to schedule equipment pickups and service appointments. An available calendar cell is a hint; a confirmed booking is a promise enforced by a transaction.

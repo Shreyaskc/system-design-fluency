@@ -1,0 +1,7 @@
+8. Make asynchronous work replayable and bounded . Separate accepting work from finishing it.
+
+Separate accepting work from finishing it.
+
+Asynchronous processing records work for another process to finish later. Corner Market should not fail a committed order because email is temporarily unavailable. A queue distributes tasks to workers; a log retains an ordered sequence that consumers can read independently. Choose a task queue for sending receipts and a retained event log when analytics, search indexing, and audit projections need independent replay. “Asynchronous” does not mean instantaneous, durable, or guaranteed to succeed.
+
+The response must distinguish accepted from completed. Return a stable job identifier and state such as pending, running, succeeded, or failed. Define the maximum queueing delay and how users learn about terminal failure. A worker acknowledgment tells the broker the worker has completed its obligation; acknowledge too early and a crash loses work, acknowledge too late and successful work may be repeated. Exactly which effect counts as completion needs an explicit contract.

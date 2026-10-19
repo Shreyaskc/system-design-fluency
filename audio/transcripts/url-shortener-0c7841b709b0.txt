@@ -1,0 +1,5 @@
+Case 1 Share a neighborhood listing . Exact interview prompt.
+
+Exact interview prompt.
+
+Design a URL shortener so sellers can share Corner Market listings. Explain how you avoid duplicate codes, keep redirects fast, and remove dangerous links.

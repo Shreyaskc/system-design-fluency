@@ -1,0 +1,7 @@
+6. Replicate data without losing the meaning of success . Specify a consistency guarantee.
+
+Specify a consistency guarantee.
+
+Consistency describes which observations a distributed system permits. Linearizability makes each operation appear to take effect at one instant between its invocation and response, respecting real-time order. Eventual consistency says replicas converge after updates stop and communication recovers; it gives no specific time bound without additional assumptions. Read-your-writes means a client observes its own acknowledged updates. These guarantees are not interchangeable and should be selected for operations, not casually attached to an entire product.
+
+For a shopper immediately opening a new reservation, route that session's read to the leader, or carry a replication position and wait for a replica to catch up before serving it. The latter needs a deadline and fallback. Catalog reads may tolerate lag, while inventory decrements require one authoritative ordering. A consistent database does not make an independent cache consistent. Follow the complete response path when stating the guarantee.

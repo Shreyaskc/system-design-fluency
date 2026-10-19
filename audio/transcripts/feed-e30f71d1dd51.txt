@@ -1,0 +1,7 @@
+Case 2 A useful neighborhood feed . Failures and operational tradeoffs.
+
+Failures and operational tradeoffs.
+
+When the queue falls behind, durable posts still exist, so show a freshness indicator and optionally fall back to a bounded pull query. Put a budget on fallback concurrency: a queue incident should not become a database incident. When one account causes enormous fanout, isolate its work so ordinary authors are not starved. Retry with backoff, cap attempts, and move persistently failing events to a review queue with an audited replay procedure.
+
+If the cache disappears, reduce page size or shed optional enrichment before increasing database pressure. If the follow graph is partitioned across stores, graph changes and fanout race: a post may arrive after an unfollow, which is why read-time filtering remains necessary. Store only the 30-day window, prune inactive inboxes, and reconstruct on return when write savings justify it.

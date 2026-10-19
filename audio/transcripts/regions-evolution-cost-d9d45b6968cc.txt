@@ -1,0 +1,7 @@
+10. Add regions only with a recovery and ownership plan . Cost is a model with uncertainty.
+
+Cost is a model with uncertainty.
+
+Estimate total operating cost as compute plus storage plus requests plus network transfer plus managed-service charges plus operational effort. Use current provider pricing when making a real purchasing decision; these examples deliberately avoid invented dollar prices. The catalog baseline transfers 4 gigabytes per day before images. If an image variant adds an average 200 kilobytes to each of two million daily page loads, that adds 400 gigabytes per day. Media caching may matter more financially than optimizing a small orders table.
+
+Replication multiplies stored copies, cross-region transfer, and operational testing. More services multiply deployment coordination and on-call knowledge. A managed database may cost more directly while reducing recovery and maintenance effort; quantify the staffing assumption rather than pretending engineering time is free. A cheaper design that cannot satisfy the correctness contract is not an equivalent alternative. Conversely, five-nines availability is wasteful if no user or business requirement funds its consequences.

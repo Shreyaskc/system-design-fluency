@@ -1,0 +1,7 @@
+2. Estimate load with units and uncertainty . Estimate to change a decision.
+
+Estimate to change a decision.
+
+Capacity estimation is a simplified model of resources needed to serve a workload. It is useful when it chooses between designs or reveals an impossible promise. Corner Market has 100,000 daily active shoppers, each opening twenty catalog pages and placing 0.2 orders per day. These are explicit fictional baseline assumptions used throughout this foundation sequence. A day contains 86,400 seconds. Assume a tenfold peak-to-average factor for requests, a 2 kilobytes decimal catalog response excluding photos, a 1 kilobytes order record before indexes, and thirty-day hot order retention.
+
+Catalog traffic is 100,000 times 20 equals 2,000,000 requests per day. Dividing by 86,400 gives approximately 23.15 requests per second on average and 231.5 at the assumed peak. Orders are 100,000 times 0.2 equals 20,000 per day, approximately 0.2315 per second average and 2.315 per second peak. Do not say “millions of users require sharding”: this baseline may fit a modest database. Search, photos, expensive joins, geographic distance, and bursts may matter more than total user count.

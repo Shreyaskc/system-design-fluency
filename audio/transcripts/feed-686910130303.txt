@@ -1,0 +1,5 @@
+Case 2 A useful neighborhood feed . Exact interview prompt.
+
+Exact interview prompt.
+
+Design a home feed showing recent posts from followed sellers and groups. Handle a few accounts with millions of followers without making normal publishing slow.

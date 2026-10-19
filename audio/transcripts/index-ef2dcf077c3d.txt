@@ -1,0 +1,11 @@
+Start here a sequence you can follow . Start here: three paths through one sequence.
+
+Start here: three paths through one sequence.
+
+Path ; Sequence and proof of learning.
+
+New to design 8 weeks ; Weeks 1–2: requirements, estimates, APIs, concurrency and storage. Weeks 3–4: caching through messaging. Week 5: reliability and multi-region. Weeks 6–8: two cases per week, then a timed redesign. Spend 5–7 hours per week; repeat a week when the exit task fails.
+
+Experienced builder 4 weeks ; Run the labs and explain every failed invariant first. Study the missed foundations. Solve URL shortener, reservations and streaming; then choose two unfamiliar cases. Write an operational rollback plan for each.
+
+Principal preparation 2 week diagnostic sprint ; Review constraints, correctness, reliability and evolution. Solve three unseen cases with a partner. Require explicit ownership, migration, cost model and failure containment. This is a diagnostic, not a shortcut to principal experience.

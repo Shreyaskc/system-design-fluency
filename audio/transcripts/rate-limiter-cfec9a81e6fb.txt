@@ -1,0 +1,15 @@
+Protect the market: distributed rate limiting . Evolution and interview close.
+
+Evolution and interview close.
+
+Begin with a shared regional state owner plus measured failover behavior. Add partitions after measuring load, leases only after quantifying accuracy tolerance, and regional allocation only when geography requires it. Cost includes one decision per call, replication, policy distribution, and operational complexity. Test two concurrent requests for the final token, clock rollback, policy transition, failover with lost recent state, and a single identity producing most traffic.
+
+Practice: a gateway holds a lease of 8 tokens and crashes. What is the safe interpretation?.
+
+The central owner already deducted those 8 tokens. Losing unused tokens temporarily under-admits. Reissuing them before proving they cannot still be spent risks over-admission. A restarted gateway must not reuse an old lease generation.
+
+Interviewer follow-ups and answer rubric.
+
+Follow-ups: How does a premium tenant get weighted service? Can a successful retry be charged twice? What exact bound is relaxed during regional failure? Strong: names the quota identity, derives burst behavior, makes state transition atomic, and quantifies degraded admission. Weak: says “put Redis at the gateway,” counts separately on every server, or promises exact global quotas and full partition availability without explaining coordination.
+
+Technical reference checked 2026-10-19: Redis scripting documentation confirms scripts execute atomically and block other server activity while running; keep scripts bounded. All sizing, policies, and architecture choices above are fictional design assumptions.

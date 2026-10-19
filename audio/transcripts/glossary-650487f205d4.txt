@@ -1,0 +1,13 @@
+Glossary precise definitions and practical meaning . Idempotency.
+
+Idempotency.
+
+Precise definition: The property that repeating an operation has the same intended effect on server state as applying it once, under the operation’s defined identity and scope.
+
+Plain English: A retry should not multiply the business action.
+
+Analogy and its limit: Presenting the same numbered collection ticket again does not earn another parcel; a new ticket represents a different request.
+
+Concrete example: Repeated checkout requests reuse one shopper-scoped key and unchanged body. The service stores the result and rejects incompatible key reuse. Identical response bytes are not required, and protection needs a documented retention window.
+
+RFC 9110 §9.2.2 checked 2026-10-19.

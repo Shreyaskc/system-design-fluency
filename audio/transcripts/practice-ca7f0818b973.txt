@@ -1,0 +1,7 @@
+Practice failure probes and self-assessment . Probe 9: A schedule fires twice after a lease timeout. Explain fencing.
+
+Probe 9: A schedule fires twice after a lease timeout. Explain fencing.
+
+Reveal sample reasoning.
+
+A fencing token is a monotonically increasing ownership epoch. Each mutation to the protected resource includes it; the resource rejects older epochs. Lease expiry alone cannot stop a paused worker from waking up. External effects still need their own idempotency or fencing support.

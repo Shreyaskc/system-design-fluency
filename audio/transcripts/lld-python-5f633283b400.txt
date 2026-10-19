@@ -1,0 +1,9 @@
+11. Implement the boundary: Python and low-level design . Exercise one: deterministic token bucket.
+
+Exercise one: deterministic token bucket.
+
+A token bucket admits bursts while limiting sustained request rate. It stores capacity, refill rate, available tokens, and last observed time. On each request, compute elapsed time, refill up to capacity, then spend one token if available. With capacity ten and refill two tokens per second, an idle bucket admits ten immediate requests; an eleventh is rejected; after half a second one token is available. The check and decrement must be atomic under concurrent callers.
+
+Reveal implementation outline and tests.
+
+Use tokens equals min(capacity, tokens plus max(0, now minus last) * rate); update the effective last time without allowing it to move backward; spend only when tokens are at least one. Inject a monotonic clock. Test initial burst, fractional refill, cap after long idle, simultaneous calls, and backward-time input to the pure model. For multiple servers, either centrally coordinate updates or explicitly accept a bounded per-instance overshoot. A process-local lock protects threads in one process, not a fleet.

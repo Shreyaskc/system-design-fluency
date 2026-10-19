@@ -1,0 +1,7 @@
+2. Estimate load with units and uncertainty . Keep units attached.
+
+Keep units attached.
+
+Two million catalog responses times 2,000 bytes equals 4,000,000,000 bytes per day, or 4 gigabytes using decimal units. Peak response bandwidth is 231.5 times 2,000 equals 463,000 bytes per second, approximately 3.704 megabits per second before headers, encryption, retries, and images. Eight bits make one byte. A gigabyte is 10 to the power 9 bytes; a gibibyte is 2 to the power 30 bytes. State which convention you use, especially when comparing storage bills and memory capacity.
+
+Orders consume 20,000 times 1,000 equals 20 megabytes per day of raw rows, or 600 megabytes in thirty days. If an illustrative combined allowance for row overhead and indexes doubles raw storage, the working primary needs 1.2 gigabytes. Three full database copies require 3.6 gigabytes for those rows and indexes, excluding write logs, backups, free space, and unrelated tables. Replication is a copy multiplier, not a substitute for estimating backup history. A deletion policy changes both cost and recovery requirements.

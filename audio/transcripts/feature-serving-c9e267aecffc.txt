@@ -1,0 +1,7 @@
+Elective: reliable AI recommendations and feature serving . A short spoken walkthrough.
+
+A short spoken walkthrough.
+
+Candidate: May recommendations fall back when features are too old? Interviewer: Yes, use a safe non-personalized list. Candidate: I will start with the simplest durable path and state the boundary before distributing it. Interviewer: Your latency is excellent but the model quality falls. What do you change first? Candidate: I inspect feature age, missingness, model per secondchema version and training-serving agreement. Adding replicas does not repair wrong inputs. I canary the model and transformation together with quality and latency guardrails, then roll back the versioned bundle if they regress. Eligibility remains an authoritative filter, independent of model scores.
+
+This is the compact interview explanation. The earlier sections expand the mechanism and failure traces; adapt the time spent on them to the interviewer’s direction.
