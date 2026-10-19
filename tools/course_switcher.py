@@ -2,7 +2,8 @@ from pathlib import Path
 import json,html
 
 def course_navigation(root):
-    data=json.loads((Path(root)/'courses.json').read_text())
+    registry=Path(root)/'courses.json'
+    data=json.loads(registry.read_text()) if registry.exists() else {'current':'system-design-fluency','courses':[{'id':'system-design-fluency','title':'System Design Fluency','site':'index.html'}]}
     current=data['current']
     name=next(c['title'] for c in data['courses'] if c['id']==current)
     links=[]

@@ -84,8 +84,11 @@ def page(items):
 
 
 def course_navigation(root=ROOT):
-    from course_switcher import course_navigation as render_courses
-    return render_courses(root)
+    import importlib.util
+    spec=importlib.util.spec_from_file_location("course_switcher",Path(__file__).with_name("course_switcher.py"))
+    module=importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.course_navigation(root)
 
 
 def write_page(root=ROOT,check=False):
